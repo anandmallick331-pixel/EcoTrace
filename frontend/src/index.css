@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Libre Caslon Text", "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: "Manrope", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-caslon: "Libre Caslon Text", Georgia, serif;
+  --font-manrope: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-editorial: "Libre Caslon Text", "Playfair Display", Georgia, serif;
+
+  --color-primary: #061e0e;
+  --color-primary-container: #1b3322;
+  --color-on-primary-container: #819c86;
+  --color-secondary: #57615a;
+  --color-secondary-container: #dbe5dd;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f4f3f1;
+  --color-surface-container: #efeeec;
+  --color-surface-container-high: #e9e8e6;
+  --color-surface-container-highest: #e3e2e0;
+  --color-on-surface-variant: #424842;
+  --color-outline-variant: #c2c8c0;
+
+  --color-cream-50: #FCFBF8;
+  --color-cream-100: #FAF8F5;
+  --color-cream-200: #F4F0E6;
+  --color-cream-300: #ECE6D8;
+  --color-cream-400: #DDD5C2;
+
+  --color-forest-900: #122815;
+  --color-forest-800: #1A381E;
+  --color-forest-700: #234B28;
+  --color-forest-600: #2E6235;
+  --color-forest-500: #3D7D46;
+
+  --color-sage-50: #F3F7F2;
+  --color-sage-100: #E6EFE4;
+  --color-sage-200: #D0E0CE;
+  --color-sage-500: #6B8E6B;
+  --color-sage-700: #446144;
+
+  --color-gold-50: #FAF6ED;
+  --color-gold-100: #F4ECCF;
+  --color-gold-500: #C5A869;
+  --color-gold-600: #A88B48;
+
+  --color-sand-border: #E8E3D7;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-display: swap;
+}
+
+@layer base {
+  body {
+    background-color: #FAF8F5;
+    color: #1C2A1E;
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Leaflet map container stability & custom marker reset */
+  .leaflet-container {
+    width: 100% !important;
+    height: 100% !important;
+    font-family: inherit;
+    z-index: 1;
+  }
+
+  .custom-leaflet-station-marker {
+    background: transparent !important;
+    border: none !important;
+  }
+
+  h1, h2, h3, .font-serif-heading {
+    font-family: "Playfair Display", Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom visual styling helpers matching the reference */
+.editorial-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: #1A381E;
+}
+
+.editorial-serif {
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+.editorial-quote {
+  font-family: "Newsreader", "Playfair Display", Georgia, serif;
+  font-style: italic;
+}
+
+.cream-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E8E3D7;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 20px -2px rgba(28, 42, 30, 0.04), 0 2px 6px -1px rgba(28, 42, 30, 0.02);
+}
+
+.cream-card-subtle {
+  background-color: #FDFCFA;
+  border: 1px solid #EFEAE0;
+  border-radius: 1.25rem;
+}
+
+.soft-tag {
+  background-color: #F3F7F2;
+  color: #234B28;
+  border: 1px solid #D8E6D6;
+}
+
+.organic-badge {
+  background: rgba(243, 247, 242, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(216, 230, 214, 0.9);
+  color: #1A381E;
+}
+
+/* Custom scrollbars for clean look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4F0E6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D0DEC9;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A3BCA0;
+}
+
+/* Leaflet Custom Styling for EcoTrace */
+.leaflet-popup-content-wrapper {
+  background: #FAF8F5 !important;
+  color: #1A381E !important;
+  border-radius: 1rem !important;
+  border: 1px solid #E8E3D7 !important;
+  box-shadow: 0 10px 25px -5px rgba(28, 42, 30, 0.1), 0 8px 10px -6px rgba(28, 42, 30, 0.05) !important;
+  padding: 0 !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+.leaflet-popup-tip {
+  background: #FAF8F5 !important;
+  border: 1px solid #E8E3D7 !important;
+  border-top: none !important;
+  border-left: none !important;
+}
+
+.leaflet-container {
+  font-family: inherit !important;
+  z-index: 1 !important;
+}
+
+.custom-leaflet-marker {
+  background: transparent !important;
+  border: none !important;
+}
+

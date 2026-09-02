@@ -1,0 +1,2313 @@
+{
+  "sources_count": 45,
+  "sources": {
+    "SRC_FECC_TURTLE_COORD_2026": {
+      "source_id": "SRC_FECC_TURTLE_COORD_2026",
+      "domains": [
+        "BIODIVERSITY"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "BIO_TURTLE_COORD_2026"
+      ],
+      "source_types": [
+        "OFFICIAL_NOTIFICATION"
+      ],
+      "years": [
+        "2026"
+      ],
+      "geos": [
+        "ODISHA_STATE"
+      ]
+    },
+    "SRC_FECC_TURTLE_PROT_2025": {
+      "source_id": "SRC_FECC_TURTLE_PROT_2025",
+      "domains": [
+        "BIODIVERSITY"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "BIO_TURTLE_PROT_2025"
+      ],
+      "source_types": [
+        "OFFICIAL_NOTIFICATION"
+      ],
+      "years": [
+        "2025"
+      ],
+      "geos": [
+        "ODISHA_STATE"
+      ]
+    },
+    "SRC_OMFRA_FISHBAN_2025": {
+      "source_id": "SRC_OMFRA_FISHBAN_2025",
+      "domains": [
+        "BIODIVERSITY"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "BIO_TURTLE_FISHBAN_2025_26"
+      ],
+      "source_types": [
+        "OFFICIAL_REGULATION"
+      ],
+      "years": [
+        "2025"
+      ],
+      "geos": [
+        "ODISHA_COAST_CONGREGATION_ZONES"
+      ]
+    },
+    "SRC_MEDIA_GB_NESTING_2026": {
+      "source_id": "SRC_MEDIA_GB_NESTING_2026",
+      "domains": [
+        "BIODIVERSITY"
+      ],
+      "record_count": 2,
+      "sample_records": [
+        "BIO_GB_NESTING_2026_03",
+        "BIO_PURI_CAMPS_2026"
+      ],
+      "source_types": [
+        "MEDIA_OPERATIONAL"
+      ],
+      "years": [
+        "2026"
+      ],
+      "geos": [
+        "PURI_DISTRICT_COAST",
+        "GOLDEN_BEACH"
+      ]
+    },
+    "SRC_MEDIA_GB_HATCHLING_2026": {
+      "source_id": "SRC_MEDIA_GB_HATCHLING_2026",
+      "domains": [
+        "BIODIVERSITY"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "BIO_GB_HATCHLING_2026_03"
+      ],
+      "source_types": [
+        "MEDIA_OPERATIONAL"
+      ],
+      "years": [
+        "2026"
+      ],
+      "geos": [
+        "GOLDEN_BEACH"
+      ]
+    },
+    "SRC_DOT_AR_2024_25": {
+      "source_id": "SRC_DOT_AR_2024_25",
+      "domains": [
+        "ECONOMIC",
+        "OWNERSHIP",
+        "COMMUNITY",
+        "TOURISM"
+      ],
+      "record_count": 15,
+      "sample_records": [
+        "COMM_NOLIA_LG",
+        "ECON_INV_SSWCC_PURI",
+        "ECON_INV_SLSWCA_PURI",
+        "ECON_SUBSIDY_PURI_RESORT_2025"
+      ],
+      "source_types": [
+        "Annual Report"
+      ],
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "geos": [
+        "COASTAL",
+        "GOLDEN_BEACH",
+        "PURI_BEACH",
+        "SWARGADWAR",
+        "PURI_PLACE",
+        "PURI_DISTRICT"
+      ]
+    },
+    "SRC_PURI_MUN_SWACHA_2025": {
+      "source_id": "SRC_PURI_MUN_SWACHA_2025",
+      "domains": [
+        "COMMUNITY"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "COMM_SWACHA_SATHI_EOI"
+      ],
+      "source_types": [
+        "EOI / Tender notice"
+      ],
+      "years": [
+        "2025"
+      ],
+      "geos": [
+        "PURI_MUNICIPALITY"
+      ]
+    },
+    "SRC_DOT_AR_2025_26": {
+      "source_id": "SRC_DOT_AR_2025_26",
+      "domains": [
+        "ECONOMIC"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "ECON_LAND_SHAMUKA"
+      ],
+      "source_types": [
+        "Annual Report"
+      ],
+      "years": [
+        "2025"
+      ],
+      "geos": [
+        "PURI_DISTRICT"
+      ]
+    },
+    "SRC_MOT_20YR_ORISSA_2002": {
+      "source_id": "SRC_MOT_20YR_ORISSA_2002",
+      "domains": [
+        "EMPLOYMENT"
+      ],
+      "record_count": 2,
+      "sample_records": [
+        "EMP_PURI_HIST_6403_2002",
+        "EMP_PURI_HIST_2002"
+      ],
+      "source_types": [
+        "Perspective Plan / Planning document"
+      ],
+      "years": [
+        "2002"
+      ],
+      "geos": [
+        "PURI"
+      ]
+    },
+    "SRC_MOT_DATA_PORTAL": {
+      "source_id": "SRC_MOT_DATA_PORTAL",
+      "domains": [
+        "EXPENDITURE",
+        "EMPLOYMENT"
+      ],
+      "record_count": 4,
+      "sample_records": [
+        "EMP_GAP_CURRENT_PURI",
+        "EMP_NATIONAL_CONTEXT",
+        "EXP_GAP_PURI_TOURIST_SPEND",
+        "EXP_NATIONAL_FEE_CONTEXT"
+      ],
+      "source_types": [
+        "Official data portal"
+      ],
+      "years": [
+        "2025",
+        "2024"
+      ],
+      "geos": [
+        "INDIA",
+        "PURI"
+      ]
+    },
+    "SRC_NCSCM_ODISHA_SHORELINE_2011": {
+      "source_id": "SRC_NCSCM_ODISHA_SHORELINE_2011",
+      "domains": [
+        "ENVIRONMENT"
+      ],
+      "record_count": 2,
+      "sample_records": [
+        "ENV_SHORELINE_PURI_DIST_1972_2010",
+        "ENV_SHORELINE_CHILIKA_MOUTH"
+      ],
+      "source_types": [
+        "Assessment factsheet"
+      ],
+      "years": [
+        "2010"
+      ],
+      "geos": [
+        "PURI_DISTRICT_COAST",
+        "CHILIKA_LAKE_MOUTH"
+      ]
+    },
+    "SRC_PURI_NILADRI_BEACH_RFP_2019": {
+      "source_id": "SRC_PURI_NILADRI_BEACH_RFP_2019",
+      "domains": [
+        "ENVIRONMENT"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "ENV_NILADRI_STRETCH_LENGTH"
+      ],
+      "source_types": [
+        "RFP"
+      ],
+      "years": [
+        "2019"
+      ],
+      "geos": [
+        "NILADRI_BEACH"
+      ]
+    },
+    "SRC_GOOGLE_MAPS_GIS": {
+      "source_id": "SRC_GOOGLE_MAPS_GIS",
+      "domains": [
+        "GIS"
+      ],
+      "record_count": 9,
+      "sample_records": [
+        "GIS_JAG_001",
+        "GIS_GUN_001",
+        "GIS_LOK_001",
+        "GIS_MARK_001"
+      ],
+      "source_types": [
+        "SECONDARY_GEOLOCATION"
+      ],
+      "years": [],
+      "geos": [
+        "COASTAL",
+        "SUB_SITE",
+        "SITE"
+      ]
+    },
+    "SRC_SJTA_OFFICIAL": {
+      "source_id": "SRC_SJTA_OFFICIAL",
+      "domains": [
+        "OWNERSHIP",
+        "HERITAGE"
+      ],
+      "record_count": 5,
+      "sample_records": [
+        "HER_JAG_001",
+        "HER_JAG_002",
+        "HER_NAR_001",
+        "HER_NAR_002"
+      ],
+      "source_types": [
+        "Official institutional website",
+        "OFFICIAL_INSTITUTIONAL"
+      ],
+      "years": [
+        "2024"
+      ],
+      "geos": [
+        "SITE"
+      ]
+    },
+    "SRC_PURI_DISTRICT_JAG": {
+      "source_id": "SRC_PURI_DISTRICT_JAG",
+      "domains": [
+        "HERITAGE"
+      ],
+      "record_count": 3,
+      "sample_records": [
+        "HER_JAG_003",
+        "HER_JAG_004",
+        "HER_BEA_001"
+      ],
+      "source_types": [
+        "OFFICIAL_GOVERNMENT"
+      ],
+      "years": [
+        "12"
+      ],
+      "geos": [
+        "BEACH_SECTION_OR_BROADER_PURI_COAST",
+        "SITE"
+      ]
+    },
+    "SRC_INCREDIBLE_GUNDICHA": {
+      "source_id": "SRC_INCREDIBLE_GUNDICHA",
+      "domains": [
+        "HERITAGE"
+      ],
+      "record_count": 2,
+      "sample_records": [
+        "HER_GUN_001",
+        "HER_GUN_002"
+      ],
+      "source_types": [
+        "OFFICIAL_NATIONAL_TOURISM"
+      ],
+      "years": [],
+      "geos": [
+        "SITE"
+      ]
+    },
+    "SRC_SEARCH_ASI_GUNDICHA": {
+      "source_id": "SRC_SEARCH_ASI_GUNDICHA",
+      "domains": [
+        "HERITAGE"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "HER_GUN_003"
+      ],
+      "source_types": [
+        "INTERNAL_SEARCH_LOG"
+      ],
+      "years": [],
+      "geos": [
+        "SITE"
+      ]
+    },
+    "SRC_OHREC_LOKANATH": {
+      "source_id": "SRC_OHREC_LOKANATH",
+      "domains": [
+        "OWNERSHIP",
+        "HERITAGE",
+        "VISITOR"
+      ],
+      "record_count": 4,
+      "sample_records": [
+        "HER_LOK_001",
+        "HER_LOK_002",
+        "OWN_LOK_001",
+        "VIS_GAP_LOK_001"
+      ],
+      "source_types": [
+        "OFFICIAL_INSTITUTIONAL",
+        "Official endowment / temple page"
+      ],
+      "years": [],
+      "geos": [
+        "SITE"
+      ]
+    },
+    "SRC_ODISHA_REVIEW_LOK": {
+      "source_id": "SRC_ODISHA_REVIEW_LOK",
+      "domains": [
+        "HERITAGE"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "HER_LOK_003"
+      ],
+      "source_types": [
+        "GOVERNMENT_PUBLICATION"
+      ],
+      "years": [
+        "11"
+      ],
+      "geos": [
+        "SITE"
+      ]
+    },
+    "SRC_OHREC_INDEXED": {
+      "source_id": "SRC_OHREC_INDEXED",
+      "domains": [
+        "HERITAGE"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "HER_MAR_001"
+      ],
+      "source_types": [
+        "OFFICIAL_INSTITUTIONAL"
+      ],
+      "years": [],
+      "geos": [
+        "SITE"
+      ]
+    },
+    "SRC_ODISHA_REVIEW_MAR": {
+      "source_id": "SRC_ODISHA_REVIEW_MAR",
+      "domains": [
+        "HERITAGE"
+      ],
+      "record_count": 2,
+      "sample_records": [
+        "HER_MAR_002",
+        "HER_MAR_003"
+      ],
+      "source_types": [
+        "GOVERNMENT_PUBLICATION"
+      ],
+      "years": [],
+      "geos": [
+        "SITE"
+      ]
+    },
+    "SRC_ODISHA_TOURISM_MAUSI": {
+      "source_id": "SRC_ODISHA_TOURISM_MAUSI",
+      "domains": [
+        "HERITAGE"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "HER_MAU_001"
+      ],
+      "source_types": [
+        "OFFICIAL_GOVERNMENT"
+      ],
+      "years": [],
+      "geos": [
+        "SITE"
+      ]
+    },
+    "SRC_UTSAV_RATHA": {
+      "source_id": "SRC_UTSAV_RATHA",
+      "domains": [
+        "HERITAGE"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "HER_MAU_002"
+      ],
+      "source_types": [
+        "OFFICIAL_NATIONAL_TOURISM"
+      ],
+      "years": [],
+      "geos": [
+        "SITE"
+      ]
+    },
+    "SRC_PLANNING_NARENDRA": {
+      "source_id": "SRC_PLANNING_NARENDRA",
+      "domains": [
+        "HERITAGE"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "HER_NAR_003"
+      ],
+      "source_types": [
+        "PLANNING_DOCUMENT"
+      ],
+      "years": [],
+      "geos": [
+        "SITE"
+      ]
+    },
+    "SRC_PURI_DISTRICT_CONTEXT": {
+      "source_id": "SRC_PURI_DISTRICT_CONTEXT",
+      "domains": [
+        "HERITAGE"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "HER_SWA_001"
+      ],
+      "source_types": [
+        "OFFICIAL_GOVERNMENT"
+      ],
+      "years": [],
+      "geos": [
+        "SITE"
+      ]
+    },
+    "SRC_DOT_ANNUAL_REPORT": {
+      "source_id": "SRC_DOT_ANNUAL_REPORT",
+      "domains": [
+        "HERITAGE"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "HER_BEA_002"
+      ],
+      "source_types": [
+        "OFFICIAL_GOVERNMENT"
+      ],
+      "years": [],
+      "geos": [
+        "GOLDEN_BEACH"
+      ]
+    },
+    "SRC_SJTA_OFFICIAL; SRC_JAGANNATH_ACT_1954": {
+      "source_id": "SRC_SJTA_OFFICIAL; SRC_JAGANNATH_ACT_1954",
+      "domains": [
+        "OWNERSHIP"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "OWN_JAG_001"
+      ],
+      "source_types": [
+        "Statute / Official institutional website"
+      ],
+      "years": [
+        "1954"
+      ],
+      "geos": [
+        "SITE"
+      ]
+    },
+    "SRC_PKDA_CDP": {
+      "source_id": "SRC_PKDA_CDP",
+      "domains": [
+        "OWNERSHIP"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "OWN_NAR_001"
+      ],
+      "source_types": [
+        "Planning document"
+      ],
+      "years": [],
+      "geos": [
+        "SITE"
+      ]
+    },
+    "SRC_PURI_TEHSIL_SETTLEMENT; SRC_SWARGADWAR_SEVA": {
+      "source_id": "SRC_PURI_TEHSIL_SETTLEMENT; SRC_SWARGADWAR_SEVA",
+      "domains": [
+        "OWNERSHIP"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "OWN_SWAR_001"
+      ],
+      "source_types": [
+        "Tehsildar settlement / Institutional website"
+      ],
+      "years": [
+        "2017"
+      ],
+      "geos": [
+        "SITE"
+      ]
+    },
+    "SRC_PURI_DIST_GOLDEN_TENDER": {
+      "source_id": "SRC_PURI_DIST_GOLDEN_TENDER",
+      "domains": [
+        "OWNERSHIP"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "OWN_GB_001"
+      ],
+      "source_types": [
+        "Tender / Forest Dept"
+      ],
+      "years": [],
+      "geos": [
+        "SUB_SITE"
+      ]
+    },
+    "SRC_DOT_SB_2024": {
+      "source_id": "SRC_DOT_SB_2024",
+      "domains": [
+        "VISITOR",
+        "TOURISM"
+      ],
+      "record_count": 20,
+      "sample_records": [
+        "TOUR_001",
+        "TOUR_002",
+        "TOUR_003",
+        "TOUR_004"
+      ],
+      "source_types": [
+        "OFFICIAL_STATISTICAL_BULLETIN",
+        "Statistical Bulletin"
+      ],
+      "years": [
+        "2021",
+        "2024",
+        "2022",
+        "2023",
+        "2020"
+      ],
+      "geos": [
+        "PURI_PLACE",
+        "PURI_TOURIST_CENTRE",
+        "PURI_DISTRICT"
+      ]
+    },
+    "SRC_PURI_GOLDEN_BEACH_RFP_2020": {
+      "source_id": "SRC_PURI_GOLDEN_BEACH_RFP_2020",
+      "domains": [
+        "TOURISM"
+      ],
+      "record_count": 7,
+      "sample_records": [
+        "TOUR_GB_BENCHES_2020",
+        "TOUR_GB_RECLINERS_2020",
+        "TOUR_GB_CANE_CHAIRS_2020",
+        "TOUR_GB_HAMMOCKS_2020"
+      ],
+      "source_types": [
+        "RFP"
+      ],
+      "years": [
+        "2020"
+      ],
+      "geos": [
+        "GOLDEN_BEACH"
+      ]
+    },
+    "SRC_DOT_SB_2022": {
+      "source_id": "SRC_DOT_SB_2022",
+      "domains": [
+        "VISITOR"
+      ],
+      "record_count": 8,
+      "sample_records": [
+        "VIS_PURI_001",
+        "VIS_PURI_002",
+        "VIS_PURI_003",
+        "VIS_PURI_004"
+      ],
+      "source_types": [
+        "OFFICIAL_STATISTICAL_BULLETIN"
+      ],
+      "years": [
+        "2021",
+        "2020"
+      ],
+      "geos": [
+        "PURI_TOURIST_CENTRE"
+      ]
+    },
+    "SRC_DOT_SB_2023": {
+      "source_id": "SRC_DOT_SB_2023",
+      "domains": [
+        "WATER",
+        "VISITOR"
+      ],
+      "record_count": 9,
+      "sample_records": [
+        "VIS_PURI_009",
+        "VIS_PURI_010",
+        "VIS_PURI_011",
+        "VIS_PURI_012"
+      ],
+      "source_types": [
+        "OFFICIAL_STATISTICAL_BULLETIN",
+        "REGENLEDGER_DERIVED"
+      ],
+      "years": [
+        "2022",
+        "2023"
+      ],
+      "geos": [
+        "PURI_TOURIST_CENTRE"
+      ]
+    },
+    "SRC_DOT_RELIGIOUS_SHRINES": {
+      "source_id": "SRC_DOT_RELIGIOUS_SHRINES",
+      "domains": [
+        "VISITOR"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "VIS_GAP_MAU_001"
+      ],
+      "source_types": [
+        "OFFICIAL_TOURISM"
+      ],
+      "years": [],
+      "geos": [
+        "SITE"
+      ]
+    },
+    "SRC_DOT_ITINERARY_NAR": {
+      "source_id": "SRC_DOT_ITINERARY_NAR",
+      "domains": [
+        "VISITOR"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "VIS_GAP_NAR_001"
+      ],
+      "source_types": [
+        "OFFICIAL_TOURISM"
+      ],
+      "years": [],
+      "geos": [
+        "SITE"
+      ]
+    },
+    "SRC_DOT_PURI_CONTEXT": {
+      "source_id": "SRC_DOT_PURI_CONTEXT",
+      "domains": [
+        "VISITOR"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "VIS_GAP_SWA_001"
+      ],
+      "source_types": [
+        "OFFICIAL_TOURISM"
+      ],
+      "years": [],
+      "geos": [
+        "SITE"
+      ]
+    },
+    "SRC_OSPCB_SWM_2023_24": {
+      "source_id": "SRC_OSPCB_SWM_2023_24",
+      "domains": [
+        "WASTE"
+      ],
+      "record_count": 4,
+      "sample_records": [
+        "WASTE_MSW_GEN_2023_24",
+        "WASTE_MSW_COLL_2023_24",
+        "WASTE_MSW_PROC_2023_24",
+        "WASTE_MSW_INFRA_2023_24"
+      ],
+      "source_types": [
+        "OFFICIAL_MONITORING_REPORT"
+      ],
+      "years": [
+        "2023"
+      ],
+      "geos": [
+        "PURI_MUNICIPALITY"
+      ]
+    },
+    "SRC_OSPCB_SWM_2022_23": {
+      "source_id": "SRC_OSPCB_SWM_2022_23",
+      "domains": [
+        "WASTE"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "WASTE_MSW_GEN_2022_23"
+      ],
+      "source_types": [
+        "OFFICIAL_MONITORING_REPORT"
+      ],
+      "years": [
+        "2022"
+      ],
+      "geos": [
+        "PURI_MUNICIPALITY"
+      ]
+    },
+    "SRC_OSPCB_PWM_2023_24": {
+      "source_id": "SRC_OSPCB_PWM_2023_24",
+      "domains": [
+        "WASTE"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "WASTE_PLASTIC_BAN_PURI"
+      ],
+      "source_types": [
+        "OFFICIAL_MONITORING_REPORT"
+      ],
+      "years": [
+        "2018"
+      ],
+      "geos": [
+        "PURI_MUNICIPALITY"
+      ]
+    },
+    "SRC_OSPCB_GW_2024": {
+      "source_id": "SRC_OSPCB_GW_2024",
+      "domains": [
+        "WATER"
+      ],
+      "record_count": 24,
+      "sample_records": [
+        "WAT-001",
+        "WAT-002",
+        "WAT-003",
+        "WAT-004"
+      ],
+      "source_types": [
+        "Monitoring Report"
+      ],
+      "years": [],
+      "geos": [
+        "SITE",
+        "PURI_COASTAL_ZONE"
+      ]
+    },
+    "SRC_OSPCB_COASTAL_2023": {
+      "source_id": "SRC_OSPCB_COASTAL_2023",
+      "domains": [
+        "WATER"
+      ],
+      "record_count": 9,
+      "sample_records": [
+        "WAT-025",
+        "WAT-026",
+        "WAT-027",
+        "WAT-028"
+      ],
+      "source_types": [
+        "Monitoring Report"
+      ],
+      "years": [],
+      "geos": [
+        "SITE",
+        "PURI_COASTAL_ZONE"
+      ]
+    },
+    "SRC_SEARCH_OSPCB_AND_PMC": {
+      "source_id": "SRC_SEARCH_OSPCB_AND_PMC",
+      "domains": [
+        "WATER"
+      ],
+      "record_count": 2,
+      "sample_records": [
+        "WAT-034",
+        "WAT-035"
+      ],
+      "source_types": [
+        "SEARCH_DOCUMENTATION"
+      ],
+      "years": [],
+      "geos": [
+        "SITE",
+        "PURI_TOURIST_CENTRE"
+      ]
+    },
+    "SRC_OSPCB_POND_HIST": {
+      "source_id": "SRC_OSPCB_POND_HIST",
+      "domains": [
+        "WATER"
+      ],
+      "record_count": 2,
+      "sample_records": [
+        "WAT-036",
+        "WAT-037"
+      ],
+      "source_types": [
+        "Annual / WQI reports"
+      ],
+      "years": [],
+      "geos": [
+        "SITE"
+      ]
+    },
+    "SRC_URBAN_ODISHA_ULB_POP": {
+      "source_id": "SRC_URBAN_ODISHA_ULB_POP",
+      "domains": [
+        "WATER"
+      ],
+      "record_count": 1,
+      "sample_records": [
+        "WAT-DER-001"
+      ],
+      "source_types": [
+        "REGENLEDGER_DERIVED"
+      ],
+      "years": [],
+      "geos": [
+        "PURI_TOURIST_CENTRE"
+      ]
+    }
+  },
+  "metrics_count": 57,
+  "metrics": [
+    {
+      "metric_id": "MET_EMP_HIST_TOTAL_2002",
+      "domain": "EMPLOYMENT",
+      "indicator": "Tourism-related Employment",
+      "sub_indicator": "Historical Planning Estimate",
+      "metric_name": "Historical Tourism Employment Estimate (2002)",
+      "definition": "Official MoT 20-Year Perspective Plan (2002) estimate of tourism-related employment generation for Puri as a selected tourist spot. Measures a 2002 planning-horizon figure only. Does NOT measure current direct or indirect tourism jobs.",
+      "measurement_unit": "persons",
+      "value_type": "DIRECT",
+      "data_source": "EMP_PURI_HIST_6403_2002 (SRC_MOT_20YR_ORISSA_2002); EMP_PURI_HIST_2002 (provenance placeholder)",
+      "geographic_scope": "PURI (selected tourist spot)",
+      "temporal_scope": "2002",
+      "verification_requirement": "Primary MoT Perspective Plan table; historical_flag=TRUE; current_status_flag=FALSE",
+      "confidence_requirement": "Medium (planning estimate, not census/PLFS)",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "NOT_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; do not extrapolate to current year",
+      "leakage_risk": "HIGH (temporal leakage if presented as current)",
+      "retention_policy": "RETAIN_HISTORICAL",
+      "limitations": "Historical 2002 only. Does not close GAP_EMP_001. EMP_PURI_HIST_2002 is incomplete extraction placeholder, not a second independent observation.",
+      "notes": "display_label must indicate Historical (2002)."
+    },
+    {
+      "metric_id": "MET_EMP_CURRENT_TOTAL",
+      "domain": "EMPLOYMENT",
+      "indicator": "Tourism-related Employment",
+      "sub_indicator": "Current Direct and Indirect Jobs",
+      "metric_name": "Current Puri Tourism Employment",
+      "definition": "Official current destination-level direct and indirect tourism-related employment for Puri. Currently unavailable in approved evidence layer.",
+      "measurement_unit": "persons",
+      "value_type": "DATA_GAP",
+      "data_source": "GAP_EMP_001 (gap marker; EMP_GAP_CURRENT_PURI is the gap observation record). National EMP_NATIONAL_CONTEXT is INDIA-only context.",
+      "geographic_scope": "PURI",
+      "temporal_scope": "current / unavailable",
+      "verification_requirement": "Official destination-level employment series required; national figures must not be allocated",
+      "confidence_requirement": "NOT_APPLICABLE_DATA_GAP",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "DATA_GAP",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; do not derive from visitors/hotels/investment/population",
+      "leakage_risk": "CRITICAL if national (84.63 Mn) allocated to Puri",
+      "retention_policy": "RETAIN_AS_GAP",
+      "limitations": "No current destination-level series. Historical 6403 does not close this gap.",
+      "notes": "GAP_EMP_001 OPEN. temporal_scope is current/unavailable \u2014 not a 2024 observation."
+    },
+    {
+      "metric_id": "MET_ECO_SSWCC_PROJECT_COUNT",
+      "domain": "ECONOMIC",
+      "indicator": "Tourism Investment",
+      "sub_indicator": "SSWCC Approved Project Count",
+      "metric_name": "SSWCC Approved Tourism Project Count (Puri District)",
+      "definition": "Count of SSWCC-approved tourism projects under INR 50 Cr for Puri district over the last 5 years to 2025. Measures number of approved projects only, not investment value, realised expenditure, or GVA.",
+      "measurement_unit": "count",
+      "value_type": "DIRECT",
+      "data_source": "ECON_INV_SSWCC_PURI (SRC_DOT_AR_2024_25)",
+      "geographic_scope": "PURI_DISTRICT",
+      "temporal_scope": "last 5 years (to 2025)",
+      "verification_requirement": "Official DOT AR; district-only; not allocated to beach or temples",
+      "confidence_requirement": "High",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "MEDIUM (district aggregate)",
+      "retention_policy": "RETAIN",
+      "limitations": "Approved count only; not realised spend or GVA. GAP_ECO_001 remains OPEN.",
+      "notes": "22 projects. Split from investment value metric."
+    },
+    {
+      "metric_id": "MET_ECO_SSWCC_INVESTMENT_VALUE",
+      "domain": "ECONOMIC",
+      "indicator": "Tourism Investment",
+      "sub_indicator": "SSWCC Approved Investment Value",
+      "metric_name": "SSWCC Approved Tourism Investment Value (Puri District)",
+      "definition": "Aggregate approved investment value of SSWCC tourism projects under INR 50 Cr for Puri district over the last 5 years to 2025. Measures approved pipeline value only. Does NOT measure expenditure or GVA.",
+      "measurement_unit": "INR Cr",
+      "value_type": "DIRECT",
+      "data_source": "ECON_INV_SSWCC_PURI (SRC_DOT_AR_2024_25)",
+      "geographic_scope": "PURI_DISTRICT",
+      "temporal_scope": "last 5 years (to 2025)",
+      "verification_requirement": "Official DOT AR; district-only",
+      "confidence_requirement": "High",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "MEDIUM (district aggregate)",
+      "retention_policy": "RETAIN",
+      "limitations": "Approved value only; investment \u2260 expenditure. GAP_ECO_001 OPEN.",
+      "notes": "340.42 INR Cr. Split from project count metric."
+    },
+    {
+      "metric_id": "MET_ECO_SLSWCA_PROJECT_COUNT",
+      "domain": "ECONOMIC",
+      "indicator": "Tourism Investment",
+      "sub_indicator": "SLSWCA Approved Project Count",
+      "metric_name": "SLSWCA Approved Tourism Project Count (Puri District)",
+      "definition": "Count of SLSWCA-approved tourism projects above INR 50 Cr for Puri district over the last 5 years to 2025. Measures number of large approved projects only.",
+      "measurement_unit": "count",
+      "value_type": "DIRECT",
+      "data_source": "ECON_INV_SLSWCA_PURI (SRC_DOT_AR_2024_25)",
+      "geographic_scope": "PURI_DISTRICT",
+      "temporal_scope": "last 5 years (to 2025)",
+      "verification_requirement": "Official DOT AR; district-only",
+      "confidence_requirement": "High",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "MEDIUM",
+      "retention_policy": "RETAIN",
+      "limitations": "Approved count only. GAP_ECO_001 OPEN.",
+      "notes": "16 projects."
+    },
+    {
+      "metric_id": "MET_ECO_SLSWCA_INVESTMENT_VALUE",
+      "domain": "ECONOMIC",
+      "indicator": "Tourism Investment",
+      "sub_indicator": "SLSWCA Approved Investment Value",
+      "metric_name": "SLSWCA Approved Tourism Investment Value (Puri District)",
+      "definition": "Aggregate approved investment value of SLSWCA tourism projects above INR 50 Cr for Puri district over the last 5 years to 2025. Measures approved pipeline value only. Investment \u2260 expenditure.",
+      "measurement_unit": "INR Cr",
+      "value_type": "DIRECT",
+      "data_source": "ECON_INV_SLSWCA_PURI (SRC_DOT_AR_2024_25)",
+      "geographic_scope": "PURI_DISTRICT",
+      "temporal_scope": "last 5 years (to 2025)",
+      "verification_requirement": "Official DOT AR; district-only",
+      "confidence_requirement": "High",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "MEDIUM",
+      "retention_policy": "RETAIN",
+      "limitations": "Approved value only. Puri second-highest after Khordha. GAP_ECO_001 OPEN.",
+      "notes": "1684.61 INR Cr."
+    },
+    {
+      "metric_id": "MET_ECO_LAND_SHAMUKA",
+      "domain": "ECONOMIC",
+      "indicator": "Tourism Land Bank",
+      "sub_indicator": "Shamuka Land Bank Area",
+      "metric_name": "Shamuka Tourism Land Bank (Puri District)",
+      "definition": "Area of tourism land bank listed under Shamuka in Puri district as of 2025-26 DOT report. Measures land availability for potential tourism development, not operational capacity or core-site ownership.",
+      "measurement_unit": "acre",
+      "value_type": "DIRECT",
+      "data_source": "ECON_LAND_SHAMUKA (SRC_DOT_AR_2025_26)",
+      "geographic_scope": "PURI_DISTRICT",
+      "temporal_scope": "as of 2025-26 report",
+      "verification_requirement": "Official AR land bank table; not mapped to Golden Beach or temples",
+      "confidence_requirement": "High",
+      "directionality": "NEUTRAL/DESCRIPTIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "MEDIUM",
+      "retention_policy": "RETAIN",
+      "limitations": "Not identical to selected CORE sites.",
+      "notes": "1515.45 acre."
+    },
+    {
+      "metric_id": "MET_ECO_TOURISM_GVA",
+      "domain": "ECONOMIC",
+      "indicator": "Tourism Economic Contribution",
+      "sub_indicator": "Tourism GVA / GDP Share",
+      "metric_name": "Puri Tourism GVA or GDP Contribution",
+      "definition": "Official tourism-specific Gross Value Added or GDP share attributable to Puri. Currently unavailable; investment pipeline does not substitute for GVA.",
+      "measurement_unit": "INR Cr or percentage share",
+      "value_type": "DATA_GAP",
+      "data_source": "GAP_ECO_001",
+      "geographic_scope": "PURI / PURI_DISTRICT",
+      "temporal_scope": "current / unavailable",
+      "verification_requirement": "Official DES/MoT TSA or district tourism satellite account",
+      "confidence_requirement": "NOT_APPLICABLE_DATA_GAP",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "DATA_GAP",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; do not derive from investment approvals",
+      "leakage_risk": "HIGH if state/national GVA allocated to Puri",
+      "retention_policy": "RETAIN_AS_GAP",
+      "limitations": "Investment figures recorded separately; no tourism-specific GVA.",
+      "notes": "GAP_ECO_001 OPEN."
+    },
+    {
+      "metric_id": "MET_EXP_TOURIST_SPEND",
+      "domain": "EXPENDITURE",
+      "indicator": "Tourist Expenditure",
+      "sub_indicator": "Average or Total Tourist Spend",
+      "metric_name": "Puri Tourist Expenditure",
+      "definition": "Official average spend per tourist or total tourism expenditure for Puri destination. Currently unavailable; national FEE must not be allocated.",
+      "measurement_unit": "INR",
+      "value_type": "DATA_GAP",
+      "data_source": "GAP_EXP_001 (EXP_GAP_PURI_TOURIST_SPEND is gap observation)",
+      "geographic_scope": "PURI",
+      "temporal_scope": "current / unavailable",
+      "verification_requirement": "Official MoT or Odisha DOT expenditure survey with Puri figures",
+      "confidence_requirement": "NOT_APPLICABLE_DATA_GAP",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "DATA_GAP",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; do not allocate national FEE",
+      "leakage_risk": "CRITICAL if national FEE allocated to Puri",
+      "retention_policy": "RETAIN_AS_GAP",
+      "limitations": "No official destination-level series.",
+      "notes": "GAP_EXP_001 OPEN."
+    },
+    {
+      "metric_id": "MET_TOUR_HOTELS_PLACE",
+      "domain": "TOURISM",
+      "indicator": "Tourism Capacity",
+      "sub_indicator": "Hotel Count (Place)",
+      "metric_name": "Puri Place Hotel Count",
+      "definition": "Official count of hotels in Puri place (tourist centre), 2024. Measures establishment stock only; not occupancy or site-level distribution.",
+      "measurement_unit": "count",
+      "value_type": "DIRECT",
+      "data_source": "TOUR_004 / TOUR_HOTELS_PURI_PLACE_2024 (SRC_DOT_SB_2024)",
+      "geographic_scope": "PURI_PLACE",
+      "temporal_scope": "2024",
+      "verification_requirement": "Official DOT SB; place vs district preserved",
+      "confidence_requirement": "High",
+      "directionality": "NEUTRAL/DESCRIPTIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "MEDIUM",
+      "retention_policy": "RETAIN",
+      "limitations": "No site-level breakdown (GAP_TOUR_001). Not occupancy.",
+      "notes": "759 hotels."
+    },
+    {
+      "metric_id": "MET_TOUR_ROOMS_PLACE",
+      "domain": "TOURISM",
+      "indicator": "Tourism Capacity",
+      "sub_indicator": "Room Count (Place)",
+      "metric_name": "Puri Place Room Count",
+      "definition": "Official count of hotel rooms in Puri place, 2024. Stock capacity only; not occupancy or revenue.",
+      "measurement_unit": "rooms",
+      "value_type": "DIRECT",
+      "data_source": "TOUR_005 / TOUR_ROOMS_PURI_PLACE_2024 (SRC_DOT_SB_2024)",
+      "geographic_scope": "PURI_PLACE",
+      "temporal_scope": "2024",
+      "verification_requirement": "Official DOT SB",
+      "confidence_requirement": "High",
+      "directionality": "NEUTRAL/DESCRIPTIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "MEDIUM",
+      "retention_policy": "RETAIN",
+      "limitations": "Stock only. GAP_TOUR_001.",
+      "notes": "16911 rooms."
+    },
+    {
+      "metric_id": "MET_TOUR_BEDS_PLACE",
+      "domain": "TOURISM",
+      "indicator": "Tourism Capacity",
+      "sub_indicator": "Bed Count (Place)",
+      "metric_name": "Puri Place Bed Count",
+      "definition": "Official count of hotel beds in Puri place, 2024. Stock capacity only; not occupancy.",
+      "measurement_unit": "beds",
+      "value_type": "DIRECT",
+      "data_source": "TOUR_006 / TOUR_BEDS_PURI_PLACE_2024 (SRC_DOT_SB_2024)",
+      "geographic_scope": "PURI_PLACE",
+      "temporal_scope": "2024",
+      "verification_requirement": "Official DOT SB",
+      "confidence_requirement": "High",
+      "directionality": "NEUTRAL/DESCRIPTIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "MEDIUM",
+      "retention_policy": "RETAIN",
+      "limitations": "Stock only. GAP_TOUR_001.",
+      "notes": "37776 beds."
+    },
+    {
+      "metric_id": "MET_TOUR_HOTELS_DIST",
+      "domain": "TOURISM",
+      "indicator": "Tourism Capacity",
+      "sub_indicator": "Hotel Count (District)",
+      "metric_name": "Puri District Hotel Count",
+      "definition": "Official count of hotels in Puri district, 2024. District aggregate; includes centres beyond Puri place.",
+      "measurement_unit": "count",
+      "value_type": "DIRECT",
+      "data_source": "TOUR_001 / TOUR_HOTELS_PURI_DIST_2024 (SRC_DOT_SB_2024)",
+      "geographic_scope": "PURI_DISTRICT",
+      "temporal_scope": "2024",
+      "verification_requirement": "Official DOT SB; district vs place preserved",
+      "confidence_requirement": "High",
+      "directionality": "NEUTRAL/DESCRIPTIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "MEDIUM",
+      "retention_policy": "RETAIN",
+      "limitations": "District aggregate. GAP_TOUR_001.",
+      "notes": "812 hotels."
+    },
+    {
+      "metric_id": "MET_TOUR_OCC_RATE",
+      "domain": "TOURISM",
+      "indicator": "Tourism Utilisation",
+      "sub_indicator": "Average Hotel Occupancy Percentage",
+      "metric_name": "Puri Place Hotel Occupancy Rate",
+      "definition": "Official average hotel occupancy percentage for Puri place by year (2020\u20132024 series). Measures utilisation of accommodation stock. Distinct from room/bed capacity.",
+      "measurement_unit": "percent",
+      "value_type": "DIRECT",
+      "data_source": "TOUR_OCC_2020\u2013TOUR_OCC_2024 (SRC_DOT_SB_2024)",
+      "geographic_scope": "PURI_PLACE",
+      "temporal_scope": "2020\u20132024 (annual series)",
+      "verification_requirement": "Official DOT SB occupancy tables; 2020 historical",
+      "confidence_requirement": "High",
+      "directionality": "CONTEXT_DEPENDENT",
+      "scoring_eligibility": "ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "LOW",
+      "retention_policy": "RETAIN",
+      "limitations": "Average %; 2020 COVID-affected/historical.",
+      "notes": "Series: 19%(2020 hist), 39%, 48%, 49%, 52%(2024)."
+    },
+    {
+      "metric_id": "MET_TOUR_OTDC_ROOMS",
+      "domain": "TOURISM",
+      "indicator": "Tourism Capacity",
+      "sub_indicator": "OTDC Rooms",
+      "metric_name": "OTDC Puri Rooms (Derived)",
+      "definition": "Derived count of OTDC rooms at Puri from approved AR reconciliation. Public-sector accommodation capacity. value_type remains DERIVED.",
+      "measurement_unit": "rooms",
+      "value_type": "DERIVED",
+      "data_source": "TOUR_OTDC_PURI_2024_ROOMS (SRC_DOT_AR_2024_25); derived_flag=TRUE",
+      "geographic_scope": "PURI_PLACE",
+      "temporal_scope": "2024",
+      "verification_requirement": "Approved derivation lineage; reproducible",
+      "confidence_requirement": "Medium/High",
+      "directionality": "NEUTRAL/DESCRIPTIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "Approved derivation only",
+      "leakage_risk": "LOW",
+      "retention_policy": "RETAIN",
+      "limitations": "DERIVED; not full private stock. Do not describe as occupancy.",
+      "notes": "value=50 rooms. Keep DERIVED."
+    },
+    {
+      "metric_id": "MET_TOUR_OTDC_BEDS",
+      "domain": "TOURISM",
+      "indicator": "Tourism Capacity",
+      "sub_indicator": "OTDC Beds",
+      "metric_name": "OTDC Puri Beds (Derived)",
+      "definition": "Derived count of OTDC beds at Puri. Public-sector bed capacity. value_type remains DERIVED.",
+      "measurement_unit": "beds",
+      "value_type": "DERIVED",
+      "data_source": "TOUR_OTDC_PURI_2024_BEDS (SRC_DOT_AR_2024_25); derived_flag=TRUE",
+      "geographic_scope": "PURI_PLACE",
+      "temporal_scope": "2024",
+      "verification_requirement": "Approved derivation lineage",
+      "confidence_requirement": "Medium/High",
+      "directionality": "NEUTRAL/DESCRIPTIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "Approved derivation only",
+      "leakage_risk": "LOW",
+      "retention_policy": "RETAIN",
+      "limitations": "DERIVED. Do not describe as occupancy.",
+      "notes": "value=108 beds. Keep DERIVED."
+    },
+    {
+      "metric_id": "MET_TOUR_LG_PUBLIC",
+      "domain": "TOURISM",
+      "indicator": "Tourist Safety Infrastructure",
+      "sub_indicator": "Public Lifeguard Deployment",
+      "metric_name": "Public Lifeguard Count (Puri Beach)",
+      "definition": "Official count of public/deployed lifeguards for Puri Beach safety. Distinct from private Nolia community lifeguards.",
+      "measurement_unit": "count",
+      "value_type": "DIRECT",
+      "data_source": "TOUR_LG_2024 (SRC_DOT_AR_2024_25)",
+      "geographic_scope": "PURI_BEACH",
+      "temporal_scope": "2024",
+      "verification_requirement": "Official DOT AR safety section",
+      "confidence_requirement": "High",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "LOW",
+      "retention_policy": "RETAIN",
+      "limitations": "Deployment count; not outcome metrics.",
+      "notes": "100 lifeguards."
+    },
+    {
+      "metric_id": "MET_TOUR_GB_AMENITIES_2020",
+      "domain": "TOURISM",
+      "indicator": "Beach Facility Inventory",
+      "sub_indicator": "Golden Beach Quantified Amenities (RFP 2020)",
+      "metric_name": "Golden Beach Facility Counts (2020 RFP)",
+      "definition": "Quantified amenity counts for Golden Beach from official 2020 RFP (benches, recliners, cane chairs, hammocks, umbrellas, shower/changing). Historical point-in-time inventory only. Does not constitute current full facility inventory.",
+      "measurement_unit": "count (by amenity type)",
+      "value_type": "DIRECT",
+      "data_source": "TOUR_GB_BENCHES_2020, TOUR_GB_RECLINERS_2020, TOUR_GB_CANE_CHAIRS_2020, TOUR_GB_HAMMOCKS_2020, TOUR_GB_UMBRELLAS_2020, TOUR_GB_SHOWER_CHANGING_M_2020, TOUR_GB_SHOWER_CHANGING_F_2020 (SRC_PURI_GOLDEN_BEACH_RFP_2020)",
+      "geographic_scope": "GOLDEN_BEACH",
+      "temporal_scope": "2020",
+      "verification_requirement": "Official RFP; historical_flag=TRUE",
+      "confidence_requirement": "High (for 2020 inventory)",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "NOT_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; do not update to 2026 without new inventory",
+      "leakage_risk": "HIGH (temporal if treated as current)",
+      "retention_policy": "RETAIN_HISTORICAL",
+      "limitations": "Historical evidence only; cannot contribute to current scoring unless current status is independently verified. Full inventory incomplete \u2014 GAP_TOUR_002 PARTIAL.",
+      "notes": "benches=12, recliners=16, cane chairs=50, hammocks=6, umbrellas=10, shower 4M+4F. scoring_eligibility=NOT_ELIGIBLE."
+    },
+    {
+      "metric_id": "MET_COMM_NOLIA_LG",
+      "domain": "COMMUNITY",
+      "indicator": "Community Participation",
+      "sub_indicator": "Nolia Lifeguard Mahasangha Membership",
+      "metric_name": "Nolia Community Lifeguard Association Members",
+      "definition": "Member count of Nolia community private lifeguards trained and engaged by Tourism Dept for Puri Sea Beach. Organisation member count only.",
+      "measurement_unit": "count",
+      "value_type": "DIRECT",
+      "data_source": "COMM_NOLIA_LG (SRC_DOT_AR_2024_25)",
+      "geographic_scope": "PURI_BEACH",
+      "temporal_scope": "2024",
+      "verification_requirement": "Official AR; avoid double-count with Tourism LG in composites",
+      "confidence_requirement": "High",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "MEDIUM (dual-domain shared provenance)",
+      "retention_policy": "RETAIN",
+      "limitations": "Member count only. GAP_COMM_001 OPEN for broader SHG counts.",
+      "notes": "350 members. Dual-domain (Tourism + Community)."
+    },
+    {
+      "metric_id": "MET_COMM_SWACHA_SATHI",
+      "domain": "COMMUNITY",
+      "indicator": "Community Participation",
+      "sub_indicator": "Swacha Sathi SHG Engagement Status",
+      "metric_name": "Swacha Sathi SHG EOI Status",
+      "definition": "EOI status for selection of SHGs/TGs/WPGs under Puri Municipality for Swacha Sathi cleaning engagement. Programme initiation status only; not completed implementation or beneficiary counts.",
+      "measurement_unit": "status",
+      "value_type": "DIRECT",
+      "data_source": "COMM_SWACHA_SATHI_EOI (SRC_PURI_MUN_SWACHA_2025)",
+      "geographic_scope": "PURI_MUNICIPALITY",
+      "temporal_scope": "2025 (EOI dated 08.09.2025)",
+      "verification_requirement": "Official municipal EOI; status only",
+      "confidence_requirement": "High (for EOI existence)",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; EOI \u2260 completed programme",
+      "leakage_risk": "LOW",
+      "retention_policy": "RETAIN",
+      "limitations": "EOI status only. GAP_COMM_001 OPEN.",
+      "notes": "EOI_ISSUED."
+    },
+    {
+      "metric_id": "MET_BIO_TURTLE_COORD_2026",
+      "domain": "BIODIVERSITY",
+      "indicator": "Biodiversity Protection",
+      "sub_indicator": "Sea Turtle Coordination Committee",
+      "metric_name": "Odisha Sea Turtle Coordination Committee Status",
+      "definition": "State-level institutional mechanism: constitution of State Coordination Committee for sea turtle conservation (2026 notification). Geographic scope ODISHA_STATE only; must not be mapped to Golden Beach as site inventory.",
+      "measurement_unit": "status",
+      "value_type": "DIRECT",
+      "data_source": "BIO_TURTLE_COORD_2026 (SRC_FECC_TURTLE_COORD_2026)",
+      "geographic_scope": "ODISHA_STATE",
+      "temporal_scope": "2026 (12 March 2026)",
+      "verification_requirement": "Official FE&CC notification; state-level only",
+      "confidence_requirement": "High",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "HIGH if allocated to GOLDEN_BEACH as site inventory",
+      "retention_policy": "RETAIN",
+      "limitations": "State-level only. Does not constitute Golden Beach nesting inventory.",
+      "notes": "Species: Olive Ridley. GAP_BIO_001 remains OPEN."
+    },
+    {
+      "metric_id": "MET_BIO_TURTLE_PROT_2025",
+      "domain": "BIODIVERSITY",
+      "indicator": "Biodiversity Protection",
+      "sub_indicator": "Sea Turtle Protection Notification",
+      "metric_name": "Odisha Sea Turtle Protection Notification Status",
+      "definition": "State-level protection and conservation notification for sea turtles in Odisha (2025). Framework existence only; not site inventory.",
+      "measurement_unit": "status",
+      "value_type": "DIRECT",
+      "data_source": "BIO_TURTLE_PROT_2025 (SRC_FECC_TURTLE_PROT_2025)",
+      "geographic_scope": "ODISHA_STATE",
+      "temporal_scope": "2025 (27 November 2025)",
+      "verification_requirement": "Official FE&CC notification; state-level only",
+      "confidence_requirement": "High",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "HIGH if allocated to GOLDEN_BEACH",
+      "retention_policy": "RETAIN",
+      "limitations": "State-level only.",
+      "notes": "NOTIFIED status."
+    },
+    {
+      "metric_id": "MET_BIO_TURTLE_FISHBAN",
+      "domain": "BIODIVERSITY",
+      "indicator": "Biodiversity Protection",
+      "sub_indicator": "Sea Turtle Fishing Restriction",
+      "metric_name": "Odisha Coast Congregation Zone Fishing Restriction",
+      "definition": "Fishing restriction in force for Odisha coast congregation zones (01 Nov 2025 \u2013 31 May 2026). Relevant context for wider Puri coast including Devi mouth; NOT site-specific to Golden Beach or urban Puri Beach stretch.",
+      "measurement_unit": "status",
+      "value_type": "DIRECT",
+      "data_source": "BIO_TURTLE_FISHBAN_2025_26 (SRC_OMFRA_FISHBAN_2025 \u2014 incomplete Source Register metadata)",
+      "geographic_scope": "ODISHA_COAST_CONGREGATION_ZONES",
+      "temporal_scope": "01 Nov 2025 \u2013 31 May 2026",
+      "verification_requirement": "Official regulation; zone-level not site-level",
+      "confidence_requirement": "High (status); source metadata incomplete",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "HIGH if treated as Golden Beach site measure",
+      "retention_policy": "RETAIN",
+      "limitations": "SRC_OMFRA_FISHBAN_2025 lacks full Source Register metadata (NON_BLOCKING).",
+      "notes": "IN_FORCE. Do not map solely to Golden Beach."
+    },
+    {
+      "metric_id": "MET_BIO_PURI_CAMPS",
+      "domain": "BIODIVERSITY",
+      "indicator": "Biodiversity Protection",
+      "sub_indicator": "Sea Turtle Protection Camps",
+      "metric_name": "Puri District Coast Turtle Protection Camps",
+      "definition": "Count of sea turtle protection camps on Puri district coast for 2025-26 nesting season. District-coastal figure; do not allocate solely to Golden Beach.",
+      "measurement_unit": "count",
+      "value_type": "DIRECT",
+      "data_source": "BIO_PURI_CAMPS_2026 (SRC_MEDIA_GB_NESTING_2026)",
+      "geographic_scope": "PURI_DISTRICT_COAST",
+      "temporal_scope": "2025-26 nesting season",
+      "verification_requirement": "Media/operational; district-coastal scope preserved",
+      "confidence_requirement": "Medium",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "MEDIUM (do not allocate solely to Golden Beach)",
+      "retention_policy": "RETAIN",
+      "limitations": "District-coastal; not site-specific inventory.",
+      "notes": "14 camps."
+    },
+    {
+      "metric_id": "MET_BIO_GB_NESTING_EVENT",
+      "domain": "BIODIVERSITY",
+      "indicator": "Biodiversity Protection",
+      "sub_indicator": "Olive Ridley Nesting Event (Golden Beach)",
+      "metric_name": "Golden Beach Olive Ridley Nesting Event (2026)",
+      "definition": "Documented one-off Olive Ridley nesting event at Golden Beach, March 2026: 114 eggs recovered to protected hatchery. Event-level only; does NOT constitute regular multi-year inventory or mass-nesting count.",
+      "measurement_unit": "eggs (event count)",
+      "value_type": "DIRECT",
+      "data_source": "BIO_GB_NESTING_2026_03 (SRC_MEDIA_GB_NESTING_2026)",
+      "geographic_scope": "GOLDEN_BEACH",
+      "temporal_scope": "07-08 March 2026",
+      "verification_requirement": "Media + operational response; Forest Dept collection confirmed; event-level only",
+      "confidence_requirement": "High (event occurrence); not inventory-grade",
+      "directionality": "CONTEXT_DEPENDENT",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; do not scale to seasonal inventory",
+      "leakage_risk": "MEDIUM (event vs inventory confusion)",
+      "retention_policy": "RETAIN",
+      "limitations": "Single event. GAP_BIO_001 OPEN for regular inventory. Hatchling record is separate (MEDIUM confidence).",
+      "notes": "First documented nesting at Blue Flag beach. current_status_flag=FALSE."
+    },
+    {
+      "metric_id": "MET_BIO_GB_NESTING_INVENTORY",
+      "domain": "BIODIVERSITY",
+      "indicator": "Biodiversity Inventory",
+      "sub_indicator": "Sea Turtle Nesting Density (Golden Beach)",
+      "metric_name": "Golden Beach Regular Nesting Inventory",
+      "definition": "Multi-year official nesting counts for the Blue Flag / Golden Beach stretch. Currently unavailable; one-off 2026 event and state framework do not close this gap.",
+      "measurement_unit": "nests_or_eggs_per_season",
+      "value_type": "DATA_GAP",
+      "data_source": "GAP_BIO_001 (BIO_GAP_GB_INVENTORY is gap observation)",
+      "geographic_scope": "GOLDEN_BEACH",
+      "temporal_scope": "multi-year / seasonal (unavailable)",
+      "verification_requirement": "Official DFO Puri WL / PCCF seasonal turtle report quantifying Blue Flag stretch",
+      "confidence_requirement": "NOT_APPLICABLE_DATA_GAP",
+      "directionality": "CONTEXT_DEPENDENT",
+      "scoring_eligibility": "DATA_GAP",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; do not allocate rookery numbers",
+      "leakage_risk": "CRITICAL if mass-nesting rookery figures allocated to Golden Beach",
+      "retention_policy": "RETAIN_AS_GAP",
+      "limitations": "State framework and single 2026 event do not constitute inventory.",
+      "notes": "GAP_BIO_001 OPEN."
+    },
+    {
+      "metric_id": "MET_ENV_SHORELINE_HIST",
+      "domain": "ENVIRONMENT",
+      "indicator": "Coastal Environment Condition",
+      "sub_indicator": "Long-term Shoreline Change Assessment",
+      "metric_name": "Puri District Shoreline Change Condition (1972\u20132010)",
+      "definition": "NCSCM long-term (1972\u20132010) assessment: shoreline change for Puri district coast categorised as EROSION_DOMINANT. Historical condition only. No site-specific m/year rate for Golden Beach; not current 2026 status.",
+      "measurement_unit": "category",
+      "value_type": "DIRECT",
+      "data_source": "ENV_SHORELINE_PURI_DIST_1972_2010 (SRC_NCSCM_ODISHA_SHORELINE_2011)",
+      "geographic_scope": "PURI_DISTRICT_COAST",
+      "temporal_scope": "1972\u20132010",
+      "verification_requirement": "Official NCSCM factsheet; historical_flag=TRUE; not upgraded to current",
+      "confidence_requirement": "High (for historical condition)",
+      "directionality": "NEGATIVE",
+      "scoring_eligibility": "NOT_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; do not convert to current status or m/year",
+      "leakage_risk": "HIGH (temporal and geographic if applied to Golden Beach current)",
+      "retention_policy": "RETAIN_HISTORICAL",
+      "limitations": "No site-specific m/year. Chilika mouth is separate geography (must not inherit). GAP_ENV_001 PARTIAL.",
+      "notes": "Chilika mouth record retained separately; not transferable."
+    },
+    {
+      "metric_id": "MET_ENV_EROSION_RATE",
+      "domain": "ENVIRONMENT",
+      "indicator": "Coastal Environment Condition",
+      "sub_indicator": "Site-specific Shoreline Erosion Rate",
+      "metric_name": "Golden Beach / Puri Beach Erosion Rate",
+      "definition": "Site-specific numerical shoreline change rate (m/year) for Golden Beach or Puri Beach. Currently unavailable.",
+      "measurement_unit": "metres per year",
+      "value_type": "DATA_GAP",
+      "data_source": "GAP_ENV_001 (PARTIAL \u2014 condition recorded; rate open)",
+      "geographic_scope": "GOLDEN_BEACH / PURI_BEACH",
+      "temporal_scope": "current / recent (unavailable)",
+      "verification_requirement": "ICZMP / NCSCM / Forest coastal monitoring with exact segment rates",
+      "confidence_requirement": "NOT_APPLICABLE_DATA_GAP",
+      "directionality": "NEGATIVE",
+      "scoring_eligibility": "DATA_GAP",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "HIGH if district historical condition treated as current site rate",
+      "retention_policy": "RETAIN_AS_GAP",
+      "limitations": "GAP_ENV_001 PARTIAL.",
+      "notes": "Do not use 1972\u20132010 category as 2026 metric."
+    },
+    {
+      "metric_id": "MET_WASTE_MSW_GEN",
+      "domain": "WASTE",
+      "indicator": "Waste Management",
+      "sub_indicator": "Municipal Solid Waste Generation",
+      "metric_name": "Puri Municipality MSW Generation",
+      "definition": "Official municipal solid waste generation (all streams) for Puri Municipality in TPD from OSPCB Form V. Municipal-scale only; not beach-specific TPD.",
+      "measurement_unit": "TPD",
+      "value_type": "DIRECT",
+      "data_source": "WASTE_MSW_GEN_2023_24 (SRC_OSPCB_SWM_2023_24); WASTE_MSW_GEN_2022_23 comparative",
+      "geographic_scope": "PURI_MUNICIPALITY",
+      "temporal_scope": "2023-24 (and 2022-23)",
+      "verification_requirement": "Official OSPCB Form V ULB table; municipality-level only",
+      "confidence_requirement": "High",
+      "directionality": "NEGATIVE",
+      "scoring_eligibility": "ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; do not split to beach TPD",
+      "leakage_risk": "HIGH if allocated as Golden Beach generation",
+      "retention_policy": "RETAIN",
+      "limitations": "Municipal aggregate. Beach-specific TPD is GAP_WASTE_001 OPEN.",
+      "notes": "70.4 TPD (2023-24); 62 TPD (2022-23)."
+    },
+    {
+      "metric_id": "MET_WASTE_MSW_PROC",
+      "domain": "WASTE",
+      "indicator": "Waste Management",
+      "sub_indicator": "Municipal Solid Waste Processing",
+      "metric_name": "Puri Municipality MSW Processing",
+      "definition": "Official MSW processed (TPD) for Puri Municipality from OSPCB Form V. Municipal-scale processing capacity relative to generation.",
+      "measurement_unit": "TPD",
+      "value_type": "DIRECT",
+      "data_source": "WASTE_MSW_PROC_2023_24 (SRC_OSPCB_SWM_2023_24)",
+      "geographic_scope": "PURI_MUNICIPALITY",
+      "temporal_scope": "2023-24",
+      "verification_requirement": "Official OSPCB Form V",
+      "confidence_requirement": "High",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "MEDIUM",
+      "retention_policy": "RETAIN",
+      "limitations": "Municipal scale. Beach-specific processing not available.",
+      "notes": "Paired with generation and collection records."
+    },
+    {
+      "metric_id": "MET_WASTE_BEACH_TPD",
+      "domain": "WASTE",
+      "indicator": "Waste Management",
+      "sub_indicator": "Beach-specific MSW Generation",
+      "metric_name": "Golden Beach / Puri Beach MSW Generation",
+      "definition": "Beach- or site-specific solid waste generation (TPD) for Golden Beach or Puri Beach. Municipal TPD must not be split or allocated.",
+      "measurement_unit": "TPD",
+      "value_type": "DATA_GAP",
+      "data_source": "GAP_WASTE_001 (WASTE_GAP_GB_TPD is gap observation)",
+      "geographic_scope": "GOLDEN_BEACH / PURI_BEACH",
+      "temporal_scope": "current / unavailable",
+      "verification_requirement": "Ward-wise or beach-specific SWM figure; Blue Flag plant throughput",
+      "confidence_requirement": "NOT_APPLICABLE_DATA_GAP",
+      "directionality": "NEGATIVE",
+      "scoring_eligibility": "DATA_GAP",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; do not split municipal 70.4 TPD",
+      "leakage_risk": "CRITICAL if municipal TPD allocated to beach",
+      "retention_policy": "RETAIN_AS_GAP",
+      "limitations": "Municipal operations documented but no beach TPD.",
+      "notes": "GAP_WASTE_001 OPEN."
+    },
+    {
+      "metric_id": "MET_WAT_GW_PH",
+      "domain": "WATER",
+      "indicator": "Water Quality",
+      "sub_indicator": "Groundwater pH",
+      "metric_name": "Puri Coastal Groundwater pH (Station Series 2024)",
+      "definition": "Official OSPCB groundwater pH measurements at Puri coastal monitoring stations (2024). Station-level series; not a composite water quality score. No thresholds invented.",
+      "measurement_unit": "pH units",
+      "value_type": "DIRECT",
+      "data_source": "WAT-001, WAT-002, WAT-009, WAT-010, WAT-015, WAT-016, WAT-021, WAT-022 (SRC_OSPCB_GW_2024)",
+      "geographic_scope": "SITE / PURI_COASTAL_ZONE (station-specific)",
+      "temporal_scope": "2024",
+      "verification_requirement": "Official OSPCB monitoring report; station locations preserved",
+      "confidence_requirement": "High",
+      "directionality": "CONTEXT_DEPENDENT (parameter-specific)",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; no composite index",
+      "leakage_risk": "LOW (station-specific)",
+      "retention_policy": "RETAIN",
+      "limitations": "Point monitoring series; not spatial aggregate or score.",
+      "notes": "Multiple stations; values retained as series, not averaged into a score."
+    },
+    {
+      "metric_id": "MET_WAT_GW_BOD",
+      "domain": "WATER",
+      "indicator": "Water Quality",
+      "sub_indicator": "Groundwater BOD",
+      "metric_name": "Puri Coastal Groundwater BOD (Station Series 2024)",
+      "definition": "Official OSPCB groundwater BOD measurements at Puri coastal stations (2024). Station-level series; not a composite score.",
+      "measurement_unit": "mg/L",
+      "value_type": "DIRECT",
+      "data_source": "WAT-003, WAT-004, WAT-011, WAT-012, WAT-017, WAT-018, WAT-023, WAT-024 (SRC_OSPCB_GW_2024)",
+      "geographic_scope": "SITE / PURI_COASTAL_ZONE (station-specific)",
+      "temporal_scope": "2024",
+      "verification_requirement": "Official OSPCB monitoring report",
+      "confidence_requirement": "High",
+      "directionality": "CONTEXT_DEPENDENT",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; no composite index",
+      "leakage_risk": "LOW",
+      "retention_policy": "RETAIN",
+      "limitations": "Point series; not aggregate score.",
+      "notes": "Station series retained."
+    },
+    {
+      "metric_id": "MET_WAT_GW_NITRATE",
+      "domain": "WATER",
+      "indicator": "Water Quality",
+      "sub_indicator": "Groundwater Nitrate",
+      "metric_name": "Puri Coastal Groundwater Nitrate (Station Series 2024)",
+      "definition": "Official OSPCB groundwater nitrate measurements at Puri coastal stations (2024). Station-level series; not a composite score.",
+      "measurement_unit": "mg/L",
+      "value_type": "DIRECT",
+      "data_source": "WAT-005, WAT-006, WAT-019, WAT-020 (SRC_OSPCB_GW_2024)",
+      "geographic_scope": "SITE / PURI_COASTAL_ZONE (station-specific)",
+      "temporal_scope": "2024",
+      "verification_requirement": "Official OSPCB monitoring report",
+      "confidence_requirement": "High",
+      "directionality": "CONTEXT_DEPENDENT",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; no composite index",
+      "leakage_risk": "LOW",
+      "retention_policy": "RETAIN",
+      "limitations": "Point series; not aggregate score.",
+      "notes": "Station series retained."
+    },
+    {
+      "metric_id": "MET_WAT_GW_TDS",
+      "domain": "WATER",
+      "indicator": "Water Quality",
+      "sub_indicator": "Groundwater TDS",
+      "metric_name": "Puri Coastal Groundwater TDS (Station Series 2024)",
+      "definition": "Official OSPCB groundwater TDS measurements at Puri coastal stations (2024). Station-level series; not a composite score.",
+      "measurement_unit": "mg/L",
+      "value_type": "DIRECT",
+      "data_source": "WAT-007, WAT-008, WAT-013, WAT-014 (SRC_OSPCB_GW_2024)",
+      "geographic_scope": "SITE / PURI_COASTAL_ZONE (station-specific)",
+      "temporal_scope": "2024",
+      "verification_requirement": "Official OSPCB monitoring report",
+      "confidence_requirement": "High",
+      "directionality": "CONTEXT_DEPENDENT",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; no composite index",
+      "leakage_risk": "LOW",
+      "retention_policy": "RETAIN",
+      "limitations": "Point series; not aggregate score. High TDS at some stations is observation only.",
+      "notes": "Station series retained."
+    },
+    {
+      "metric_id": "MET_WAT_COASTAL_PH",
+      "domain": "WATER",
+      "indicator": "Water Quality",
+      "sub_indicator": "Coastal Sea pH",
+      "metric_name": "Puri Coastal Sea Water pH (2023)",
+      "definition": "Official OSPCB coastal sea water pH at Puri stations (Swargadwara, Bankimuhan, Baliapanda), 2023. Station-level; not a composite score.",
+      "measurement_unit": "pH units",
+      "value_type": "DIRECT",
+      "data_source": "WAT-025, WAT-030 (SRC_OSPCB_COASTAL_2023)",
+      "geographic_scope": "SITE / PURI_COASTAL_ZONE",
+      "temporal_scope": "2023",
+      "verification_requirement": "Official OSPCB coastal water annual data",
+      "confidence_requirement": "High",
+      "directionality": "CONTEXT_DEPENDENT",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; no composite index",
+      "leakage_risk": "LOW",
+      "retention_policy": "RETAIN",
+      "limitations": "Annual snapshot; limited stations.",
+      "notes": "Station series."
+    },
+    {
+      "metric_id": "MET_WAT_COASTAL_DO",
+      "domain": "WATER",
+      "indicator": "Water Quality",
+      "sub_indicator": "Coastal Sea Dissolved Oxygen",
+      "metric_name": "Puri Coastal Sea Water DO (2023)",
+      "definition": "Official OSPCB coastal sea water dissolved oxygen at Puri stations, 2023. Station-level; not a composite score.",
+      "measurement_unit": "mg/L",
+      "value_type": "DIRECT",
+      "data_source": "WAT-026, WAT-031 (SRC_OSPCB_COASTAL_2023)",
+      "geographic_scope": "SITE / PURI_COASTAL_ZONE",
+      "temporal_scope": "2023",
+      "verification_requirement": "Official OSPCB coastal water annual data",
+      "confidence_requirement": "High",
+      "directionality": "CONTEXT_DEPENDENT",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; no composite index",
+      "leakage_risk": "LOW",
+      "retention_policy": "RETAIN",
+      "limitations": "Annual snapshot.",
+      "notes": "Station series."
+    },
+    {
+      "metric_id": "MET_WAT_COASTAL_BOD",
+      "domain": "WATER",
+      "indicator": "Water Quality",
+      "sub_indicator": "Coastal Sea BOD",
+      "metric_name": "Puri Coastal Sea Water BOD (2023)",
+      "definition": "Official OSPCB coastal sea water BOD at Puri stations, 2023. Station-level; not a composite score.",
+      "measurement_unit": "mg/L",
+      "value_type": "DIRECT",
+      "data_source": "WAT-027, WAT-032 (SRC_OSPCB_COASTAL_2023)",
+      "geographic_scope": "SITE / PURI_COASTAL_ZONE",
+      "temporal_scope": "2023",
+      "verification_requirement": "Official OSPCB coastal water annual data",
+      "confidence_requirement": "High",
+      "directionality": "CONTEXT_DEPENDENT",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; no composite index",
+      "leakage_risk": "LOW",
+      "retention_policy": "RETAIN",
+      "limitations": "Annual snapshot.",
+      "notes": "Station series."
+    },
+    {
+      "metric_id": "MET_WAT_COASTAL_FC",
+      "domain": "WATER",
+      "indicator": "Water Quality",
+      "sub_indicator": "Coastal Sea Faecal Coliform",
+      "metric_name": "Puri Coastal Sea Water Faecal Coliform (2023)",
+      "definition": "Official OSPCB coastal sea water faecal coliform at Puri stations, 2023. Station-level; not a composite score. Relevant to bathing water quality context.",
+      "measurement_unit": "MPN/100 ml",
+      "value_type": "DIRECT",
+      "data_source": "WAT-028, WAT-033 (SRC_OSPCB_COASTAL_2023)",
+      "geographic_scope": "SITE / PURI_COASTAL_ZONE",
+      "temporal_scope": "2023",
+      "verification_requirement": "Official OSPCB coastal water annual data",
+      "confidence_requirement": "High",
+      "directionality": "CONTEXT_DEPENDENT",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; no composite index",
+      "leakage_risk": "LOW",
+      "retention_policy": "RETAIN",
+      "limitations": "Annual snapshot.",
+      "notes": "Station series."
+    },
+    {
+      "metric_id": "MET_WAT_RESIDENT_DEMAND",
+      "domain": "WATER",
+      "indicator": "Water Sustainability",
+      "sub_indicator": "Estimated Resident Water Demand",
+      "metric_name": "Estimated Resident Water Demand (Derived)",
+      "definition": "Derived estimate of resident population-based daily water demand using official ULB population (200564) and planning norm (135 LPCD). Theoretical demand component only; not measured consumption. value_type remains DERIVED.",
+      "measurement_unit": "MLD",
+      "value_type": "DERIVED",
+      "data_source": "WAT-DER-001 (SRC_URBAN_ODISHA_ULB_POP + water norm sources); derived_flag=TRUE",
+      "geographic_scope": "PURI_TOURIST_CENTRE",
+      "temporal_scope": "Census 2011 population base + current norm",
+      "verification_requirement": "Approved derivation lineage; population and LPCD norms official",
+      "confidence_requirement": "Medium (derived from 2011 pop base)",
+      "directionality": "NEUTRAL/DESCRIPTIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "Approved derivation only; do not treat as measured consumption",
+      "leakage_risk": "MEDIUM",
+      "retention_policy": "RETAIN",
+      "limitations": "DERIVED theoretical. Does not close measured consumption gap.",
+      "notes": "27.076 MLD. Keep DERIVED."
+    },
+    {
+      "metric_id": "MET_WAT_HOTEL_DEMAND",
+      "domain": "WATER",
+      "indicator": "Water Sustainability",
+      "sub_indicator": "Estimated Hotel Tourist Water Demand",
+      "metric_name": "Estimated Hotel Tourist Water Demand (Derived)",
+      "definition": "Derived estimate of overnight tourist hotel-based daily water demand using hotel capacity and ODA hotel lodging norm (180 LPCD). Theoretical; not measured consumption. value_type remains DERIVED.",
+      "measurement_unit": "MLD",
+      "value_type": "DERIVED",
+      "data_source": "WAT-DER-002 (SRC_DOT_SB_2023 + SRC_ODA_RULES_WATER); derived_flag=TRUE",
+      "geographic_scope": "PURI_TOURIST_CENTRE",
+      "temporal_scope": "2023/2024 capacity base",
+      "verification_requirement": "Approved derivation lineage",
+      "confidence_requirement": "Medium",
+      "directionality": "NEUTRAL/DESCRIPTIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "Approved derivation only",
+      "leakage_risk": "MEDIUM",
+      "retention_policy": "RETAIN",
+      "limitations": "DERIVED theoretical. Does not close measured consumption DATA_GAP.",
+      "notes": "1.289 MLD. Keep DERIVED."
+    },
+    {
+      "metric_id": "MET_WAT_MEASURED_CONSUMPTION",
+      "domain": "WATER",
+      "indicator": "Water Sustainability",
+      "sub_indicator": "Measured Water Supply / Consumption",
+      "metric_name": "Measured Puri Water Supply or Consumption",
+      "definition": "Official measured daily or annual water supply volume or consumption for Puri. Currently unavailable; derived demand does not close this gap.",
+      "measurement_unit": "MLD or m3/day",
+      "value_type": "DATA_GAP",
+      "data_source": "GAP (WAT-034, WAT-035); SRC_SEARCH_OSPCB_AND_PMC is SEARCH_GAP_MARKER not evidence source",
+      "geographic_scope": "SITE / PURI_TOURIST_CENTRE",
+      "temporal_scope": "current / unavailable",
+      "verification_requirement": "Official OSPCB / PMC / OWSSB measured supply or consumption series",
+      "confidence_requirement": "NOT_APPLICABLE_DATA_GAP",
+      "directionality": "CONTEXT_DEPENDENT",
+      "scoring_eligibility": "DATA_GAP",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; derived demand \u2260 measured consumption",
+      "leakage_risk": "HIGH if derived demand treated as measured",
+      "retention_policy": "RETAIN_AS_GAP",
+      "limitations": "Search documented; no usable numerical series.",
+      "notes": "DATA_GAP preserved."
+    },
+    {
+      "metric_id": "MET_VIS_DAY_VISITORS",
+      "domain": "VISITOR",
+      "indicator": "Visitor Volume",
+      "sub_indicator": "Day Visitors",
+      "metric_name": "Puri Tourist Centre Day Visitors",
+      "definition": "Official day visitor counts (domestic and foreign) for Puri tourist centre from Odisha Tourism Statistical Bulletins. Measures visitor volume only; does not measure expenditure, length of stay, or revenue.",
+      "measurement_unit": "persons",
+      "value_type": "DIRECT",
+      "data_source": "VIS_PURI_001 to VIS_PURI_016 series (SRC_DOT_SB_2022, SRC_DOT_SB_2023)",
+      "geographic_scope": "PURI_TOURIST_CENTRE",
+      "temporal_scope": "2020\u20132023 series (as published)",
+      "verification_requirement": "Official DOT SB tourist centre tables; Konark/Chilika excluded by design",
+      "confidence_requirement": "High",
+      "directionality": "CONTEXT_DEPENDENT",
+      "scoring_eligibility": "ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; do not convert to expenditure or employment",
+      "leakage_risk": "LOW",
+      "retention_policy": "RETAIN",
+      "limitations": "Day visitors distinct from overnight. Site-level temple visitor series largely DATA_GAP.",
+      "notes": "Series preserved year-by-year. Do not infer revenue."
+    },
+    {
+      "metric_id": "MET_HER_JAG_STATUS",
+      "domain": "HERITAGE",
+      "indicator": "Heritage Protection",
+      "sub_indicator": "Jagannath Temple Official Status",
+      "metric_name": "Shree Jagannath Temple Official Status",
+      "definition": "Official institutional status and management framework for Shree Jagannath Temple under SJTA / Jagannath Temple Act. Measures institutional recognition and management arrangement. Does not measure parcel ownership (RoR) or visitor numbers.",
+      "measurement_unit": "status / qualitative",
+      "value_type": "DIRECT",
+      "data_source": "HER_JAG series (SRC_SJTA_OFFICIAL, SRC_JAGANNATH_ACT_1954, SRC_PURI_DISTRICT_JAG)",
+      "geographic_scope": "SITE (SHREE_JAGANNATH_TEMPLE)",
+      "temporal_scope": "institutional status as per source periods (Act 1954 basis; current institutional listings)",
+      "verification_requirement": "Official institutional sources; management \u2260 ownership",
+      "confidence_requirement": "High",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "MEDIUM (management must not be read as parcel ownership)",
+      "retention_policy": "RETAIN",
+      "limitations": "Qualitative status. Ownership is separate domain (GAP_OWN_001).",
+      "notes": "Do not convert management to ownership."
+    },
+    {
+      "metric_id": "MET_HER_GUN_STATUS",
+      "domain": "HERITAGE",
+      "indicator": "Heritage Protection",
+      "sub_indicator": "Gundicha Temple Official Status",
+      "metric_name": "Shree Gundicha Temple Official Status",
+      "definition": "Official institutional status for Shree Gundicha Temple. Institutional recognition only; not parcel ownership or ASI protection claim without primary notification.",
+      "measurement_unit": "status / qualitative",
+      "value_type": "DIRECT",
+      "data_source": "HER_GUN series (SRC_SJTA_OFFICIAL, SRC_INCREDIBLE_GUNDICHA)",
+      "geographic_scope": "SITE (SHREE_GUNDICHA_TEMPLE)",
+      "temporal_scope": "as per source institutional listings",
+      "verification_requirement": "Official institutional/tourism sources; ASI search logged as gap marker separately",
+      "confidence_requirement": "High",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "MEDIUM",
+      "retention_policy": "RETAIN",
+      "limitations": "Management/institutional status \u2260 ownership.",
+      "notes": "ASI primary notification not located (search log documented)."
+    },
+    {
+      "metric_id": "MET_HER_LOK_STATUS",
+      "domain": "HERITAGE",
+      "indicator": "Heritage Protection",
+      "sub_indicator": "Lokanath Temple Official Status",
+      "metric_name": "Lokanath Temple Official Status",
+      "definition": "Official endowment/institutional status for Lokanath Temple from OHREC and related sources.",
+      "measurement_unit": "status / qualitative",
+      "value_type": "DIRECT",
+      "data_source": "HER_LOK series (SRC_OHREC_LOKANATH)",
+      "geographic_scope": "SITE (LOKANATH_TEMPLE)",
+      "temporal_scope": "as per source institutional listings",
+      "verification_requirement": "Official OHREC page",
+      "confidence_requirement": "High",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "MEDIUM",
+      "retention_policy": "RETAIN",
+      "limitations": "Institutional status \u2260 parcel ownership.",
+      "notes": null
+    },
+    {
+      "metric_id": "MET_HER_BLUE_FLAG",
+      "domain": "HERITAGE",
+      "indicator": "Heritage / Destination Certification",
+      "sub_indicator": "Blue Flag Beach Certification",
+      "metric_name": "Golden Beach Blue Flag Certification Status",
+      "definition": "Official Blue Flag certification status for the managed Golden Beach section. Certification presence only; not detailed facility inventory or environmental quality score.",
+      "measurement_unit": "status",
+      "value_type": "DIRECT",
+      "data_source": "HER_BEA_002 (SRC_DOT_ANNUAL_REPORT and related)",
+      "geographic_scope": "GOLDEN_BEACH",
+      "temporal_scope": "as of source period (institutional/current listings)",
+      "verification_requirement": "Official DOT / FEE certification evidence",
+      "confidence_requirement": "High",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "LOW",
+      "retention_policy": "RETAIN",
+      "limitations": "Certification status; full O&M inventory still PARTIAL (GAP_TOUR_002).",
+      "notes": "Linked to beach management records."
+    },
+    {
+      "metric_id": "MET_OWN_JAG_ENDOWMENT",
+      "domain": "OWNERSHIP",
+      "indicator": "Ownership / Tenure",
+      "sub_indicator": "Jagannath Temple Endowment Status",
+      "metric_name": "Shree Jagannath Temple Endowment Status",
+      "definition": "Recorded temple endowment status for Shree Jagannath Temple under the Jagannath Temple Act, 1954. Measures institutional endowment/control framework. Explicitly NOT parcel-level RoR/khata ownership.",
+      "measurement_unit": "status / category",
+      "value_type": "DIRECT",
+      "data_source": "OWN_JAG_001 (SRC_JAGANNATH_ACT_1954)",
+      "geographic_scope": "SITE (SHREE_JAGANNATH_TEMPLE)",
+      "temporal_scope": "1954 Act basis (ongoing institutional framework)",
+      "verification_requirement": "Legal/institutional source; management \u2260 ownership distinction enforced",
+      "confidence_requirement": "High",
+      "directionality": "NEUTRAL/DESCRIPTIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; do not infer ownership from management",
+      "leakage_risk": "HIGH if management treated as parcel ownership",
+      "retention_policy": "RETAIN",
+      "limitations": "No khata/plot/RoR extract. GAP_OWN_001 OPEN.",
+      "notes": "TEMPLE_ENDOWMENT. Do not equate with parcel ownership."
+    },
+    {
+      "metric_id": "MET_OWN_GUN_ENDOWMENT",
+      "domain": "OWNERSHIP",
+      "indicator": "Ownership / Tenure",
+      "sub_indicator": "Gundicha Temple Endowment Status",
+      "metric_name": "Shree Gundicha Temple Endowment Status",
+      "definition": "Recorded temple endowment status for Shree Gundicha Temple. Institutional endowment/control; not parcel RoR.",
+      "measurement_unit": "status / category",
+      "value_type": "DIRECT",
+      "data_source": "OWN_GUN_001 (SRC_SJTA_OFFICIAL)",
+      "geographic_scope": "SITE (SHREE_GUNDICHA_TEMPLE)",
+      "temporal_scope": "2024 (source period)",
+      "verification_requirement": "Institutional source; management \u2260 ownership",
+      "confidence_requirement": "High",
+      "directionality": "NEUTRAL/DESCRIPTIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "HIGH if treated as parcel ownership",
+      "retention_policy": "RETAIN",
+      "limitations": "GAP_OWN_001 OPEN for RoR.",
+      "notes": "TEMPLE_ENDOWMENT."
+    },
+    {
+      "metric_id": "MET_OWN_LOK_ENDOWMENT",
+      "domain": "OWNERSHIP",
+      "indicator": "Ownership / Tenure",
+      "sub_indicator": "Lokanath Temple Endowment Trust Status",
+      "metric_name": "Lokanath Temple Endowment Trust Status",
+      "definition": "Recorded endowment trust status for Lokanath Temple. Institutional arrangement; not parcel RoR.",
+      "measurement_unit": "status / category",
+      "value_type": "DIRECT",
+      "data_source": "OWN_LOK_001 (SRC_OHREC related)",
+      "geographic_scope": "SITE (LOKANATH_TEMPLE)",
+      "temporal_scope": "as per source institutional listing",
+      "verification_requirement": "Institutional source; management \u2260 ownership",
+      "confidence_requirement": "High",
+      "directionality": "NEUTRAL/DESCRIPTIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "HIGH if treated as parcel ownership",
+      "retention_policy": "RETAIN",
+      "limitations": "GAP_OWN_001 OPEN.",
+      "notes": "ENDOWMENT_TRUST."
+    },
+    {
+      "metric_id": "MET_OWN_SWAR_STATUS",
+      "domain": "OWNERSHIP",
+      "indicator": "Ownership / Tenure",
+      "sub_indicator": "Swargadwar Tenure Status",
+      "metric_name": "Swargadwar Tenure / Management Status",
+      "definition": "Recorded MIXED tenure/management status for Swargadwar cremation ground. Reflects institutional arrangement (Seva Samiti / district administration). Not a complete parcel RoR extract.",
+      "measurement_unit": "status / category",
+      "value_type": "DIRECT",
+      "data_source": "OWN_SWAR_001 (SRC_SWARGADWAR_SEVA; related tehsil source incomplete metadata)",
+      "geographic_scope": "SITE (SWARGADWAR)",
+      "temporal_scope": "2017+",
+      "verification_requirement": "Institutional sources; incomplete metadata for SRC_PURI_TEHSIL_SETTLEMENT",
+      "confidence_requirement": "Medium (source metadata partial)",
+      "directionality": "NEUTRAL/DESCRIPTIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "HIGH if treated as complete RoR ownership",
+      "retention_policy": "RETAIN",
+      "limitations": "MIXED status; GAP_OWN_001 OPEN. SRC_PURI_TEHSIL_SETTLEMENT metadata incomplete.",
+      "notes": "MIXED."
+    },
+    {
+      "metric_id": "MET_OWN_BEACH_STATE",
+      "domain": "OWNERSHIP",
+      "indicator": "Ownership / Tenure",
+      "sub_indicator": "Coastal Beach Tenure Status",
+      "metric_name": "Puri Beach Coastal Tenure Status",
+      "definition": "Recorded STATE_GOVERNMENT tenure status for coastal beach. Institutional/coastal tenure category; not parcel-level RoR for every plot.",
+      "measurement_unit": "status / category",
+      "value_type": "DIRECT",
+      "data_source": "OWN_BEACH_001",
+      "geographic_scope": "COASTAL (PURI_BEACH)",
+      "temporal_scope": "as per source",
+      "verification_requirement": "Available institutional evidence; GAP_OWN_001 remains for full RoR",
+      "confidence_requirement": "Medium/High",
+      "directionality": "NEUTRAL/DESCRIPTIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "MEDIUM",
+      "retention_policy": "RETAIN",
+      "limitations": "Not full parcel RoR. GAP_OWN_001 OPEN.",
+      "notes": "STATE_GOVERNMENT."
+    },
+    {
+      "metric_id": "MET_OWN_GB_STATE",
+      "domain": "OWNERSHIP",
+      "indicator": "Ownership / Tenure",
+      "sub_indicator": "Golden Beach Tenure Status",
+      "metric_name": "Golden Beach Tenure Status",
+      "definition": "Recorded STATE_GOVERNMENT tenure status for Golden Beach (Blue Flag sub-site). Institutional tenure category. Source metadata incomplete for SRC_PURI_DIST_GOLDEN_TENDER.",
+      "measurement_unit": "status / category",
+      "value_type": "DIRECT",
+      "data_source": "OWN_GB_001 (SRC_PURI_DIST_GOLDEN_TENDER \u2014 incomplete Source Register metadata)",
+      "geographic_scope": "SUB_SITE (GOLDEN_BEACH)",
+      "temporal_scope": "as per source",
+      "verification_requirement": "Available evidence; source metadata incomplete (NON_BLOCKING)",
+      "confidence_requirement": "Medium (incomplete source metadata)",
+      "directionality": "NEUTRAL/DESCRIPTIVE",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION",
+      "leakage_risk": "MEDIUM",
+      "retention_policy": "RETAIN",
+      "limitations": "Source metadata incomplete. GAP_OWN_001 OPEN for RoR.",
+      "notes": "STATE_GOVERNMENT."
+    },
+    {
+      "metric_id": "MET_OWN_PARCEL_ROR",
+      "domain": "OWNERSHIP",
+      "indicator": "Ownership / Tenure",
+      "sub_indicator": "Parcel-level RoR Ownership",
+      "metric_name": "Parcel RoR / Khata Ownership (Selected Sites)",
+      "definition": "Official parcel-level Record of Rights (RoR), khata, or plot ownership for each selected core site. Currently unavailable; endowment/management status does not substitute.",
+      "measurement_unit": "ownership category / RoR extract",
+      "value_type": "DATA_GAP",
+      "data_source": "GAP_OWN_001; OWN_MARK_001, OWN_MAUS_001, OWN_NAR_001 are UNKNOWN/DATA_GAP observations",
+      "geographic_scope": "SITE / PARCEL",
+      "temporal_scope": "current / unavailable",
+      "verification_requirement": "Official Bhulekh / BhuNaksha / Tahasildar certified extract",
+      "confidence_requirement": "NOT_APPLICABLE_DATA_GAP",
+      "directionality": "NEUTRAL/DESCRIPTIVE",
+      "scoring_eligibility": "DATA_GAP",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; management \u2260 ownership",
+      "leakage_risk": "CRITICAL if management equated to ownership",
+      "retention_policy": "RETAIN_AS_GAP",
+      "limitations": "GAP_OWN_001 OPEN for all selected sites.",
+      "notes": "UNKNOWN status for Markandeswar, Mausimaa, Narendra Tank."
+    },
+    {
+      "metric_id": "MET_GIS_SECONDARY_COORDS",
+      "domain": "GIS",
+      "indicator": "Spatial Reference",
+      "sub_indicator": "Secondary Geolocation Coordinates",
+      "metric_name": "Secondary Site Coordinates (Google)",
+      "definition": "Secondary latitude/longitude for selected Puri sites from Google Maps for visualization only. official_source_flag=FALSE. Not official surveyed coordinates. Not evidence for other indicator domains.",
+      "measurement_unit": "decimal degrees (lat/long)",
+      "value_type": "DIRECT",
+      "data_source": "GIS_* series (SRC_GOOGLE_MAPS_GIS)",
+      "geographic_scope": "SITE / SUB_SITE",
+      "temporal_scope": "coordinate snapshot (year intentionally omitted by domain design)",
+      "verification_requirement": "Secondary only; not official survey",
+      "confidence_requirement": "Medium (visualization); not survey-grade",
+      "directionality": "NEUTRAL/DESCRIPTIVE",
+      "scoring_eligibility": "NOT_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; do not treat as official coordinates",
+      "leakage_risk": "MEDIUM if used as official survey evidence",
+      "retention_policy": "RETAIN_WITH_RESTRICTION",
+      "limitations": "GAP_GIS_001 OPEN. Year/date intentionally omitted (NON_BLOCKING domain design).",
+      "notes": "Visualization only."
+    },
+    {
+      "metric_id": "MET_LB_ENTERPRISE_COUNT",
+      "domain": "LOCAL_BUSINESS",
+      "indicator": "Local Economic Participation",
+      "sub_indicator": "Registered Tourism Enterprises",
+      "metric_name": "Official Registered Tourism Enterprise Count",
+      "definition": "Official count or list of registered tourism enterprises / trade-licence holders mapped to selected Puri sites. Currently unavailable; Google Maps or informal listings are not official evidence.",
+      "measurement_unit": "count / list",
+      "value_type": "DATA_GAP",
+      "data_source": "GAP_LB_001 (BUSINESS_GAP_001 is gap observation)",
+      "geographic_scope": "PURI",
+      "temporal_scope": "current / unavailable",
+      "verification_requirement": "Puri Municipality trade licences; DIC Puri; OTDC registered units",
+      "confidence_requirement": "NOT_APPLICABLE_DATA_GAP",
+      "directionality": "POSITIVE",
+      "scoring_eligibility": "DATA_GAP",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; do not use Google Maps counts",
+      "leakage_risk": "HIGH if informal web/maps counts used",
+      "retention_policy": "RETAIN_AS_GAP",
+      "limitations": "GAP_LB_001 OPEN.",
+      "notes": "Placeholder DATA_GAP only."
+    },
+    {
+      "metric_id": "MET_BIO_GB_HATCHLING_EVENT",
+      "domain": "BIODIVERSITY",
+      "indicator": "Biodiversity Protection",
+      "sub_indicator": "Olive Ridley Hatchling Emergence (Golden Beach)",
+      "metric_name": "Golden Beach Olive Ridley Hatchling Emergence (2026)",
+      "definition": "Documented group hatchling emergence event at Golden Beach, 18 March 2026. Status observation only (GROUP_EMERGENCE_RECORDED). No official numerical hatchling count published. Distinct from the 114-egg nesting event. Does not constitute regular inventory.",
+      "measurement_unit": "status",
+      "value_type": "DIRECT",
+      "data_source": "BIO_GB_HATCHLING_2026_03 (SRC_MEDIA_GB_HATCHLING_2026 \u2014 incomplete Source Register metadata)",
+      "geographic_scope": "GOLDEN_BEACH",
+      "temporal_scope": "18 March 2026",
+      "verification_requirement": "Media/operational; event-level only; no numerical count",
+      "confidence_requirement": "Medium (media/visual primary source)",
+      "directionality": "CONTEXT_DEPENDENT",
+      "scoring_eligibility": "CONDITIONALLY_ELIGIBLE",
+      "estimation_policy": "NO_UNAPPROVED_ESTIMATION; do not invent hatchling count",
+      "leakage_risk": "MEDIUM (event vs inventory confusion)",
+      "retention_policy": "RETAIN",
+      "limitations": "No official numerical hatchling count. Source metadata incomplete for SRC_MEDIA_GB_HATCHLING_2026 (NON_BLOCKING). Distinct from nesting egg-count metric.",
+      "notes": "GROUP_EMERGENCE_RECORDED. Separate from MET_BIO_GB_NESTING_EVENT."
+    }
+  ],
+  "gaps_count": 9,
+  "gaps": [
+    {
+      "metric_id": "MET_EMP_CURRENT_TOTAL",
+      "metric_name": "Current Puri Tourism Employment",
+      "domain": "EMPLOYMENT",
+      "required_evidence": "Official current destination-level direct and indirect tourism-related employment for Puri. Currently unavailable in app",
+      "evidence_found": "NO",
+      "gap_type": "DATA_GAP",
+      "gap_reason": "No current destination-level series. Historical 6403 does not close this gap.",
+      "geographic_requirement": "PURI",
+      "temporal_requirement": "current / unavailable",
+      "current_status": "OPEN",
+      "estimation_allowed": "NO",
+      "estimation_status": "NOT_ESTIMATED",
+      "scoring_status": "NOT_ELIGIBLE",
+      "disclosure_requirement": "Must disclose evidence unavailable; prohibit zero-fill",
+      "notes": "GAP_EMP_001 OPEN. temporal_scope is current/unavailable \u2014 not a 2024 observation."
+    },
+    {
+      "metric_id": "MET_ECO_TOURISM_GVA",
+      "metric_name": "Puri Tourism GVA or GDP Contribution",
+      "domain": "ECONOMIC",
+      "required_evidence": "Official tourism-specific Gross Value Added or GDP share attributable to Puri. Currently unavailable; investment pipelin",
+      "evidence_found": "NO",
+      "gap_type": "DATA_GAP",
+      "gap_reason": "Investment figures recorded separately; no tourism-specific GVA.",
+      "geographic_requirement": "PURI / PURI_DISTRICT",
+      "temporal_requirement": "current / unavailable",
+      "current_status": "OPEN",
+      "estimation_allowed": "NO",
+      "estimation_status": "NOT_ESTIMATED",
+      "scoring_status": "NOT_ELIGIBLE",
+      "disclosure_requirement": "Must disclose evidence unavailable; prohibit zero-fill",
+      "notes": "GAP_ECO_001 OPEN."
+    },
+    {
+      "metric_id": "MET_EXP_TOURIST_SPEND",
+      "metric_name": "Puri Tourist Expenditure",
+      "domain": "EXPENDITURE",
+      "required_evidence": "Official average spend per tourist or total tourism expenditure for Puri destination. Currently unavailable; national FE",
+      "evidence_found": "NO",
+      "gap_type": "DATA_GAP",
+      "gap_reason": "No official destination-level series.",
+      "geographic_requirement": "PURI",
+      "temporal_requirement": "current / unavailable",
+      "current_status": "OPEN",
+      "estimation_allowed": "NO",
+      "estimation_status": "NOT_ESTIMATED",
+      "scoring_status": "NOT_ELIGIBLE",
+      "disclosure_requirement": "Must disclose evidence unavailable; prohibit zero-fill",
+      "notes": "GAP_EXP_001 OPEN."
+    },
+    {
+      "metric_id": "MET_BIO_GB_NESTING_INVENTORY",
+      "metric_name": "Golden Beach Regular Nesting Inventory",
+      "domain": "BIODIVERSITY",
+      "required_evidence": "Multi-year official nesting counts for the Blue Flag / Golden Beach stretch. Currently unavailable; one-off 2026 event a",
+      "evidence_found": "NO",
+      "gap_type": "DATA_GAP",
+      "gap_reason": "State framework and single 2026 event do not constitute inventory.",
+      "geographic_requirement": "GOLDEN_BEACH",
+      "temporal_requirement": "multi-year / seasonal (unavailable)",
+      "current_status": "OPEN",
+      "estimation_allowed": "NO",
+      "estimation_status": "NOT_ESTIMATED",
+      "scoring_status": "NOT_ELIGIBLE",
+      "disclosure_requirement": "Must disclose evidence unavailable; prohibit zero-fill",
+      "notes": "GAP_BIO_001 OPEN."
+    },
+    {
+      "metric_id": "MET_ENV_EROSION_RATE",
+      "metric_name": "Golden Beach / Puri Beach Erosion Rate",
+      "domain": "ENVIRONMENT",
+      "required_evidence": "Site-specific numerical shoreline change rate (m/year) for Golden Beach or Puri Beach. Currently unavailable.",
+      "evidence_found": "NO",
+      "gap_type": "DATA_GAP",
+      "gap_reason": "GAP_ENV_001 PARTIAL.",
+      "geographic_requirement": "GOLDEN_BEACH / PURI_BEACH",
+      "temporal_requirement": "current / recent (unavailable)",
+      "current_status": "OPEN",
+      "estimation_allowed": "NO",
+      "estimation_status": "NOT_ESTIMATED",
+      "scoring_status": "NOT_ELIGIBLE",
+      "disclosure_requirement": "Must disclose evidence unavailable; prohibit zero-fill",
+      "notes": "Do not use 1972\u20132010 category as 2026 metric."
+    },
+    {
+      "metric_id": "MET_WASTE_BEACH_TPD",
+      "metric_name": "Golden Beach / Puri Beach MSW Generation",
+      "domain": "WASTE",
+      "required_evidence": "Beach- or site-specific solid waste generation (TPD) for Golden Beach or Puri Beach. Municipal TPD must not be split or ",
+      "evidence_found": "NO",
+      "gap_type": "DATA_GAP",
+      "gap_reason": "Municipal operations documented but no beach TPD.",
+      "geographic_requirement": "GOLDEN_BEACH / PURI_BEACH",
+      "temporal_requirement": "current / unavailable",
+      "current_status": "OPEN",
+      "estimation_allowed": "NO",
+      "estimation_status": "NOT_ESTIMATED",
+      "scoring_status": "NOT_ELIGIBLE",
+      "disclosure_requirement": "Must disclose evidence unavailable; prohibit zero-fill",
+      "notes": "GAP_WASTE_001 OPEN."
+    },
+    {
+      "metric_id": "MET_WAT_MEASURED_CONSUMPTION",
+      "metric_name": "Measured Puri Water Supply or Consumption",
+      "domain": "WATER",
+      "required_evidence": "Official measured daily or annual water supply volume or consumption for Puri. Currently unavailable; derived demand doe",
+      "evidence_found": "NO",
+      "gap_type": "DATA_GAP",
+      "gap_reason": "Search documented; no usable numerical series.",
+      "geographic_requirement": "SITE / PURI_TOURIST_CENTRE",
+      "temporal_requirement": "current / unavailable",
+      "current_status": "OPEN",
+      "estimation_allowed": "NO",
+      "estimation_status": "NOT_ESTIMATED",
+      "scoring_status": "NOT_ELIGIBLE",
+      "disclosure_requirement": "Must disclose evidence unavailable; prohibit zero-fill",
+      "notes": "DATA_GAP preserved."
+    },
+    {
+      "metric_id": "MET_OWN_PARCEL_ROR",
+      "metric_name": "Parcel RoR / Khata Ownership (Selected Sites)",
+      "domain": "OWNERSHIP",
+      "required_evidence": "Official parcel-level Record of Rights (RoR), khata, or plot ownership for each selected core site. Currently unavailabl",
+      "evidence_found": "NO",
+      "gap_type": "DATA_GAP",
+      "gap_reason": "GAP_OWN_001 OPEN for all selected sites.",
+      "geographic_requirement": "SITE / PARCEL",
+      "temporal_requirement": "current / unavailable",
+      "current_status": "OPEN",
+      "estimation_allowed": "NO",
+      "estimation_status": "NOT_ESTIMATED",
+      "scoring_status": "NOT_ELIGIBLE",
+      "disclosure_requirement": "Must disclose evidence unavailable; prohibit zero-fill",
+      "notes": "UNKNOWN status for Markandeswar, Mausimaa, Narendra Tank."
+    },
+    {
+      "metric_id": "MET_LB_ENTERPRISE_COUNT",
+      "metric_name": "Official Registered Tourism Enterprise Count",
+      "domain": "LOCAL_BUSINESS",
+      "required_evidence": "Official count or list of registered tourism enterprises / trade-licence holders mapped to selected Puri sites. Currentl",
+      "evidence_found": "NO",
+      "gap_type": "DATA_GAP",
+      "gap_reason": "GAP_LB_001 OPEN.",
+      "geographic_requirement": "PURI",
+      "temporal_requirement": "current / unavailable",
+      "current_status": "OPEN",
+      "estimation_allowed": "NO",
+      "estimation_status": "NOT_ESTIMATED",
+      "scoring_status": "NOT_ELIGIBLE",
+      "disclosure_requirement": "Must disclose evidence unavailable; prohibit zero-fill",
+      "notes": "Placeholder DATA_GAP only."
+    }
+  ]
+}

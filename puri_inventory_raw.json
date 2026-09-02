@@ -1,0 +1,5613 @@
+[
+  {
+    "rel_path": "README.md",
+    "filename": "README.md",
+    "ext": ".md",
+    "folder": "",
+    "size_bytes": 7989,
+    "sheets": [],
+    "md_lines": 300,
+    "md_preview": "# REGENLEDGER PURI \u2014 Backend Handoff README\n\n## 1. Package\n\n**Destination:** PURI_CORE_TOURISM_DESTINATION  \n**Location:** Puri, Odisha, India  \n**Package version:** 1.0  \n**Package creation date:** 2026-08-24  \n**Backend handoff status:** READY_FOR_BACKEND_HANDOFF  \n**Methodology version:** 1.0\n\nTh"
+  },
+  {
+    "rel_path": "FINAL_OUTPUTS\\PURI_DOMAIN_SCORECARD_FINAL.xlsx",
+    "filename": "PURI_DOMAIN_SCORECARD_FINAL.xlsx",
+    "ext": ".xlsx",
+    "folder": "FINAL_OUTPUTS",
+    "size_bytes": 30222,
+    "sheets": [
+      {
+        "sheetname": "DOMAIN_SCORECARD",
+        "row_count": 15,
+        "col_count": 22,
+        "populated_rows": 14,
+        "headers": [
+          "domain_id",
+          "domain_name",
+          "total_metric_count",
+          "score_eligible_metric_count",
+          "scored_metric_count",
+          "data_gap_count",
+          "blocked_count",
+          "conditional_count",
+          "requires_more_evidence_count",
+          "insufficient_evidence_count",
+          "not_scoreable_count",
+          "score_coverage",
+          "minimum_required_coverage",
+          "aggregation_method",
+          "weighting_method",
+          "domain_score",
+          "domain_status",
+          "confidence_status",
+          "provenance_status",
+          "blocking_reason",
+          "reporting_note",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DOMAIN_METRIC_DETAIL",
+        "row_count": 58,
+        "col_count": 13,
+        "populated_rows": 57,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "domain_id",
+          "domain_name",
+          "metric_score",
+          "metric_score_status",
+          "metric_eligibility",
+          "included_in_domain_denominator",
+          "included_in_domain_numerator",
+          "inclusion_reason",
+          "benchmark_status",
+          "evidence_status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DOMAIN_COVERAGE",
+        "row_count": 15,
+        "col_count": 11,
+        "populated_rows": 14,
+        "headers": [
+          "domain_id",
+          "domain_name",
+          "total_metric_count",
+          "score_eligible_metric_count",
+          "scored_metric_count",
+          "not_scored_eligible_count",
+          "not_scoreable_count",
+          "score_coverage",
+          "minimum_required_coverage",
+          "coverage_status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DOMAIN_CALCULATIONS",
+        "row_count": 15,
+        "col_count": 18,
+        "populated_rows": 14,
+        "headers": [
+          "calculation_id",
+          "domain_id",
+          "domain_name",
+          "metric_ids_included",
+          "metric_scores_included",
+          "metric_count_included",
+          "aggregation_method",
+          "weighting_method",
+          "numerator",
+          "denominator",
+          "score_coverage",
+          "minimum_coverage",
+          "calculated_domain_score",
+          "rounding_rule",
+          "calculation_status",
+          "methodology_version",
+          "execution_timestamp",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "NOT_SCORED_DOMAINS",
+        "row_count": 15,
+        "col_count": 12,
+        "populated_rows": 14,
+        "headers": [
+          "domain_id",
+          "domain_name",
+          "domain_status",
+          "reason_code",
+          "reason",
+          "score_eligible_metric_count",
+          "scored_metric_count",
+          "score_coverage",
+          "minimum_required_coverage",
+          "resolution_required",
+          "user_facing_disclosure",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DOMAIN_PROVENANCE",
+        "row_count": 58,
+        "col_count": 14,
+        "populated_rows": 57,
+        "headers": [
+          "domain_id",
+          "domain_name",
+          "metric_id",
+          "metric_score",
+          "evidence_id",
+          "source_id",
+          "benchmark_id",
+          "formula_id",
+          "aggregation_rule_id",
+          "coverage_rule_id",
+          "methodology_version",
+          "metric_provenance_status",
+          "domain_provenance_status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "VALIDATION_CHECKS",
+        "row_count": 106,
+        "col_count": 9,
+        "populated_rows": 105,
+        "headers": [
+          "validation_id",
+          "validation_name",
+          "validation_rule",
+          "expected_result",
+          "actual_result",
+          "issue_count",
+          "severity",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_METADATA",
+        "row_count": 34,
+        "col_count": 2,
+        "populated_rows": 33,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "FINAL_OUTPUTS\\PURI_FINAL_REPORT_CARD.xlsx",
+    "filename": "PURI_FINAL_REPORT_CARD.xlsx",
+    "ext": ".xlsx",
+    "folder": "FINAL_OUTPUTS",
+    "size_bytes": 37540,
+    "sheets": [
+      {
+        "sheetname": "EXECUTIVE_REPORT_CARD",
+        "row_count": 19,
+        "col_count": 2,
+        "populated_rows": 18,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "OVERALL_STATUS",
+        "row_count": 2,
+        "col_count": 13,
+        "populated_rows": 1,
+        "headers": [
+          "destination",
+          "overall_score",
+          "overall_status",
+          "overall_eligible_domains",
+          "scored_domains",
+          "unscored_domains",
+          "overall_coverage",
+          "minimum_required_coverage",
+          "aggregation_method",
+          "weighting_method",
+          "reason",
+          "reporting_interpretation",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DOMAIN_REPORT_CARD",
+        "row_count": 15,
+        "col_count": 16,
+        "populated_rows": 14,
+        "headers": [
+          "domain_id",
+          "domain_name",
+          "domain_score",
+          "domain_status",
+          "total_metrics",
+          "score_eligible_metrics",
+          "scored_metrics",
+          "score_coverage",
+          "minimum_required_coverage",
+          "data_gap_count",
+          "blocked_count",
+          "conditional_count",
+          "not_scoreable_count",
+          "domain_interpretation",
+          "evidence_limitation",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METRIC_REPORT_CARD",
+        "row_count": 58,
+        "col_count": 15,
+        "populated_rows": 57,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "domain",
+          "raw_value",
+          "raw_unit",
+          "metric_score",
+          "score_status",
+          "evidence_status",
+          "benchmark_status",
+          "verification_status",
+          "confidence_level",
+          "geographic_scope",
+          "temporal_scope",
+          "disclosure",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "EVIDENCE_COVERAGE",
+        "row_count": 67,
+        "col_count": 12,
+        "populated_rows": 65,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "domain",
+          "evidence_present",
+          "evidence_verified",
+          "benchmark_present",
+          "benchmark_approved",
+          "formula_present",
+          "score_generated",
+          "score_status",
+          "coverage_category",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DATA_GAPS_AND_BLOCKERS",
+        "row_count": 20,
+        "col_count": 13,
+        "populated_rows": 19,
+        "headers": [
+          "item_type",
+          "item_id",
+          "item_name",
+          "domain",
+          "status",
+          "reason_code",
+          "reason",
+          "evidence_needed",
+          "benchmark_needed",
+          "resolution_action",
+          "priority",
+          "user_facing_explanation",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SCORE_EXPLANATION",
+        "row_count": 11,
+        "col_count": 2,
+        "populated_rows": 10,
+        "headers": [
+          "section",
+          "explanation"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_SUMMARY",
+        "row_count": 15,
+        "col_count": 3,
+        "populated_rows": 14,
+        "headers": [
+          "topic",
+          "summary",
+          "source_step"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "LIMITATIONS",
+        "row_count": 11,
+        "col_count": 8,
+        "populated_rows": 10,
+        "headers": [
+          "limitation_id",
+          "limitation_category",
+          "limitation",
+          "impact_on_score",
+          "affected_layer",
+          "current_status",
+          "mitigation",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "REPORTING_QA",
+        "row_count": 86,
+        "col_count": 9,
+        "populated_rows": 85,
+        "headers": [
+          "validation_id",
+          "validation_name",
+          "validation_rule",
+          "expected_result",
+          "actual_result",
+          "issue_count",
+          "severity",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROVENANCE_SUMMARY",
+        "row_count": 8,
+        "col_count": 10,
+        "populated_rows": 7,
+        "headers": [
+          "layer",
+          "object_id",
+          "object_name",
+          "evidence_ids",
+          "source_ids",
+          "benchmark_ids",
+          "formula_ids",
+          "methodology_version",
+          "provenance_status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METADATA",
+        "row_count": 29,
+        "col_count": 2,
+        "populated_rows": 28,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "FINAL_OUTPUTS\\PURI_METRIC_SCORES.xlsx",
+    "filename": "PURI_METRIC_SCORES.xlsx",
+    "ext": ".xlsx",
+    "folder": "FINAL_OUTPUTS",
+    "size_bytes": 32972,
+    "sheets": [
+      {
+        "sheetname": "METRIC_SCORES",
+        "row_count": 58,
+        "col_count": 21,
+        "populated_rows": 57,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "domain",
+          "sub_indicator",
+          "evidence_id",
+          "source_id",
+          "benchmark_id",
+          "formula_id",
+          "raw_value",
+          "raw_unit",
+          "score",
+          "score_status",
+          "scoring_eligibility",
+          "benchmark_status",
+          "verification_status",
+          "confidence_level",
+          "geographic_scope",
+          "temporal_scope",
+          "provenance_status",
+          "blocking_reason",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SCORING_INPUTS",
+        "row_count": 2,
+        "col_count": 16,
+        "populated_rows": 1,
+        "headers": [
+          "execution_id",
+          "metric_id",
+          "evidence_id",
+          "source_id",
+          "raw_value",
+          "raw_unit",
+          "value_type",
+          "derived_flag",
+          "geographic_scope",
+          "temporal_scope",
+          "verification_status",
+          "confidence_level",
+          "benchmark_id",
+          "benchmark_value",
+          "input_eligibility",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SCORING_EXECUTION",
+        "row_count": 2,
+        "col_count": 17,
+        "populated_rows": 1,
+        "headers": [
+          "execution_id",
+          "metric_id",
+          "formula_id",
+          "benchmark_id",
+          "raw_value",
+          "raw_unit",
+          "formula_applied",
+          "calculation_result",
+          "score",
+          "output_min",
+          "output_max",
+          "clipping_applied",
+          "rounding_applied",
+          "score_status",
+          "execution_timestamp",
+          "methodology_version",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "NOT_SCORED_METRICS",
+        "row_count": 57,
+        "col_count": 11,
+        "populated_rows": 56,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "domain",
+          "score_status",
+          "reason_code",
+          "reason",
+          "evidence_status",
+          "benchmark_status",
+          "scoring_eligibility",
+          "resolution_required",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DATA_GAPS",
+        "row_count": 10,
+        "col_count": 12,
+        "populated_rows": 9,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "domain",
+          "evidence_gap",
+          "missing_field",
+          "source_gap",
+          "geography_gap",
+          "temporal_gap",
+          "benchmark_gap",
+          "score_status",
+          "disclosure_requirement",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "BLOCKED_METRICS",
+        "row_count": 48,
+        "col_count": 9,
+        "populated_rows": 47,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "block_type",
+          "blocking_reason",
+          "blocked_reference",
+          "condition_required",
+          "score_status",
+          "resolution_required",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROVENANCE_TRACE",
+        "row_count": 2,
+        "col_count": 13,
+        "populated_rows": 1,
+        "headers": [
+          "metric_id",
+          "evidence_id",
+          "source_id",
+          "benchmark_id",
+          "formula_id",
+          "execution_id",
+          "evidence_period",
+          "geographic_scope",
+          "verification_status",
+          "confidence_level",
+          "provenance_status",
+          "score_status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SCORING_VALIDATION",
+        "row_count": 103,
+        "col_count": 9,
+        "populated_rows": 102,
+        "headers": [
+          "validation_id",
+          "validation_name",
+          "validation_rule",
+          "expected_result",
+          "actual_result",
+          "issue_count",
+          "severity",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_METADATA",
+        "row_count": 28,
+        "col_count": 2,
+        "populated_rows": 27,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "FINAL_OUTPUTS\\PURI_OVERALL_SCORECARD.xlsx",
+    "filename": "PURI_OVERALL_SCORECARD.xlsx",
+    "ext": ".xlsx",
+    "folder": "FINAL_OUTPUTS",
+    "size_bytes": 19766,
+    "sheets": [
+      {
+        "sheetname": "OVERALL_SCORECARD",
+        "row_count": 2,
+        "col_count": 17,
+        "populated_rows": 1,
+        "headers": [
+          "destination",
+          "overall_score",
+          "overall_status",
+          "total_domain_count",
+          "overall_eligible_domain_count",
+          "scored_domain_count",
+          "unscored_domain_count",
+          "overall_coverage",
+          "minimum_required_coverage",
+          "aggregation_method",
+          "weighting_method",
+          "confidence_status",
+          "provenance_status",
+          "reason",
+          "reporting_note",
+          "methodology_version",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DOMAIN_INPUTS",
+        "row_count": 15,
+        "col_count": 10,
+        "populated_rows": 14,
+        "headers": [
+          "domain_id",
+          "domain_name",
+          "domain_status",
+          "domain_score",
+          "eligible_for_overall",
+          "included_in_numerator",
+          "included_in_denominator",
+          "exclusion_reason",
+          "domain_provenance_status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "OVERALL_COVERAGE",
+        "row_count": 2,
+        "col_count": 10,
+        "populated_rows": 1,
+        "headers": [
+          "total_domain_count",
+          "structurally_not_scoreable_domain_count",
+          "overall_eligible_domain_count",
+          "scored_domain_count",
+          "unscored_domain_count",
+          "overall_coverage",
+          "minimum_required_coverage",
+          "coverage_status",
+          "coverage_formula",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "OVERALL_CALCULATION",
+        "row_count": 2,
+        "col_count": 16,
+        "populated_rows": 1,
+        "headers": [
+          "calculation_id",
+          "domain_ids_included",
+          "domain_scores_included",
+          "domain_count_included",
+          "aggregation_method",
+          "weighting_method",
+          "numerator",
+          "denominator",
+          "overall_coverage",
+          "minimum_required_coverage",
+          "calculated_overall_score",
+          "rounding_rule",
+          "calculation_status",
+          "methodology_version",
+          "execution_timestamp",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "NOT_SCORED_REASON",
+        "row_count": 2,
+        "col_count": 11,
+        "populated_rows": 1,
+        "headers": [
+          "destination",
+          "overall_status",
+          "reason_code",
+          "reason",
+          "scored_domain_count",
+          "overall_eligible_domain_count",
+          "overall_coverage",
+          "minimum_required_coverage",
+          "resolution_required",
+          "user_facing_disclosure",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "OVERALL_PROVENANCE",
+        "row_count": 3,
+        "col_count": 14,
+        "populated_rows": 2,
+        "headers": [
+          "overall_id",
+          "domain_id",
+          "domain_score",
+          "metric_ids",
+          "evidence_ids",
+          "source_ids",
+          "benchmark_ids",
+          "formula_ids",
+          "domain_aggregation_rule_id",
+          "overall_aggregation_rule_id",
+          "overall_coverage_rule_id",
+          "methodology_version",
+          "provenance_status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "VALIDATION_CHECKS",
+        "row_count": 106,
+        "col_count": 9,
+        "populated_rows": 105,
+        "headers": [
+          "validation_id",
+          "validation_name",
+          "validation_rule",
+          "expected_result",
+          "actual_result",
+          "issue_count",
+          "severity",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_METADATA",
+        "row_count": 33,
+        "col_count": 2,
+        "populated_rows": 32,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "METHODOLOGY\\REGENLEDGER_DOMAIN_AGGREGATION_METHODOLOGY.xlsx",
+    "filename": "REGENLEDGER_DOMAIN_AGGREGATION_METHODOLOGY.xlsx",
+    "ext": ".xlsx",
+    "folder": "METHODOLOGY",
+    "size_bytes": 25763,
+    "sheets": [
+      {
+        "sheetname": "DOMAIN_AGGREGATION_RULES",
+        "row_count": 9,
+        "col_count": 12,
+        "populated_rows": 8,
+        "headers": [
+          "rule_id",
+          "rule_name",
+          "rule_category",
+          "rule_definition",
+          "formula",
+          "eligible_input",
+          "excluded_input",
+          "output_range",
+          "rationale",
+          "source_methodology",
+          "version",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "COVERAGE_RULES",
+        "row_count": 2,
+        "col_count": 14,
+        "populated_rows": 1,
+        "headers": [
+          "coverage_rule_id",
+          "coverage_definition",
+          "numerator",
+          "denominator",
+          "minimum_coverage",
+          "threshold_basis",
+          "partial_coverage_allowed",
+          "data_gap_treatment",
+          "blocked_treatment",
+          "conditional_treatment",
+          "not_scoreable_treatment",
+          "insufficient_evidence_treatment",
+          "rationale",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METRIC_INCLUSION_RULES",
+        "row_count": 10,
+        "col_count": 7,
+        "populated_rows": 9,
+        "headers": [
+          "metric_status",
+          "score_eligible",
+          "included_in_numerator",
+          "included_in_denominator",
+          "domain_score_effect",
+          "rationale",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "WEIGHTING_RULES",
+        "row_count": 4,
+        "col_count": 9,
+        "populated_rows": 3,
+        "headers": [
+          "weighting_rule_id",
+          "scope",
+          "weighting_method",
+          "weight_source",
+          "weight_formula",
+          "default_value",
+          "revision_process",
+          "rationale",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DOMAIN_STATUS_RULES",
+        "row_count": 7,
+        "col_count": 6,
+        "populated_rows": 6,
+        "headers": [
+          "status_code",
+          "definition",
+          "condition",
+          "domain_score_output",
+          "reporting_requirement",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "CONFIDENCE_RULES",
+        "row_count": 4,
+        "col_count": 8,
+        "populated_rows": 3,
+        "headers": [
+          "confidence_rule_id",
+          "rule_name",
+          "definition",
+          "allowed_action",
+          "prohibited_action",
+          "default_value",
+          "rationale",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROVENANCE_RULES",
+        "row_count": 16,
+        "col_count": 5,
+        "populated_rows": 15,
+        "headers": [
+          "provenance_field",
+          "required",
+          "description",
+          "source",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "EDGE_CASE_RULES",
+        "row_count": 16,
+        "col_count": 8,
+        "populated_rows": 15,
+        "headers": [
+          "edge_case_id",
+          "edge_case",
+          "detection",
+          "engine_action",
+          "domain_score_result",
+          "status_code",
+          "disclosure",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_VALIDATION",
+        "row_count": 86,
+        "col_count": 9,
+        "populated_rows": 85,
+        "headers": [
+          "validation_id",
+          "validation_name",
+          "validation_rule",
+          "expected_result",
+          "actual_result",
+          "issue_count",
+          "severity",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_METADATA",
+        "row_count": 30,
+        "col_count": 2,
+        "populated_rows": 29,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "METHODOLOGY\\REGENLEDGER_METRIC_DICTIONARY (2).xlsx",
+    "filename": "REGENLEDGER_METRIC_DICTIONARY (2).xlsx",
+    "ext": ".xlsx",
+    "folder": "METHODOLOGY",
+    "size_bytes": 35939,
+    "sheets": [
+      {
+        "sheetname": "METRIC_DICTIONARY",
+        "row_count": 58,
+        "col_count": 20,
+        "populated_rows": 57,
+        "headers": [
+          "metric_id",
+          "domain",
+          "indicator",
+          "sub_indicator",
+          "metric_name",
+          "definition",
+          "measurement_unit",
+          "value_type",
+          "data_source",
+          "geographic_scope",
+          "temporal_scope",
+          "verification_requirement",
+          "confidence_requirement",
+          "directionality",
+          "scoring_eligibility",
+          "estimation_policy",
+          "leakage_risk",
+          "retention_policy",
+          "limitations",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METRIC_EVIDENCE_MAPPING",
+        "row_count": 106,
+        "col_count": 9,
+        "populated_rows": 105,
+        "headers": [
+          "metric_id",
+          "record_id",
+          "source_id",
+          "evidence_role",
+          "geographic_scope",
+          "temporal_scope",
+          "value_type",
+          "notes",
+          "provenance_status"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METRIC_GAPS",
+        "row_count": 16,
+        "col_count": 12,
+        "populated_rows": 15,
+        "headers": [
+          "gap_metric_id",
+          "domain",
+          "metric_name",
+          "required_evidence",
+          "current_status",
+          "reason_unavailable",
+          "geographic_scope",
+          "temporal_scope",
+          "estimation_allowed",
+          "priority",
+          "related_master_gap_id",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METRIC_VALIDATION",
+        "row_count": 26,
+        "col_count": 5,
+        "populated_rows": 25,
+        "headers": [
+          "validation_check",
+          "result",
+          "issue_count",
+          "details",
+          "status"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_METADATA",
+        "row_count": 21,
+        "col_count": 2,
+        "populated_rows": 20,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "METHODOLOGY\\REGENLEDGER_NORMALISATION_SCORING_ENGINE_SPEC.xlsx",
+    "filename": "REGENLEDGER_NORMALISATION_SCORING_ENGINE_SPEC.xlsx",
+    "ext": ".xlsx",
+    "folder": "METHODOLOGY",
+    "size_bytes": 38265,
+    "sheets": [
+      {
+        "sheetname": "SCORING_ENGINE_SPEC",
+        "row_count": 8,
+        "col_count": 10,
+        "populated_rows": 7,
+        "headers": [
+          "engine_component",
+          "component_id",
+          "description",
+          "input",
+          "validation_gate",
+          "transformation",
+          "output",
+          "failure_state",
+          "provenance_requirement",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METRIC_SCORING_RULES",
+        "row_count": 58,
+        "col_count": 20,
+        "populated_rows": 57,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "domain",
+          "direction_type",
+          "scoring_eligibility",
+          "approved_reference_id",
+          "benchmark_type",
+          "benchmark_status",
+          "normalisation_method",
+          "formula_id",
+          "input_unit",
+          "output_range",
+          "missing_data_policy",
+          "confidence_policy",
+          "provenance_requirement",
+          "geographic_requirement",
+          "temporal_requirement",
+          "current_score_allowed",
+          "blocking_reason",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "NORMALISATION_FORMULAS",
+        "row_count": 2,
+        "col_count": 17,
+        "populated_rows": 1,
+        "headers": [
+          "formula_id",
+          "formula_name",
+          "metric_id",
+          "direction_type",
+          "benchmark_id",
+          "input_variable",
+          "input_unit",
+          "formula",
+          "output_min",
+          "output_max",
+          "lower_boundary",
+          "upper_boundary",
+          "clipping_rule",
+          "missing_data_rule",
+          "invalid_data_rule",
+          "provenance_requirement",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "MISSING_DATA_HANDLING",
+        "row_count": 10,
+        "col_count": 8,
+        "populated_rows": 9,
+        "headers": [
+          "status_code",
+          "condition",
+          "score_output",
+          "score_status",
+          "report_treatment",
+          "downstream_aggregation",
+          "disclosure_requirement",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "CONFIDENCE_HANDLING",
+        "row_count": 7,
+        "col_count": 6,
+        "populated_rows": 6,
+        "headers": [
+          "confidence_level",
+          "score_eligibility",
+          "mathematical_adjustment",
+          "reporting_treatment",
+          "blocking_condition",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SCORING_ELIGIBILITY",
+        "row_count": 58,
+        "col_count": 11,
+        "populated_rows": 57,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "direction_type",
+          "benchmark_status",
+          "evidence_status",
+          "scoring_eligibility",
+          "approved_reference",
+          "formula_available",
+          "current_score_allowed",
+          "reason",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "BLOCKED_METRICS",
+        "row_count": 57,
+        "col_count": 8,
+        "populated_rows": 56,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "block_type",
+          "blocking_reason",
+          "missing_requirement",
+          "resolution_needed",
+          "current_score",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "EDGE_CASE_RULES",
+        "row_count": 21,
+        "col_count": 8,
+        "populated_rows": 20,
+        "headers": [
+          "edge_case_id",
+          "edge_case",
+          "detection_rule",
+          "engine_action",
+          "score_result",
+          "status_code",
+          "disclosure_requirement",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "VALIDATION_CHECKS",
+        "row_count": 86,
+        "col_count": 9,
+        "populated_rows": 85,
+        "headers": [
+          "validation_id",
+          "validation_name",
+          "validation_rule",
+          "expected_result",
+          "actual_result",
+          "issue_count",
+          "severity",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_METADATA",
+        "row_count": 26,
+        "col_count": 2,
+        "populated_rows": 25,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "METHODOLOGY\\REGENLEDGER_NORMALISATION_SCORING_METHODOLOGY.xlsx",
+    "filename": "REGENLEDGER_NORMALISATION_SCORING_METHODOLOGY.xlsx",
+    "ext": ".xlsx",
+    "folder": "METHODOLOGY",
+    "size_bytes": 37060,
+    "sheets": [
+      {
+        "sheetname": "NORMALISATION_TAXONOMY",
+        "row_count": 7,
+        "col_count": 13,
+        "populated_rows": 6,
+        "headers": [
+          "normalisation_method_id",
+          "method_name",
+          "definition",
+          "direction_compatibility",
+          "required_reference",
+          "required_inputs",
+          "geographic_requirement",
+          "temporal_requirement",
+          "provenance_requirement",
+          "applicability_requirement",
+          "allowed_status",
+          "prohibited_use",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "NORMALISATION_RULES",
+        "row_count": 39,
+        "col_count": 12,
+        "populated_rows": 38,
+        "headers": [
+          "normalisation_rule_id",
+          "method_id",
+          "rule_name",
+          "condition",
+          "required_action",
+          "prohibited_action",
+          "scoreability_effect",
+          "benchmark_requirement",
+          "provenance_requirement",
+          "geography_requirement",
+          "temporal_requirement",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DIRECTION_SCORING_RULES",
+        "row_count": 7,
+        "col_count": 8,
+        "populated_rows": 6,
+        "headers": [
+          "direction_rule_id",
+          "direction_type",
+          "definition",
+          "compatible_normalisation_methods",
+          "scoring_condition",
+          "prohibited_action",
+          "scoreability",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "BENCHMARK_GOVERNANCE",
+        "row_count": 28,
+        "col_count": 11,
+        "populated_rows": 27,
+        "headers": [
+          "governance_rule_id",
+          "benchmark_type",
+          "requirement",
+          "validation_condition",
+          "prohibited_action",
+          "approval_requirement",
+          "provenance_requirement",
+          "geographic_requirement",
+          "temporal_requirement",
+          "applicability_requirement",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SCORE_SCALE",
+        "row_count": 7,
+        "col_count": 4,
+        "populated_rows": 6,
+        "headers": [
+          "score_boundary",
+          "interpretation",
+          "condition",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SCORE_ELIGIBILITY",
+        "row_count": 28,
+        "col_count": 7,
+        "populated_rows": 27,
+        "headers": [
+          "gate_id",
+          "gate_name",
+          "requirement",
+          "pass_condition",
+          "fail_condition",
+          "scoreability_effect",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "MISSING_VALUE_RULES",
+        "row_count": 9,
+        "col_count": 7,
+        "populated_rows": 8,
+        "headers": [
+          "missing_rule_id",
+          "state",
+          "definition",
+          "score_treatment",
+          "prohibited_treatment",
+          "disclosure_requirement",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "EXAMPLES",
+        "row_count": 36,
+        "col_count": 11,
+        "populated_rows": 35,
+        "headers": [
+          "example_id",
+          "scenario",
+          "metric_id_or_class",
+          "direction",
+          "normalisation_method",
+          "reference_status",
+          "scoreability",
+          "score_outcome",
+          "rationale",
+          "prohibited_action",
+          "example_type"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_VALIDATION",
+        "row_count": 61,
+        "col_count": 9,
+        "populated_rows": 60,
+        "headers": [
+          "validation_id",
+          "validation_name",
+          "validation_rule",
+          "expected_result",
+          "actual_result",
+          "issue_count",
+          "severity",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_METADATA",
+        "row_count": 31,
+        "col_count": 2,
+        "populated_rows": 30,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "METHODOLOGY\\REGENLEDGER_OVERALL_AGGREGATION_METHODOLOGY.xlsx",
+    "filename": "REGENLEDGER_OVERALL_AGGREGATION_METHODOLOGY.xlsx",
+    "ext": ".xlsx",
+    "folder": "METHODOLOGY",
+    "size_bytes": 25871,
+    "sheets": [
+      {
+        "sheetname": "OVERALL_AGGREGATION_RULES",
+        "row_count": 10,
+        "col_count": 12,
+        "populated_rows": 9,
+        "headers": [
+          "rule_id",
+          "rule_name",
+          "rule_category",
+          "rule_definition",
+          "formula",
+          "eligible_input",
+          "excluded_input",
+          "output_range",
+          "rationale",
+          "source_methodology",
+          "version",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "OVERALL_COVERAGE_RULES",
+        "row_count": 2,
+        "col_count": 13,
+        "populated_rows": 1,
+        "headers": [
+          "coverage_rule_id",
+          "coverage_definition",
+          "numerator",
+          "denominator",
+          "minimum_coverage",
+          "threshold_basis",
+          "partial_coverage_allowed",
+          "unscored_domain_treatment",
+          "blocked_domain_treatment",
+          "not_scoreable_treatment",
+          "no_scored_domain_treatment",
+          "rationale",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DOMAIN_ELIGIBILITY_RULES",
+        "row_count": 8,
+        "col_count": 7,
+        "populated_rows": 7,
+        "headers": [
+          "domain_status",
+          "eligible_for_overall",
+          "included_in_numerator",
+          "included_in_denominator",
+          "overall_score_effect",
+          "rationale",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "OVERALL_WEIGHTING_RULES",
+        "row_count": 4,
+        "col_count": 9,
+        "populated_rows": 3,
+        "headers": [
+          "weighting_rule_id",
+          "scope",
+          "weighting_method",
+          "weight_source",
+          "weight_formula",
+          "default_value",
+          "revision_process",
+          "rationale",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "OVERALL_STATUS_RULES",
+        "row_count": 7,
+        "col_count": 6,
+        "populated_rows": 6,
+        "headers": [
+          "status_code",
+          "definition",
+          "condition",
+          "overall_score_output",
+          "reporting_requirement",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "CONFIDENCE_RULES",
+        "row_count": 4,
+        "col_count": 8,
+        "populated_rows": 3,
+        "headers": [
+          "confidence_rule_id",
+          "rule_name",
+          "definition",
+          "allowed_action",
+          "prohibited_action",
+          "default_value",
+          "rationale",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROVENANCE_RULES",
+        "row_count": 17,
+        "col_count": 5,
+        "populated_rows": 16,
+        "headers": [
+          "provenance_field",
+          "required",
+          "description",
+          "source",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "EDGE_CASE_RULES",
+        "row_count": 17,
+        "col_count": 8,
+        "populated_rows": 16,
+        "headers": [
+          "edge_case_id",
+          "edge_case",
+          "detection",
+          "engine_action",
+          "overall_score_result",
+          "status_code",
+          "disclosure",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_VALIDATION",
+        "row_count": 86,
+        "col_count": 9,
+        "populated_rows": 85,
+        "headers": [
+          "validation_id",
+          "validation_name",
+          "validation_rule",
+          "expected_result",
+          "actual_result",
+          "issue_count",
+          "severity",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_METADATA",
+        "row_count": 31,
+        "col_count": 2,
+        "populated_rows": 30,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "PROCESSED_DATA\\PURI_BIODIVERSITY_PROCESSED.xlsx",
+    "filename": "PURI_BIODIVERSITY_PROCESSED.xlsx",
+    "ext": ".xlsx",
+    "folder": "PROCESSED_DATA",
+    "size_bytes": 9498,
+    "sheets": [
+      {
+        "sheetname": "BIODIVERSITY_PROCESSED",
+        "row_count": 8,
+        "col_count": 28,
+        "populated_rows": 7,
+        "headers": [
+          "record_id",
+          "domain",
+          "indicator",
+          "sub_indicator",
+          "value",
+          "unit",
+          "year",
+          "date_or_period",
+          "geographic_scope",
+          "site_name",
+          "parent_site_name",
+          "sub_site_name",
+          "species_name",
+          "scientific_name",
+          "geographic_alignment",
+          "source_id",
+          "source_type",
+          "value_type",
+          "data_availability",
+          "verification_status",
+          "confidence",
+          "current_status_flag",
+          "historical_flag",
+          "derived_flag",
+          "source_period",
+          "audit_status",
+          "master_gap_id",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROCESSING_METADATA",
+        "row_count": 16,
+        "col_count": 2,
+        "populated_rows": 15,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "PROCESSED_DATA\\PURI_COMMUNITY_PROCESSED.xlsx",
+    "filename": "PURI_COMMUNITY_PROCESSED.xlsx",
+    "ext": ".xlsx",
+    "folder": "PROCESSED_DATA",
+    "size_bytes": 7699,
+    "sheets": [
+      {
+        "sheetname": "COMMUNITY_PROCESSED",
+        "row_count": 3,
+        "col_count": 31,
+        "populated_rows": 2,
+        "headers": [
+          "record_id",
+          "domain",
+          "indicator",
+          "sub_indicator",
+          "value",
+          "unit",
+          "year",
+          "date_or_period",
+          "geographic_scope",
+          "site_name",
+          "parent_site_name",
+          "sub_site_name",
+          "community_group",
+          "community_programme",
+          "community_status",
+          "beneficiary_type",
+          "beneficiary_count",
+          "geographic_alignment",
+          "source_id",
+          "source_type",
+          "value_type",
+          "data_availability",
+          "verification_status",
+          "confidence",
+          "current_status_flag",
+          "historical_flag",
+          "derived_flag",
+          "source_period",
+          "audit_status",
+          "master_gap_id",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROCESSING_METADATA",
+        "row_count": 16,
+        "col_count": 2,
+        "populated_rows": 15,
+        "headers": [
+          "processed_domain",
+          "PURI_COMMUNITY"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "PROCESSED_DATA\\PURI_ECONOMIC_PROCESSED.xlsx",
+    "filename": "PURI_ECONOMIC_PROCESSED.xlsx",
+    "ext": ".xlsx",
+    "folder": "PROCESSED_DATA",
+    "size_bytes": 8644,
+    "sheets": [
+      {
+        "sheetname": "ECONOMIC_PROCESSED",
+        "row_count": 5,
+        "col_count": 30,
+        "populated_rows": 4,
+        "headers": [
+          "record_id",
+          "domain",
+          "indicator",
+          "sub_indicator",
+          "value",
+          "unit",
+          "currency",
+          "year",
+          "date_or_period",
+          "geographic_scope",
+          "site_name",
+          "parent_site_name",
+          "sub_site_name",
+          "investment_status",
+          "economic_category",
+          "tourism_specific_flag",
+          "geographic_alignment",
+          "source_id",
+          "source_type",
+          "value_type",
+          "data_availability",
+          "verification_status",
+          "confidence",
+          "current_status_flag",
+          "historical_flag",
+          "derived_flag",
+          "source_period",
+          "audit_status",
+          "master_gap_id",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROCESSING_METADATA",
+        "row_count": 27,
+        "col_count": 2,
+        "populated_rows": 26,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "PROCESSED_DATA\\PURI_EMPLOYMENT_PROCESSED.xlsx",
+    "filename": "PURI_EMPLOYMENT_PROCESSED.xlsx",
+    "ext": ".xlsx",
+    "folder": "PROCESSED_DATA",
+    "size_bytes": 8944,
+    "sheets": [
+      {
+        "sheetname": "EMPLOYMENT_PROCESSED",
+        "row_count": 5,
+        "col_count": 29,
+        "populated_rows": 4,
+        "headers": [
+          "record_id",
+          "domain",
+          "indicator",
+          "sub_indicator",
+          "value",
+          "unit",
+          "year",
+          "date_or_period",
+          "geographic_scope",
+          "site_name",
+          "parent_site_name",
+          "sub_site_name",
+          "employment_type",
+          "employment_status",
+          "sector",
+          "geographic_alignment",
+          "source_id",
+          "source_type",
+          "value_type",
+          "data_availability",
+          "verification_status",
+          "confidence",
+          "current_status_flag",
+          "historical_flag",
+          "derived_flag",
+          "source_period",
+          "audit_status",
+          "master_gap_id",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROCESSING_METADATA",
+        "row_count": 31,
+        "col_count": 2,
+        "populated_rows": 30,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "PROCESSED_DATA\\PURI_ENVIRONMENT_PROCESSED.xlsx",
+    "filename": "PURI_ENVIRONMENT_PROCESSED.xlsx",
+    "ext": ".xlsx",
+    "folder": "PROCESSED_DATA",
+    "size_bytes": 8329,
+    "sheets": [
+      {
+        "sheetname": "ENVIRONMENT_PROCESSED",
+        "row_count": 5,
+        "col_count": 29,
+        "populated_rows": 4,
+        "headers": [
+          "record_id",
+          "domain",
+          "indicator",
+          "sub_indicator",
+          "value",
+          "unit",
+          "year",
+          "date_or_period",
+          "geographic_scope",
+          "site_name",
+          "parent_site_name",
+          "sub_site_name",
+          "environmental_feature",
+          "environmental_status",
+          "measurement_type",
+          "geographic_alignment",
+          "source_id",
+          "source_type",
+          "value_type",
+          "data_availability",
+          "verification_status",
+          "confidence",
+          "current_status_flag",
+          "historical_flag",
+          "derived_flag",
+          "source_period",
+          "audit_status",
+          "master_gap_id",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROCESSING_METADATA",
+        "row_count": 16,
+        "col_count": 2,
+        "populated_rows": 15,
+        "headers": [
+          "processed_domain",
+          "PURI_ENVIRONMENT"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "PROCESSED_DATA\\PURI_EXPENDITURE_PROCESSED.xlsx",
+    "filename": "PURI_EXPENDITURE_PROCESSED.xlsx",
+    "ext": ".xlsx",
+    "folder": "PROCESSED_DATA",
+    "size_bytes": 7968,
+    "sheets": [
+      {
+        "sheetname": "EXPENDITURE_PROCESSED",
+        "row_count": 3,
+        "col_count": 29,
+        "populated_rows": 2,
+        "headers": [
+          "record_id",
+          "domain",
+          "indicator",
+          "sub_indicator",
+          "value",
+          "unit",
+          "currency",
+          "year",
+          "date_or_period",
+          "geographic_scope",
+          "site_name",
+          "parent_site_name",
+          "sub_site_name",
+          "expenditure_type",
+          "expenditure_status",
+          "geographic_alignment",
+          "source_id",
+          "source_type",
+          "value_type",
+          "data_availability",
+          "verification_status",
+          "confidence",
+          "current_status_flag",
+          "historical_flag",
+          "derived_flag",
+          "source_period",
+          "audit_status",
+          "master_gap_id",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROCESSING_METADATA",
+        "row_count": 27,
+        "col_count": 2,
+        "populated_rows": 26,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "PROCESSED_DATA\\PURI_GIS_PROCESSED.xlsx",
+    "filename": "PURI_GIS_PROCESSED.xlsx",
+    "ext": ".xlsx",
+    "folder": "PROCESSED_DATA",
+    "size_bytes": 8771,
+    "sheets": [
+      {
+        "sheetname": "GIS_PROCESSED",
+        "row_count": 10,
+        "col_count": 26,
+        "populated_rows": 9,
+        "headers": [
+          "record_id",
+          "domain",
+          "site_name",
+          "parent_site_name",
+          "sub_site_name",
+          "geographic_scope",
+          "latitude",
+          "longitude",
+          "coordinate_precision",
+          "coordinate_source_type",
+          "geographic_alignment",
+          "official_source_flag",
+          "secondary_geolocation_flag",
+          "source_id",
+          "source_type",
+          "value_type",
+          "data_availability",
+          "verification_status",
+          "confidence",
+          "current_status_flag",
+          "historical_flag",
+          "derived_flag",
+          "source_period",
+          "audit_status",
+          "master_gap_id",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROCESSING_METADATA",
+        "row_count": 14,
+        "col_count": 2,
+        "populated_rows": 13,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "PROCESSED_DATA\\PURI_HERITAGE_PROCESSED.xlsx",
+    "filename": "PURI_HERITAGE_PROCESSED.xlsx",
+    "ext": ".xlsx",
+    "folder": "PROCESSED_DATA",
+    "size_bytes": 11995,
+    "sheets": [
+      {
+        "sheetname": "HERITAGE_PROCESSED",
+        "row_count": 22,
+        "col_count": 26,
+        "populated_rows": 21,
+        "headers": [
+          "record_id",
+          "domain",
+          "indicator",
+          "sub_indicator",
+          "value",
+          "unit",
+          "year",
+          "date_or_period",
+          "geographic_scope",
+          "site_name",
+          "parent_site_name",
+          "sub_site_name",
+          "geographic_alignment",
+          "source_id",
+          "source_type",
+          "value_type",
+          "data_availability",
+          "verification_status",
+          "confidence",
+          "current_status_flag",
+          "historical_flag",
+          "derived_flag",
+          "source_period",
+          "audit_status",
+          "master_gap_id",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROCESSING_METADATA",
+        "row_count": 15,
+        "col_count": 2,
+        "populated_rows": 14,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "PROCESSED_DATA\\PURI_LOCAL_BUSINESS_PROCESSED.xlsx",
+    "filename": "PURI_LOCAL_BUSINESS_PROCESSED.xlsx",
+    "ext": ".xlsx",
+    "folder": "PROCESSED_DATA",
+    "size_bytes": 7327,
+    "sheets": [
+      {
+        "sheetname": "LOCAL_BUSINESS_PROCESSED",
+        "row_count": 2,
+        "col_count": 31,
+        "populated_rows": 1,
+        "headers": [
+          "record_id",
+          "domain",
+          "indicator",
+          "sub_indicator",
+          "value",
+          "unit",
+          "year",
+          "date_or_period",
+          "geographic_scope",
+          "site_name",
+          "parent_site_name",
+          "sub_site_name",
+          "business_name",
+          "business_category",
+          "business_status",
+          "ownership_type",
+          "local_ownership_flag",
+          "geographic_alignment",
+          "source_id",
+          "source_type",
+          "value_type",
+          "data_availability",
+          "verification_status",
+          "confidence",
+          "current_status_flag",
+          "historical_flag",
+          "derived_flag",
+          "source_period",
+          "audit_status",
+          "master_gap_id",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROCESSING_METADATA",
+        "row_count": 23,
+        "col_count": 2,
+        "populated_rows": 22,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "PROCESSED_DATA\\PURI_OWNERSHIP_PROCESSED.xlsx",
+    "filename": "PURI_OWNERSHIP_PROCESSED.xlsx",
+    "ext": ".xlsx",
+    "folder": "PROCESSED_DATA",
+    "size_bytes": 9846,
+    "sheets": [
+      {
+        "sheetname": "OWNERSHIP_PROCESSED",
+        "row_count": 10,
+        "col_count": 32,
+        "populated_rows": 9,
+        "headers": [
+          "record_id",
+          "domain",
+          "indicator",
+          "sub_indicator",
+          "value",
+          "unit",
+          "year",
+          "date_or_period",
+          "geographic_scope",
+          "site_name",
+          "parent_site_name",
+          "sub_site_name",
+          "asset_name",
+          "asset_type",
+          "ownership_type",
+          "ownership_status",
+          "owner_name",
+          "management_entity",
+          "geographic_alignment",
+          "source_id",
+          "source_type",
+          "value_type",
+          "data_availability",
+          "verification_status",
+          "confidence",
+          "current_status_flag",
+          "historical_flag",
+          "derived_flag",
+          "source_period",
+          "audit_status",
+          "master_gap_id",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROCESSING_METADATA",
+        "row_count": 16,
+        "col_count": 2,
+        "populated_rows": 15,
+        "headers": [
+          "processed_domain",
+          "PURI_OWNERSHIP"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "PROCESSED_DATA\\PURI_TOURISM_PROCESSED.xlsx",
+    "filename": "PURI_TOURISM_PROCESSED.xlsx",
+    "ext": ".xlsx",
+    "folder": "PROCESSED_DATA",
+    "size_bytes": 13368,
+    "sheets": [
+      {
+        "sheetname": "TOURISM_PROCESSED",
+        "row_count": 37,
+        "col_count": 29,
+        "populated_rows": 36,
+        "headers": [
+          "record_id",
+          "domain",
+          "indicator",
+          "sub_indicator",
+          "value",
+          "unit",
+          "year",
+          "date_or_period",
+          "geographic_scope",
+          "site_name",
+          "parent_site_name",
+          "sub_site_name",
+          "tourism_category",
+          "tourism_status",
+          "capacity_type",
+          "geographic_alignment",
+          "source_id",
+          "source_type",
+          "value_type",
+          "data_availability",
+          "verification_status",
+          "confidence",
+          "current_status_flag",
+          "historical_flag",
+          "derived_flag",
+          "source_period",
+          "audit_status",
+          "master_gap_id",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROCESSING_METADATA",
+        "row_count": 15,
+        "col_count": 2,
+        "populated_rows": 14,
+        "headers": [
+          "processed_domain",
+          "PURI_TOURISM"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "PROCESSED_DATA\\PURI_VISITOR_PROCESSED.xlsx",
+    "filename": "PURI_VISITOR_PROCESSED.xlsx",
+    "ext": ".xlsx",
+    "folder": "PROCESSED_DATA",
+    "size_bytes": 11837,
+    "sheets": [
+      {
+        "sheetname": "VISITOR_PROCESSED",
+        "row_count": 28,
+        "col_count": 26,
+        "populated_rows": 27,
+        "headers": [
+          "record_id",
+          "domain",
+          "indicator",
+          "sub_indicator",
+          "value",
+          "unit",
+          "year",
+          "date_or_period",
+          "geographic_scope",
+          "site_name",
+          "parent_site_name",
+          "sub_site_name",
+          "geographic_alignment",
+          "source_id",
+          "source_type",
+          "value_type",
+          "data_availability",
+          "verification_status",
+          "confidence",
+          "current_status_flag",
+          "historical_flag",
+          "derived_flag",
+          "source_period",
+          "audit_status",
+          "master_gap_id",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROCESSING_METADATA",
+        "row_count": 15,
+        "col_count": 2,
+        "populated_rows": 14,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "PROCESSED_DATA\\PURI_WASTE_PROCESSED.xlsx",
+    "filename": "PURI_WASTE_PROCESSED.xlsx",
+    "ext": ".xlsx",
+    "folder": "PROCESSED_DATA",
+    "size_bytes": 8512,
+    "sheets": [
+      {
+        "sheetname": "WASTE_PROCESSED",
+        "row_count": 8,
+        "col_count": 26,
+        "populated_rows": 7,
+        "headers": [
+          "record_id",
+          "domain",
+          "indicator",
+          "sub_indicator",
+          "value",
+          "unit",
+          "year",
+          "date_or_period",
+          "geographic_scope",
+          "site_name",
+          "parent_site_name",
+          "sub_site_name",
+          "geographic_alignment",
+          "source_id",
+          "source_type",
+          "value_type",
+          "data_availability",
+          "verification_status",
+          "confidence",
+          "current_status_flag",
+          "historical_flag",
+          "derived_flag",
+          "source_period",
+          "audit_status",
+          "master_gap_id",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROCESSING_METADATA",
+        "row_count": 15,
+        "col_count": 2,
+        "populated_rows": 14,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "PROCESSED_DATA\\PURI_WATER_PROCESSED.xlsx",
+    "filename": "PURI_WATER_PROCESSED.xlsx",
+    "ext": ".xlsx",
+    "folder": "PROCESSED_DATA",
+    "size_bytes": 15214,
+    "sheets": [
+      {
+        "sheetname": "WATER_PROCESSED",
+        "row_count": 40,
+        "col_count": 26,
+        "populated_rows": 39,
+        "headers": [
+          "record_id",
+          "domain",
+          "indicator",
+          "sub_indicator",
+          "value",
+          "unit",
+          "year",
+          "date_or_period",
+          "geographic_scope",
+          "site_name",
+          "parent_site_name",
+          "sub_site_name",
+          "geographic_alignment",
+          "source_id",
+          "source_type",
+          "value_type",
+          "data_availability",
+          "verification_status",
+          "confidence",
+          "current_status_flag",
+          "historical_flag",
+          "derived_flag",
+          "source_period",
+          "audit_status",
+          "master_gap_id",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROCESSING_METADATA",
+        "row_count": 15,
+        "col_count": 2,
+        "populated_rows": 14,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "PROVENANCE_AND_REFERENCES\\PURI_METRIC_EVIDENCE_MAPPING (1).xlsx",
+    "filename": "PURI_METRIC_EVIDENCE_MAPPING (1).xlsx",
+    "ext": ".xlsx",
+    "folder": "PROVENANCE_AND_REFERENCES",
+    "size_bytes": 56160,
+    "sheets": [
+      {
+        "sheetname": "METRIC_EVIDENCE_MAP",
+        "row_count": 58,
+        "col_count": 26,
+        "populated_rows": 57,
+        "headers": [
+          "metric_id",
+          "domain",
+          "indicator",
+          "sub_indicator",
+          "metric_name",
+          "metric_definition",
+          "measurement_unit",
+          "metric_value_type",
+          "metric_geographic_scope",
+          "metric_temporal_scope",
+          "metric_directionality",
+          "support_status",
+          "supporting_evidence_count",
+          "supporting_evidence_ids",
+          "supporting_master_record_ids",
+          "primary_source_ids",
+          "evidence_type",
+          "verification_status",
+          "confidence_level",
+          "provenance_status",
+          "limitation_status",
+          "scoring_eligibility",
+          "estimation_status",
+          "leakage_status",
+          "mapping_rationale",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METRIC_SUPPORT_STATUS",
+        "row_count": 58,
+        "col_count": 17,
+        "populated_rows": 57,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "support_status",
+          "evidence_found",
+          "evidence_count",
+          "direct_evidence_count",
+          "derived_evidence_count",
+          "data_gap_flag",
+          "geographic_match",
+          "temporal_match",
+          "semantic_match",
+          "verification_match",
+          "confidence_match",
+          "provenance_match",
+          "limitation_present",
+          "rationale",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "EVIDENCE_LINKAGE",
+        "row_count": 106,
+        "col_count": 18,
+        "populated_rows": 105,
+        "headers": [
+          "linkage_id",
+          "metric_id",
+          "evidence_id",
+          "master_record_id",
+          "source_id",
+          "evidence_role",
+          "value_type",
+          "evidence_value",
+          "measurement_unit",
+          "evidence_geographic_scope",
+          "evidence_temporal_scope",
+          "verification_status",
+          "confidence_level",
+          "provenance_status",
+          "limitation_status",
+          "linkage_status",
+          "linkage_rationale",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SCORING_ELIGIBILITY",
+        "row_count": 58,
+        "col_count": 16,
+        "populated_rows": 57,
+        "headers": [
+          "metric_id",
+          "support_status",
+          "verification_status",
+          "confidence_level",
+          "provenance_status",
+          "geographic_match",
+          "temporal_match",
+          "semantic_match",
+          "limitation_status",
+          "estimation_status",
+          "leakage_status",
+          "direction_type",
+          "scoring_eligibility",
+          "eligibility_rationale",
+          "blocking_reason",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DATA_GAP_MAPPING",
+        "row_count": 10,
+        "col_count": 15,
+        "populated_rows": 9,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "domain",
+          "required_evidence",
+          "evidence_found",
+          "gap_type",
+          "gap_reason",
+          "geographic_requirement",
+          "temporal_requirement",
+          "current_status",
+          "estimation_allowed",
+          "estimation_status",
+          "scoring_status",
+          "disclosure_requirement",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "MAPPING_EXCEPTIONS",
+        "row_count": 11,
+        "col_count": 10,
+        "populated_rows": 10,
+        "headers": [
+          "exception_id",
+          "metric_id",
+          "evidence_id",
+          "exception_type",
+          "issue",
+          "methodology_rule",
+          "resolution",
+          "scoring_effect",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "MAPPING_VALIDATION",
+        "row_count": 50,
+        "col_count": 9,
+        "populated_rows": 49,
+        "headers": [
+          "validation_id",
+          "validation_name",
+          "validation_rule",
+          "expected_result",
+          "actual_result",
+          "issue_count",
+          "severity",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_METADATA",
+        "row_count": 35,
+        "col_count": 2,
+        "populated_rows": 34,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "PROVENANCE_AND_REFERENCES\\REGENLEDGER_FINAL_SCORING_REFERENCE_REGISTRY.xlsx",
+    "filename": "REGENLEDGER_FINAL_SCORING_REFERENCE_REGISTRY.xlsx",
+    "ext": ".xlsx",
+    "folder": "PROVENANCE_AND_REFERENCES",
+    "size_bytes": 31096,
+    "sheets": [
+      {
+        "sheetname": "FINAL_REFERENCE_REGISTRY",
+        "row_count": 11,
+        "col_count": 33,
+        "populated_rows": 10,
+        "headers": [
+          "final_reference_id",
+          "candidate_id",
+          "metric_id",
+          "metric_name",
+          "benchmark_type",
+          "benchmark_value",
+          "lower_bound",
+          "upper_bound",
+          "measurement_unit",
+          "benchmark_geography",
+          "metric_geography",
+          "benchmark_temporal_scope",
+          "metric_temporal_scope",
+          "definition_match",
+          "unit_match",
+          "geographic_match",
+          "temporal_match",
+          "semantic_match",
+          "denominator_match",
+          "direction_match",
+          "source_authority",
+          "source_verification",
+          "provenance_status",
+          "confidence_level",
+          "limitation_status",
+          "leakage_status",
+          "applicability_status",
+          "previous_step19_decision",
+          "condition",
+          "condition_resolution",
+          "final_decision",
+          "blocking_reason",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "CONDITIONAL_RESOLUTION",
+        "row_count": 8,
+        "col_count": 16,
+        "populated_rows": 7,
+        "headers": [
+          "resolution_id",
+          "candidate_id",
+          "metric_id",
+          "previous_condition",
+          "required_evidence",
+          "research_question",
+          "source_id",
+          "source_title",
+          "source_url",
+          "source_section",
+          "source_page",
+          "evidence_summary",
+          "condition_status",
+          "resolution_result",
+          "final_decision",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "APPROVED_REFERENCES",
+        "row_count": 2,
+        "col_count": 25,
+        "populated_rows": 1,
+        "headers": [
+          "approved_reference_id",
+          "candidate_id",
+          "metric_id",
+          "metric_name",
+          "benchmark_type",
+          "benchmark_value",
+          "lower_bound",
+          "upper_bound",
+          "unit",
+          "source_id",
+          "source_title",
+          "publisher",
+          "source_url",
+          "source_section",
+          "source_page",
+          "geographic_scope",
+          "temporal_scope",
+          "applicability_rule",
+          "direction_type",
+          "provenance_status",
+          "verification_status",
+          "confidence_level",
+          "limitations",
+          "approval_rationale",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "REMAINING_CONDITIONAL",
+        "row_count": 7,
+        "col_count": 10,
+        "populated_rows": 6,
+        "headers": [
+          "conditional_reference_id",
+          "candidate_id",
+          "metric_id",
+          "unresolved_condition",
+          "condition_owner",
+          "evidence_required",
+          "scoring_blocker",
+          "next_action",
+          "rationale",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "REJECTED_REFERENCES",
+        "row_count": 3,
+        "col_count": 8,
+        "populated_rows": 2,
+        "headers": [
+          "rejected_id",
+          "candidate_id",
+          "metric_id",
+          "rejection_category",
+          "rejection_reason",
+          "evidence",
+          "failed_condition",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "UNRESOLVED_REFERENCES",
+        "row_count": 2,
+        "col_count": 9,
+        "populated_rows": 1,
+        "headers": [
+          "unresolved_id",
+          "candidate_id",
+          "metric_id",
+          "unresolved_issue",
+          "evidence_missing",
+          "why_not_decidable",
+          "required_next_action",
+          "scoring_blocked",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METRIC_REFERENCE_STATUS",
+        "row_count": 58,
+        "col_count": 14,
+        "populated_rows": 57,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "domain",
+          "step15_eligibility",
+          "direction_type",
+          "step19_candidate_count",
+          "approved_reference_count",
+          "conditional_reference_count",
+          "rejected_reference_count",
+          "unresolved_reference_count",
+          "final_reference_status",
+          "scoring_readiness",
+          "blocking_reason",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROVENANCE_TRACE",
+        "row_count": 11,
+        "col_count": 16,
+        "populated_rows": 10,
+        "headers": [
+          "final_reference_id",
+          "candidate_id",
+          "metric_id",
+          "source_id",
+          "source_title",
+          "publisher",
+          "source_url",
+          "source_section",
+          "source_page",
+          "source_status",
+          "provenance_status",
+          "verification_status",
+          "confidence_level",
+          "applicability_status",
+          "traceability_status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "FINAL_VALIDATION",
+        "row_count": 81,
+        "col_count": 9,
+        "populated_rows": 80,
+        "headers": [
+          "validation_id",
+          "validation_name",
+          "validation_rule",
+          "expected_result",
+          "actual_result",
+          "issue_count",
+          "severity",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_METADATA",
+        "row_count": 27,
+        "col_count": 2,
+        "populated_rows": 26,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "PROVENANCE_AND_REFERENCES\\REGENLEDGER_SCORING_DIRECTION (1).xlsx",
+    "filename": "REGENLEDGER_SCORING_DIRECTION (1).xlsx",
+    "ext": ".xlsx",
+    "folder": "PROVENANCE_AND_REFERENCES",
+    "size_bytes": 39545,
+    "sheets": [
+      {
+        "sheetname": "SCORING_DIRECTION_RULES",
+        "row_count": 27,
+        "col_count": 11,
+        "populated_rows": 26,
+        "headers": [
+          "rule_id",
+          "rule_name",
+          "rule_category",
+          "rule_description",
+          "condition",
+          "required_action",
+          "prohibited_action",
+          "scoring_effect",
+          "severity",
+          "applies_to",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DIRECTION_TAXONOMY",
+        "row_count": 7,
+        "col_count": 8,
+        "populated_rows": 6,
+        "headers": [
+          "direction_type",
+          "definition",
+          "when_to_use",
+          "higher_interpretation",
+          "lower_interpretation",
+          "threshold_required",
+          "target_range_required",
+          "scoring_notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SCORING_ELIGIBILITY",
+        "row_count": 4,
+        "col_count": 13,
+        "populated_rows": 3,
+        "headers": [
+          "eligibility_status",
+          "definition",
+          "minimum_requirements",
+          "verification_requirement",
+          "confidence_requirement",
+          "provenance_requirement",
+          "geographic_requirement",
+          "temporal_requirement",
+          "value_type_requirement",
+          "limitation_requirement",
+          "estimation_requirement",
+          "leakage_requirement",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SCORING_EXCLUSIONS",
+        "row_count": 16,
+        "col_count": 7,
+        "populated_rows": 15,
+        "headers": [
+          "exclusion_id",
+          "exclusion_type",
+          "trigger",
+          "reason",
+          "scoring_status",
+          "example",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DOMAIN_SCORING_LOGIC",
+        "row_count": 15,
+        "col_count": 7,
+        "populated_rows": 14,
+        "headers": [
+          "domain",
+          "scoring_role",
+          "direction_consideration",
+          "eligibility_consideration",
+          "known_risks",
+          "non_scoreable_conditions",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "EXAMPLES",
+        "row_count": 33,
+        "col_count": 12,
+        "populated_rows": 32,
+        "headers": [
+          "example_id",
+          "scenario",
+          "metric_id",
+          "direction_type",
+          "eligibility_status",
+          "verification_status",
+          "confidence_level",
+          "key_rule",
+          "allowed_scoring_use",
+          "prohibited_scoring_use",
+          "notes",
+          "example_type"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METRIC_DIRECTION_RECONCILIATION",
+        "row_count": 49,
+        "col_count": 8,
+        "populated_rows": 48,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "metric_dictionary_direction",
+          "scoring_direction",
+          "reconciliation_rule",
+          "scoring_status",
+          "rationale",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SCORING_VALIDATION",
+        "row_count": 55,
+        "col_count": 9,
+        "populated_rows": 54,
+        "headers": [
+          "validation_id",
+          "validation_name",
+          "validation_rule",
+          "expected_result",
+          "actual_result",
+          "issue_count",
+          "severity",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_METADATA",
+        "row_count": 31,
+        "col_count": 2,
+        "populated_rows": 30,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "README_DOCUMENTS\\PURI_BACKEND_HANDOFF_MANIFEST.xlsx",
+    "filename": "PURI_BACKEND_HANDOFF_MANIFEST.xlsx",
+    "ext": ".xlsx",
+    "folder": "README_DOCUMENTS",
+    "size_bytes": 8276,
+    "sheets": [
+      {
+        "sheetname": "HANDOFF_MANIFEST",
+        "row_count": 16,
+        "col_count": 10,
+        "populated_rows": 15,
+        "headers": [
+          "file_path",
+          "file_name",
+          "category",
+          "role",
+          "backend_priority",
+          "source_artifact",
+          "immutable",
+          "description",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PACKAGE_METADATA",
+        "row_count": 29,
+        "col_count": 2,
+        "populated_rows": 28,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "README_DOCUMENTS\\PURI_BACKEND_HANDOFF_QA.xlsx",
+    "filename": "PURI_BACKEND_HANDOFF_QA.xlsx",
+    "ext": ".xlsx",
+    "folder": "README_DOCUMENTS",
+    "size_bytes": 12427,
+    "sheets": [
+      {
+        "sheetname": "PACKAGE_VALIDATION",
+        "row_count": 101,
+        "col_count": 9,
+        "populated_rows": 100,
+        "headers": [
+          "validation_id",
+          "validation_name",
+          "validation_rule",
+          "expected_result",
+          "actual_result",
+          "issue_count",
+          "severity",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "QA_SUMMARY",
+        "row_count": 20,
+        "col_count": 2,
+        "populated_rows": 19,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "RECONCILIATION\\PURI_EMPLOYMENT_RECONCILIATION.xlsx",
+    "filename": "PURI_EMPLOYMENT_RECONCILIATION.xlsx",
+    "ext": ".xlsx",
+    "folder": "RECONCILIATION",
+    "size_bytes": 7878,
+    "sheets": [
+      {
+        "sheetname": "EMPLOYMENT_RECONCILIATION",
+        "row_count": 19,
+        "col_count": 13,
+        "populated_rows": 16,
+        "headers": [
+          "record_id",
+          "record_role",
+          "relationship_to_other_record",
+          "same_underlying_source",
+          "same_underlying_observation",
+          "value_status",
+          "recommended_action",
+          "reason",
+          "source_id",
+          "source_title",
+          "audit_status",
+          "confidence",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "RECONCILIATION\\PURI_PROCESSING_READINESS_MATRIX.xlsx",
+    "filename": "PURI_PROCESSING_READINESS_MATRIX.xlsx",
+    "ext": ".xlsx",
+    "folder": "RECONCILIATION",
+    "size_bytes": 9256,
+    "sheets": [
+      {
+        "sheetname": "PROCESSING_READINESS",
+        "row_count": 15,
+        "col_count": 18,
+        "populated_rows": 14,
+        "headers": [
+          "domain",
+          "data_file",
+          "audit_file",
+          "readme_available",
+          "master_gap_id",
+          "current_status",
+          "processing_status",
+          "special_handling",
+          "geographic_rule",
+          "temporal_rule",
+          "value_type_rule",
+          "duplicate_review",
+          "derived_review",
+          "cross_domain_overlap",
+          "action_required",
+          "priority",
+          "ready_for_processing",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "RECONCILIATION\\PURI_TOURISM_RECONCILIATION.xlsx",
+    "filename": "PURI_TOURISM_RECONCILIATION.xlsx",
+    "ext": ".xlsx",
+    "folder": "RECONCILIATION",
+    "size_bytes": 17360,
+    "sheets": [
+      {
+        "sheetname": "TOURISM_RECONCILIATION",
+        "row_count": 16,
+        "col_count": 19,
+        "populated_rows": 14,
+        "headers": [
+          "reconciliation_id",
+          "issue_type",
+          "record_id",
+          "related_record_id",
+          "indicator",
+          "value",
+          "unit",
+          "year",
+          "geographic_scope",
+          "site_name",
+          "source_id",
+          "source_match",
+          "semantic_match",
+          "recommended_action",
+          "reason",
+          "audit_status",
+          "confidence",
+          "master_gap_id",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DUPLICATE_REVIEW",
+        "row_count": 8,
+        "col_count": 14,
+        "populated_rows": 7,
+        "headers": [
+          "pair_id",
+          "record_id_a",
+          "record_id_b",
+          "same_value",
+          "same_indicator",
+          "same_unit",
+          "same_year",
+          "same_geography",
+          "same_source",
+          "same_underlying_fact",
+          "classification",
+          "recommended_action",
+          "reason",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "COMPOUND_VALUE_REVIEW",
+        "row_count": 2,
+        "col_count": 10,
+        "populated_rows": 1,
+        "headers": [
+          "record_id",
+          "original_value",
+          "original_unit",
+          "source_id",
+          "source_supports_split",
+          "recommended_rooms",
+          "recommended_beds",
+          "recommended_action",
+          "reason",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "CROSS_DOMAIN_REUSE",
+        "row_count": 3,
+        "col_count": 10,
+        "populated_rows": 2,
+        "headers": [
+          "tourism_record_id",
+          "other_domain",
+          "other_record_id",
+          "shared_fact",
+          "same_source",
+          "same_geography",
+          "same_year",
+          "recommended_handling",
+          "double_counting_risk",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "GEOGRAPHY_REVIEW",
+        "row_count": 11,
+        "col_count": 9,
+        "populated_rows": 10,
+        "headers": [
+          "record_id",
+          "site_name",
+          "parent_site",
+          "sub_site",
+          "geographic_scope",
+          "geographic_alignment",
+          "inheritance_risk",
+          "recommended_action",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROCESSING_DECISIONS",
+        "row_count": 37,
+        "col_count": 9,
+        "populated_rows": 36,
+        "headers": [
+          "record_id",
+          "processing_status",
+          "active_for_processed_output",
+          "retain_in_raw",
+          "retain_for_provenance",
+          "normalization_required",
+          "manual_review_required",
+          "recommended_processing_action",
+          "reason"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "RECONCILIATION\\PURI_WATER_RECONCILIATION.xlsx",
+    "filename": "PURI_WATER_RECONCILIATION.xlsx",
+    "ext": ".xlsx",
+    "folder": "RECONCILIATION",
+    "size_bytes": 27270,
+    "sheets": [
+      {
+        "sheetname": "WATER_RECONCILIATION",
+        "row_count": 40,
+        "col_count": 21,
+        "populated_rows": 39,
+        "headers": [
+          "reconciliation_id",
+          "record_id",
+          "indicator",
+          "value",
+          "unit",
+          "year",
+          "date_or_period",
+          "geographic_scope",
+          "site_name",
+          "source_id",
+          "value_type_current",
+          "recommended_value_type",
+          "data_availability",
+          "verification_status",
+          "confidence",
+          "direct_or_derived",
+          "processing_status",
+          "recommended_action",
+          "master_gap_id",
+          "reason",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DERIVED_RECORD_REVIEW",
+        "row_count": 3,
+        "col_count": 22,
+        "populated_rows": 2,
+        "headers": [
+          "derived_record_id",
+          "indicator",
+          "derived_value",
+          "unit",
+          "formula",
+          "formula_status",
+          "input_record_ids",
+          "input_values",
+          "input_units",
+          "input_source_ids",
+          "source_period",
+          "derived_period",
+          "temporal_alignment",
+          "geographic_scope",
+          "site_name",
+          "geographic_alignment",
+          "assumptions",
+          "calculation_method",
+          "calculation_check",
+          "confidence",
+          "limitations",
+          "recommended_action"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DIRECT_RECORD_REVIEW",
+        "row_count": 34,
+        "col_count": 14,
+        "populated_rows": 33,
+        "headers": [
+          "record_id",
+          "indicator",
+          "value",
+          "unit",
+          "source_id",
+          "source_title",
+          "source_exists",
+          "direct_evidence_present",
+          "geographic_scope",
+          "temporal_scope",
+          "verification_status",
+          "confidence",
+          "recommended_action",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DATA_GAP_REVIEW",
+        "row_count": 5,
+        "col_count": 10,
+        "populated_rows": 4,
+        "headers": [
+          "record_id",
+          "indicator",
+          "geographic_scope",
+          "site_name",
+          "master_gap_id",
+          "data_availability",
+          "value_type",
+          "reason_for_gap",
+          "recommended_action",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "GEOGRAPHY_REVIEW",
+        "row_count": 40,
+        "col_count": 10,
+        "populated_rows": 39,
+        "headers": [
+          "record_id",
+          "geographic_scope",
+          "site_name",
+          "mapped_site_name",
+          "mapped_sub_site_name",
+          "geographic_alignment",
+          "geographic_alignment_evidence",
+          "inheritance_risk",
+          "recommended_action",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "AUDIT_COVERAGE",
+        "row_count": 40,
+        "col_count": 8,
+        "populated_rows": 39,
+        "headers": [
+          "record_id",
+          "audit_record_present",
+          "audit_status",
+          "review_required",
+          "data_status",
+          "audit_data_consistent",
+          "recommended_action",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROCESSING_DECISIONS",
+        "row_count": 40,
+        "col_count": 12,
+        "populated_rows": 39,
+        "headers": [
+          "record_id",
+          "processing_status",
+          "active_for_processed_output",
+          "retain_in_raw",
+          "retain_for_provenance",
+          "normalization_required",
+          "formula_verification_required",
+          "geographic_verification_required",
+          "manual_review_required",
+          "recommended_processing_action",
+          "reason",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "SUPPORTING_METHODOLOGY\\REGENLEDGER_CONFIDENCE_TAXONOMY (2).xlsx",
+    "filename": "REGENLEDGER_CONFIDENCE_TAXONOMY (2).xlsx",
+    "ext": ".xlsx",
+    "folder": "SUPPORTING_METHODOLOGY",
+    "size_bytes": 31016,
+    "sheets": [
+      {
+        "sheetname": "CONFIDENCE_LEVELS",
+        "row_count": 7,
+        "col_count": 7,
+        "populated_rows": 6,
+        "headers": [
+          "confidence_level",
+          "level_order",
+          "definition",
+          "minimum_characteristics",
+          "typical_use",
+          "restrictions",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "CONFIDENCE_DIMENSIONS",
+        "row_count": 13,
+        "col_count": 10,
+        "populated_rows": 12,
+        "headers": [
+          "dimension_id",
+          "dimension_name",
+          "definition",
+          "assessment_criteria",
+          "high_condition",
+          "medium_condition",
+          "low_condition",
+          "critical_failure_condition",
+          "applicable_value_types",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "CONFIDENCE_RULES",
+        "row_count": 21,
+        "col_count": 9,
+        "populated_rows": 20,
+        "headers": [
+          "rule_id",
+          "rule_name",
+          "rule_category",
+          "rule_description",
+          "condition",
+          "confidence_effect",
+          "override_protection",
+          "applies_to",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "CONFIDENCE_CEILINGS",
+        "row_count": 13,
+        "col_count": 5,
+        "populated_rows": 12,
+        "headers": [
+          "verification_status",
+          "maximum_confidence",
+          "reason",
+          "exception_condition",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "CONFIDENCE_EXAMPLES",
+        "row_count": 21,
+        "col_count": 9,
+        "populated_rows": 20,
+        "headers": [
+          "example_id",
+          "scenario",
+          "verification_status",
+          "confidence_level",
+          "confidence_dimensions",
+          "reason",
+          "allowed_use",
+          "not_allowed",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "CONFIDENCE_DECISION_LOGIC",
+        "row_count": 14,
+        "col_count": 8,
+        "populated_rows": 13,
+        "headers": [
+          "step",
+          "decision_id",
+          "decision_point",
+          "condition",
+          "action",
+          "confidence_effect",
+          "next_step",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "CONFIDENCE_VALIDATION",
+        "row_count": 44,
+        "col_count": 6,
+        "populated_rows": 43,
+        "headers": [
+          "validation_check",
+          "expected_rule",
+          "result",
+          "issue_count",
+          "details",
+          "status"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_METADATA",
+        "row_count": 28,
+        "col_count": 2,
+        "populated_rows": 27,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "SUPPORTING_METHODOLOGY\\REGENLEDGER_ESTIMATION_LEAKAGE_RETENTION.xlsx",
+    "filename": "REGENLEDGER_ESTIMATION_LEAKAGE_RETENTION.xlsx",
+    "ext": ".xlsx",
+    "folder": "SUPPORTING_METHODOLOGY",
+    "size_bytes": 41217,
+    "sheets": [
+      {
+        "sheetname": "ESTIMATION_POLICY",
+        "row_count": 31,
+        "col_count": 11,
+        "populated_rows": 30,
+        "headers": [
+          "policy_id",
+          "policy_name",
+          "definition",
+          "condition",
+          "required_action",
+          "prohibited_action",
+          "scoring_implication",
+          "confidence_implication",
+          "limitation_implication",
+          "provenance_requirement",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "ESTIMATION_ELIGIBILITY",
+        "row_count": 20,
+        "col_count": 8,
+        "populated_rows": 19,
+        "headers": [
+          "eligibility_rule_id",
+          "condition",
+          "requirement",
+          "pass_condition",
+          "fail_condition",
+          "status_if_pass",
+          "status_if_fail",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "ESTIMATION_METHODS",
+        "row_count": 10,
+        "col_count": 17,
+        "populated_rows": 9,
+        "headers": [
+          "estimation_method_id",
+          "method_name",
+          "applicable_metric",
+          "required_inputs",
+          "minimum_evidence_requirement",
+          "geographic_requirement",
+          "temporal_requirement",
+          "verification_requirement",
+          "confidence_requirement",
+          "provenance_requirement",
+          "assumptions_required",
+          "uncertainty_required",
+          "leakage_assessment_required",
+          "reproducibility_requirement",
+          "approval_requirement",
+          "prohibited_use",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "LEAKAGE_TAXONOMY",
+        "row_count": 11,
+        "col_count": 6,
+        "populated_rows": 10,
+        "headers": [
+          "leakage_type",
+          "definition",
+          "detection_condition",
+          "prevention_principle",
+          "consequence",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "LEAKAGE_RULES",
+        "row_count": 33,
+        "col_count": 9,
+        "populated_rows": 32,
+        "headers": [
+          "leakage_rule_id",
+          "leakage_type",
+          "rule_name",
+          "trigger",
+          "prevention_rule",
+          "prohibited_action",
+          "detection_method",
+          "severity",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "RETENTION_POLICY",
+        "row_count": 16,
+        "col_count": 9,
+        "populated_rows": 15,
+        "headers": [
+          "retention_rule_id",
+          "retention_status",
+          "evidence_condition",
+          "retention_requirement",
+          "provenance_requirement",
+          "audit_requirement",
+          "deletion_allowed",
+          "supersession_handling",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "EVIDENCE_LIFECYCLE",
+        "row_count": 12,
+        "col_count": 9,
+        "populated_rows": 11,
+        "headers": [
+          "lifecycle_stage",
+          "definition",
+          "entry_condition",
+          "exit_condition",
+          "allowed_transitions",
+          "prohibited_transitions",
+          "retention_requirement",
+          "provenance_requirement",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "EXAMPLES",
+        "row_count": 36,
+        "col_count": 12,
+        "populated_rows": 35,
+        "headers": [
+          "example_id",
+          "scenario",
+          "metric_id",
+          "estimation_status",
+          "leakage_types_relevant",
+          "retention_status",
+          "lifecycle_stage",
+          "key_rules",
+          "disclosure_summary",
+          "prohibited_action",
+          "notes",
+          "example_type"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_VALIDATION",
+        "row_count": 55,
+        "col_count": 9,
+        "populated_rows": 54,
+        "headers": [
+          "validation_id",
+          "validation_name",
+          "validation_rule",
+          "expected_result",
+          "actual_result",
+          "issue_count",
+          "severity",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_METADATA",
+        "row_count": 34,
+        "col_count": 2,
+        "populated_rows": 33,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "SUPPORTING_METHODOLOGY\\REGENLEDGER_EVIDENCE_SCHEMA (3).xlsx",
+    "filename": "REGENLEDGER_EVIDENCE_SCHEMA (3).xlsx",
+    "ext": ".xlsx",
+    "folder": "SUPPORTING_METHODOLOGY",
+    "size_bytes": 44140,
+    "sheets": [
+      {
+        "sheetname": "EVIDENCE_SCHEMA",
+        "row_count": 54,
+        "col_count": 11,
+        "populated_rows": 53,
+        "headers": [
+          "field_order",
+          "field_name",
+          "field_group",
+          "definition",
+          "data_type",
+          "required",
+          "nullable",
+          "controlled_vocabulary",
+          "example",
+          "validation_rule",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "FIELD_DICTIONARY",
+        "row_count": 54,
+        "col_count": 11,
+        "populated_rows": 53,
+        "headers": [
+          "field_name",
+          "field_group",
+          "definition",
+          "data_type",
+          "required",
+          "nullable",
+          "controlled_vocabulary",
+          "example",
+          "validation_rule",
+          "provenance_required",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "EVIDENCE_TYPE_RULES",
+        "row_count": 11,
+        "col_count": 7,
+        "populated_rows": 10,
+        "headers": [
+          "rule_id",
+          "evidence_type",
+          "condition",
+          "requirement",
+          "allowed",
+          "prohibited",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROVENANCE_SCHEMA",
+        "row_count": 12,
+        "col_count": 7,
+        "populated_rows": 11,
+        "headers": [
+          "provenance_field",
+          "definition",
+          "data_type",
+          "required_condition",
+          "validation_rule",
+          "missing_value_handling",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "VALIDATION_RULES",
+        "row_count": 47,
+        "col_count": 9,
+        "populated_rows": 46,
+        "headers": [
+          "rule_id",
+          "rule_name",
+          "rule_category",
+          "rule_description",
+          "pass_condition",
+          "fail_condition",
+          "severity",
+          "applies_to",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "EXAMPLES",
+        "row_count": 23,
+        "col_count": 23,
+        "populated_rows": 22,
+        "headers": [
+          "example_id",
+          "scenario",
+          "evidence_id",
+          "destination_id",
+          "site_id",
+          "metric_id",
+          "master_record_id",
+          "observation",
+          "value",
+          "value_type",
+          "measurement_unit",
+          "geographic_scope",
+          "temporal_scope",
+          "source_id",
+          "evidence_role",
+          "verification_status",
+          "confidence_level",
+          "scoring_eligibility",
+          "allowed_use",
+          "prohibited_use",
+          "limitations",
+          "notes",
+          "example_type"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SCHEMA_VALIDATION",
+        "row_count": 47,
+        "col_count": 6,
+        "populated_rows": 46,
+        "headers": [
+          "validation_check",
+          "expected_rule",
+          "result",
+          "issue_count",
+          "details",
+          "status"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_METADATA",
+        "row_count": 30,
+        "col_count": 2,
+        "populated_rows": 29,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "SUPPORTING_METHODOLOGY\\REGENLEDGER_LIMITATIONS.xlsx",
+    "filename": "REGENLEDGER_LIMITATIONS.xlsx",
+    "ext": ".xlsx",
+    "folder": "SUPPORTING_METHODOLOGY",
+    "size_bytes": 41726,
+    "sheets": [
+      {
+        "sheetname": "LIMITATION_TAXONOMY",
+        "row_count": 15,
+        "col_count": 9,
+        "populated_rows": 14,
+        "headers": [
+          "limitation_code",
+          "limitation_name",
+          "definition",
+          "trigger_condition",
+          "typical_effect",
+          "scoring_implication",
+          "disclosure_requirement",
+          "retention_requirement",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "LIMITATION_RULES",
+        "row_count": 39,
+        "col_count": 11,
+        "populated_rows": 38,
+        "headers": [
+          "limitation_rule_id",
+          "limitation_code",
+          "rule_name",
+          "condition",
+          "required_action",
+          "prohibited_action",
+          "scoring_effect",
+          "disclosure_effect",
+          "retention_effect",
+          "severity_guidance",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "LIMITATION_SEVERITY",
+        "row_count": 5,
+        "col_count": 7,
+        "populated_rows": 4,
+        "headers": [
+          "severity",
+          "definition",
+          "trigger_examples",
+          "interpretation_effect",
+          "scoring_effect",
+          "disclosure_level",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "LIMITATION_PROPAGATION",
+        "row_count": 21,
+        "col_count": 8,
+        "populated_rows": 20,
+        "headers": [
+          "propagation_rule_id",
+          "upstream_entity",
+          "limitation_type",
+          "downstream_entity",
+          "propagation_condition",
+          "required_action",
+          "prohibited_action",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DISCLOSURE_RULES",
+        "row_count": 21,
+        "col_count": 8,
+        "populated_rows": 20,
+        "headers": [
+          "disclosure_rule_id",
+          "audience",
+          "limitation_type",
+          "disclosure_requirement",
+          "minimum_information",
+          "prohibited_language",
+          "example_text",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROHIBITED_INFERENCE",
+        "row_count": 26,
+        "col_count": 7,
+        "populated_rows": 25,
+        "headers": [
+          "inference_rule_id",
+          "observed_variable",
+          "prohibited_inference",
+          "reason",
+          "required_evidence",
+          "scoring_effect",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "EXAMPLES",
+        "row_count": 33,
+        "col_count": 13,
+        "populated_rows": 32,
+        "headers": [
+          "example_id",
+          "scenario",
+          "metric_id",
+          "limitation_code",
+          "severity",
+          "verification_status",
+          "confidence_level",
+          "scoring_eligibility",
+          "key_rules",
+          "disclosure_summary",
+          "prohibited_claim",
+          "notes",
+          "example_type"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "LIMITATION_VALIDATION",
+        "row_count": 49,
+        "col_count": 9,
+        "populated_rows": 48,
+        "headers": [
+          "validation_id",
+          "validation_name",
+          "validation_rule",
+          "expected_result",
+          "actual_result",
+          "issue_count",
+          "severity",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_METADATA",
+        "row_count": 30,
+        "col_count": 2,
+        "populated_rows": 29,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "SUPPORTING_METHODOLOGY\\REGENLEDGER_PROVENANCE_RULES.xlsx",
+    "filename": "REGENLEDGER_PROVENANCE_RULES.xlsx",
+    "ext": ".xlsx",
+    "folder": "SUPPORTING_METHODOLOGY",
+    "size_bytes": 32519,
+    "sheets": [
+      {
+        "sheetname": "PROVENANCE_RULES",
+        "row_count": 31,
+        "col_count": 11,
+        "populated_rows": 30,
+        "headers": [
+          "rule_id",
+          "rule_name",
+          "rule_category",
+          "rule_description",
+          "condition",
+          "required_action",
+          "prohibited_action",
+          "severity",
+          "applies_to",
+          "validation_reference",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROVENANCE_CHAIN",
+        "row_count": 9,
+        "col_count": 8,
+        "populated_rows": 8,
+        "headers": [
+          "chain_level",
+          "entity_type",
+          "entity_id_example",
+          "links_to",
+          "required_relationship",
+          "provenance_requirement",
+          "failure_condition",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SOURCE_ID_RULES",
+        "row_count": 11,
+        "col_count": 8,
+        "populated_rows": 10,
+        "headers": [
+          "rule_id",
+          "source_id_rule",
+          "definition",
+          "valid_condition",
+          "invalid_condition",
+          "missing_metadata_handling",
+          "duplicate_handling",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DERIVATION_PROVENANCE",
+        "row_count": 7,
+        "col_count": 10,
+        "populated_rows": 6,
+        "headers": [
+          "derivation_rule_id",
+          "derived_record_type",
+          "underlying_record_requirement",
+          "source_propagation_requirement",
+          "transformation_requirement",
+          "geographic_requirement",
+          "temporal_requirement",
+          "reproducibility_requirement",
+          "prohibited_shortcut",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROVENANCE_CONFLICTS",
+        "row_count": 8,
+        "col_count": 8,
+        "populated_rows": 7,
+        "headers": [
+          "conflict_rule_id",
+          "conflict_type",
+          "detection_condition",
+          "preservation_requirement",
+          "resolution_requirement",
+          "unresolved_handling",
+          "prohibited_action",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROVENANCE_EXAMPLES",
+        "row_count": 21,
+        "col_count": 13,
+        "populated_rows": 20,
+        "headers": [
+          "example_id",
+          "scenario",
+          "source_id",
+          "master_record_id",
+          "evidence_id",
+          "metric_id",
+          "provenance_status",
+          "provenance_chain",
+          "rule_applied",
+          "allowed_use",
+          "prohibited_use",
+          "notes",
+          "example_type"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROVENANCE_VALIDATION",
+        "row_count": 41,
+        "col_count": 9,
+        "populated_rows": 40,
+        "headers": [
+          "validation_id",
+          "validation_name",
+          "validation_rule",
+          "expected_result",
+          "actual_result",
+          "issue_count",
+          "severity",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_METADATA",
+        "row_count": 28,
+        "col_count": 2,
+        "populated_rows": 27,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "SUPPORTING_METHODOLOGY\\REGENLEDGER_VERIFICATION_TAXONOMY (1).xlsx",
+    "filename": "REGENLEDGER_VERIFICATION_TAXONOMY (1).xlsx",
+    "ext": ".xlsx",
+    "folder": "SUPPORTING_METHODOLOGY",
+    "size_bytes": 24984,
+    "sheets": [
+      {
+        "sheetname": "VERIFICATION_TAXONOMY",
+        "row_count": 13,
+        "col_count": 13,
+        "populated_rows": 12,
+        "headers": [
+          "verification_status",
+          "status_category",
+          "definition",
+          "minimum_requirements",
+          "failure_condition",
+          "allowed_use",
+          "scoring_implication",
+          "historical_handling",
+          "provenance_requirement",
+          "geographic_requirement",
+          "temporal_requirement",
+          "value_type_requirement",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "VERIFICATION_RULES",
+        "row_count": 21,
+        "col_count": 9,
+        "populated_rows": 20,
+        "headers": [
+          "rule_id",
+          "rule_name",
+          "rule_category",
+          "rule_description",
+          "pass_condition",
+          "fail_condition",
+          "applies_to",
+          "severity",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "VERIFICATION_REQUIREMENTS",
+        "row_count": 18,
+        "col_count": 5,
+        "populated_rows": 17,
+        "headers": [
+          "value_type",
+          "required_check",
+          "minimum_verification_status",
+          "additional_requirement",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "VERIFICATION_EXAMPLES",
+        "row_count": 17,
+        "col_count": 8,
+        "populated_rows": 16,
+        "headers": [
+          "example_id",
+          "scenario",
+          "evidence_condition",
+          "verification_status",
+          "reason",
+          "allowed_use",
+          "not_allowed",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "VERIFICATION_VALIDATION",
+        "row_count": 31,
+        "col_count": 6,
+        "populated_rows": 30,
+        "headers": [
+          "validation_check",
+          "expected_rule",
+          "result",
+          "issue_count",
+          "details",
+          "status"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_METADATA",
+        "row_count": 27,
+        "col_count": 2,
+        "populated_rows": 26,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "_QA\\PURI_CROSS_DOMAIN_VALIDATION_REPORT.xlsx",
+    "filename": "PURI_CROSS_DOMAIN_VALIDATION_REPORT.xlsx",
+    "ext": ".xlsx",
+    "folder": "_QA",
+    "size_bytes": 25792,
+    "sheets": [
+      {
+        "sheetname": "VALIDATION_SUMMARY",
+        "row_count": 39,
+        "col_count": 2,
+        "populated_rows": 35,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "FILE_INTEGRITY",
+        "row_count": 15,
+        "col_count": 11,
+        "populated_rows": 14,
+        "headers": [
+          "filename",
+          "domain",
+          "readable",
+          "worksheet_names",
+          "primary_worksheet",
+          "expected_worksheet",
+          "worksheet_ok",
+          "has_processing_metadata",
+          "n_data_rows",
+          "n_columns",
+          "column_names"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "RECORD_INTEGRITY",
+        "row_count": 16,
+        "col_count": 7,
+        "populated_rows": 15,
+        "headers": [
+          "domain",
+          "total_records",
+          "unique_record_ids",
+          "blank_record_ids",
+          "duplicate_record_ids",
+          "cross_domain_collision",
+          "status"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SOURCE_VALIDATION",
+        "row_count": 53,
+        "col_count": 5,
+        "populated_rows": 51,
+        "headers": [
+          "source_id",
+          "status",
+          "domains",
+          "observation_count",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "GAP_VALIDATION",
+        "row_count": 15,
+        "col_count": 6,
+        "populated_rows": 14,
+        "headers": [
+          "master_gap_id",
+          "in_master_register",
+          "gap_status_in_master",
+          "domains_referencing",
+          "record_count",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "VALUE_TYPE_CHECK",
+        "row_count": 13,
+        "col_count": 3,
+        "populated_rows": 11,
+        "headers": [
+          "value_type",
+          "count",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "GEOGRAPHY_CHECK",
+        "row_count": 8,
+        "col_count": 3,
+        "populated_rows": 7,
+        "headers": [
+          "check",
+          "result",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "TEMPORAL_CHECK",
+        "row_count": 6,
+        "col_count": 4,
+        "populated_rows": 5,
+        "headers": [
+          "check",
+          "result",
+          "count",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "CROSS_DOMAIN_LEAKAGE",
+        "row_count": 10,
+        "col_count": 3,
+        "populated_rows": 9,
+        "headers": [
+          "pair",
+          "result",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROVENANCE_CHECK",
+        "row_count": 5,
+        "col_count": 3,
+        "populated_rows": 4,
+        "headers": [
+          "check",
+          "result",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SCHEMA_VALIDATION",
+        "row_count": 17,
+        "col_count": 10,
+        "populated_rows": 15,
+        "headers": [
+          "domain",
+          "n_columns",
+          "missing_common_fields",
+          "has_record_id",
+          "has_value_type",
+          "has_derived_flag",
+          "has_historical_flag",
+          "has_current_status_flag",
+          "has_master_gap_id",
+          "has_source_id"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "AUDIT_VALIDATION",
+        "row_count": 6,
+        "col_count": 3,
+        "populated_rows": 5,
+        "headers": [
+          "check",
+          "result",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "RECONCILIATION_CHECK",
+        "row_count": 8,
+        "col_count": 4,
+        "populated_rows": 7,
+        "headers": [
+          "reconciliation_file",
+          "decision",
+          "processed_compliance",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "FILE_NAMING",
+        "row_count": 15,
+        "col_count": 4,
+        "populated_rows": 14,
+        "headers": [
+          "filename",
+          "canonical_expected",
+          "has_copy_suffix",
+          "status"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "ISSUES",
+        "row_count": 13,
+        "col_count": 12,
+        "populated_rows": 11,
+        "headers": [
+          "issue_id",
+          "severity",
+          "domain",
+          "record_id",
+          "source_id",
+          "issue_type",
+          "description",
+          "evidence",
+          "expected",
+          "actual",
+          "recommended_action",
+          "status"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "_QA\\PURI_FINAL_BACKEND_READINESS_REPORT.xlsx",
+    "filename": "PURI_FINAL_BACKEND_READINESS_REPORT.xlsx",
+    "ext": ".xlsx",
+    "folder": "_QA",
+    "size_bytes": 24536,
+    "sheets": [
+      {
+        "sheetname": "READINESS_SUMMARY",
+        "row_count": 25,
+        "col_count": 2,
+        "populated_rows": 24,
+        "headers": [
+          "expected_domains",
+          "14"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "MASTER_INTEGRITY",
+        "row_count": 17,
+        "col_count": 5,
+        "populated_rows": 16,
+        "headers": [
+          "check",
+          "expected",
+          "actual",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DOMAIN_READINESS",
+        "row_count": 16,
+        "col_count": 5,
+        "populated_rows": 15,
+        "headers": [
+          "domain",
+          "expected_records",
+          "actual_records",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SOURCE_READINESS",
+        "row_count": 7,
+        "col_count": 5,
+        "populated_rows": 6,
+        "headers": [
+          "source_class",
+          "count",
+          "status",
+          "backend_impact",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "GAP_READINESS",
+        "row_count": 16,
+        "col_count": 7,
+        "populated_rows": 15,
+        "headers": [
+          "master_gap_id",
+          "in_register",
+          "gap_status_in_register",
+          "records_referencing",
+          "silently_closed",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "VALUE_TYPE_READINESS",
+        "row_count": 11,
+        "col_count": 5,
+        "populated_rows": 10,
+        "headers": [
+          "value_type",
+          "count",
+          "derived_flag_consistent",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "TEMPORAL_READINESS",
+        "row_count": 10,
+        "col_count": 5,
+        "populated_rows": 9,
+        "headers": [
+          "check",
+          "result",
+          "count",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "GEOGRAPHY_READINESS",
+        "row_count": 10,
+        "col_count": 4,
+        "populated_rows": 9,
+        "headers": [
+          "check",
+          "result",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROVENANCE_READINESS",
+        "row_count": 8,
+        "col_count": 4,
+        "populated_rows": 7,
+        "headers": [
+          "check",
+          "result",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "CONFIDENCE_READINESS",
+        "row_count": 7,
+        "col_count": 4,
+        "populated_rows": 6,
+        "headers": [
+          "confidence_value",
+          "count",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "AUDIT_READINESS",
+        "row_count": 8,
+        "col_count": 4,
+        "populated_rows": 7,
+        "headers": [
+          "check",
+          "result",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "LEAKAGE_READINESS",
+        "row_count": 11,
+        "col_count": 4,
+        "populated_rows": 10,
+        "headers": [
+          "pair",
+          "result",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DATA_GAP_READINESS",
+        "row_count": 14,
+        "col_count": 4,
+        "populated_rows": 13,
+        "headers": [
+          "gap_area",
+          "status",
+          "filled_incorrectly",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "MACHINE_READINESS",
+        "row_count": 11,
+        "col_count": 4,
+        "populated_rows": 10,
+        "headers": [
+          "check",
+          "result",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "ISSUES",
+        "row_count": 9,
+        "col_count": 13,
+        "populated_rows": 8,
+        "headers": [
+          "issue_id",
+          "severity",
+          "domain",
+          "record_id",
+          "source_id",
+          "issue_type",
+          "description",
+          "evidence",
+          "expected",
+          "actual",
+          "backend_impact",
+          "recommended_action",
+          "status"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "FINAL_DECISION",
+        "row_count": 24,
+        "col_count": 2,
+        "populated_rows": 17,
+        "headers": [
+          "FINAL_BACKEND_STATUS",
+          "READY_WITH_WARNINGS"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "_QA\\PURI_FINAL_END_TO_END_QA.xlsx",
+    "filename": "PURI_FINAL_END_TO_END_QA.xlsx",
+    "ext": ".xlsx",
+    "folder": "_QA",
+    "size_bytes": 42952,
+    "sheets": [
+      {
+        "sheetname": "AUDIT_SUMMARY",
+        "row_count": 32,
+        "col_count": 2,
+        "populated_rows": 31,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "FILE_INVENTORY",
+        "row_count": 9,
+        "col_count": 8,
+        "populated_rows": 8,
+        "headers": [
+          "file_id",
+          "file_name",
+          "role",
+          "readable",
+          "sheets_verified",
+          "expected",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METRIC_RECONCILIATION",
+        "row_count": 58,
+        "col_count": 10,
+        "populated_rows": 57,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "dictionary_present",
+          "score_file_present",
+          "qa_present",
+          "report_card_present",
+          "score_value",
+          "score_status",
+          "reconciliation_status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SCORE_RECONCILIATION",
+        "row_count": 58,
+        "col_count": 10,
+        "populated_rows": 57,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "source_score",
+          "qa_score",
+          "report_card_score",
+          "source_status",
+          "qa_status",
+          "report_status",
+          "match_status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DOMAIN_RECONCILIATION",
+        "row_count": 15,
+        "col_count": 11,
+        "populated_rows": 14,
+        "headers": [
+          "domain_id",
+          "domain_name",
+          "domain_score",
+          "domain_status",
+          "metric_count",
+          "score_eligible_count",
+          "scored_count",
+          "coverage",
+          "report_card_status",
+          "reconciliation_status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "OVERALL_RECONCILIATION",
+        "row_count": 2,
+        "col_count": 12,
+        "populated_rows": 1,
+        "headers": [
+          "destination",
+          "total_domains",
+          "overall_eligible_domains",
+          "scored_domains",
+          "overall_coverage",
+          "minimum_coverage",
+          "overall_score",
+          "overall_status",
+          "report_card_score",
+          "report_card_status",
+          "reconciliation_status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_AUDIT",
+        "row_count": 19,
+        "col_count": 7,
+        "populated_rows": 18,
+        "headers": [
+          "methodology_area",
+          "expected_rule",
+          "observed_rule",
+          "source",
+          "status",
+          "severity",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "PROVENANCE_AUDIT",
+        "row_count": 8,
+        "col_count": 11,
+        "populated_rows": 7,
+        "headers": [
+          "layer",
+          "object_id",
+          "object_name",
+          "evidence_ids",
+          "source_ids",
+          "benchmark_ids",
+          "formula_ids",
+          "upstream_status",
+          "downstream_status",
+          "provenance_status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "REPORT_CARD_AUDIT",
+        "row_count": 20,
+        "col_count": 7,
+        "populated_rows": 19,
+        "headers": [
+          "field",
+          "expected_value",
+          "report_card_value",
+          "source",
+          "match_status",
+          "severity",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "CROSS_FILE_MATRIX",
+        "row_count": 101,
+        "col_count": 11,
+        "populated_rows": 100,
+        "headers": [
+          "audit_id",
+          "object_type",
+          "object_id",
+          "field",
+          "source_file",
+          "comparison_file",
+          "expected_value",
+          "actual_value",
+          "match_status",
+          "severity",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "ISSUE_REGISTER",
+        "row_count": 2,
+        "col_count": 12,
+        "populated_rows": 1,
+        "headers": [
+          "issue_id",
+          "severity",
+          "category",
+          "source_file",
+          "sheet",
+          "object_id",
+          "issue_description",
+          "expected",
+          "actual",
+          "impact",
+          "recommended_action",
+          "status"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "FINAL_READINESS",
+        "row_count": 17,
+        "col_count": 2,
+        "populated_rows": 16,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "VALIDATION_CHECKS",
+        "row_count": 146,
+        "col_count": 9,
+        "populated_rows": 145,
+        "headers": [
+          "validation_id",
+          "validation_name",
+          "validation_rule",
+          "expected_result",
+          "actual_result",
+          "issue_count",
+          "severity",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METADATA",
+        "row_count": 35,
+        "col_count": 2,
+        "populated_rows": 34,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "_QA\\PURI_METRIC_SCORECARD_QA.xlsx",
+    "filename": "PURI_METRIC_SCORECARD_QA.xlsx",
+    "ext": ".xlsx",
+    "folder": "_QA",
+    "size_bytes": 41820,
+    "sheets": [
+      {
+        "sheetname": "SCORECARD",
+        "row_count": 58,
+        "col_count": 20,
+        "populated_rows": 57,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "domain",
+          "sub_indicator",
+          "raw_value",
+          "raw_unit",
+          "score",
+          "score_status",
+          "score_display",
+          "scoring_eligibility",
+          "benchmark_status",
+          "evidence_status",
+          "verification_status",
+          "confidence_level",
+          "geographic_scope",
+          "temporal_scope",
+          "provenance_status",
+          "disclosure_label",
+          "blocking_reason",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SCORE_QA",
+        "row_count": 58,
+        "col_count": 19,
+        "populated_rows": 57,
+        "headers": [
+          "qa_id",
+          "metric_id",
+          "metric_name",
+          "step22_score_status",
+          "step23_qa_status",
+          "raw_value_check",
+          "evidence_check",
+          "benchmark_check",
+          "formula_check",
+          "unit_check",
+          "geography_check",
+          "temporal_check",
+          "verification_check",
+          "provenance_check",
+          "score_range_check",
+          "reason_check",
+          "discrepancy",
+          "correction_required",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "NOT_SCORED_DISCLOSURE",
+        "row_count": 57,
+        "col_count": 12,
+        "populated_rows": 56,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "domain",
+          "score_status",
+          "reason_code",
+          "reason",
+          "evidence_available",
+          "benchmark_available",
+          "scoring_eligibility",
+          "resolution_required",
+          "user_facing_disclosure",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "EVIDENCE_COVERAGE",
+        "row_count": 58,
+        "col_count": 11,
+        "populated_rows": 57,
+        "headers": [
+          "metric_id",
+          "metric_name",
+          "evidence_present",
+          "evidence_verified",
+          "benchmark_present",
+          "benchmark_approved",
+          "formula_present",
+          "score_generated",
+          "score_status",
+          "evidence_coverage_status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SCORE_PROVENANCE",
+        "row_count": 58,
+        "col_count": 15,
+        "populated_rows": 57,
+        "headers": [
+          "metric_id",
+          "evidence_id",
+          "source_id",
+          "benchmark_id",
+          "formula_id",
+          "execution_id",
+          "evidence_period",
+          "geographic_scope",
+          "verification_status",
+          "confidence_level",
+          "provenance_status",
+          "score",
+          "score_status",
+          "traceability_status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "REPORTING_STATUS",
+        "row_count": 17,
+        "col_count": 2,
+        "populated_rows": 16,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "VALIDATION_CHECKS",
+        "row_count": 103,
+        "col_count": 9,
+        "populated_rows": 102,
+        "headers": [
+          "validation_id",
+          "validation_name",
+          "validation_rule",
+          "expected_result",
+          "actual_result",
+          "issue_count",
+          "severity",
+          "status",
+          "notes"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "METHODOLOGY_METADATA",
+        "row_count": 36,
+        "col_count": 2,
+        "populated_rows": 35,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  },
+  {
+    "rel_path": "_QA\\PURI_SOURCE_REGISTER_VALIDATION.xlsx",
+    "filename": "PURI_SOURCE_REGISTER_VALIDATION.xlsx",
+    "ext": ".xlsx",
+    "folder": "_QA",
+    "size_bytes": 13195,
+    "sheets": [
+      {
+        "sheetname": "SOURCE_ANALYSIS",
+        "row_count": 7,
+        "col_count": 14,
+        "populated_rows": 6,
+        "headers": [
+          "source_id",
+          "found_in_supplied_files",
+          "used_by_domain",
+          "source_title",
+          "publisher",
+          "source_type",
+          "source_year",
+          "source_date",
+          "geographic_scope",
+          "url",
+          "evidence_description",
+          "registration_status",
+          "confidence",
+          "reason"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "REGISTERABLE_SOURCES",
+        "row_count": 4,
+        "col_count": 10,
+        "populated_rows": 2,
+        "headers": [
+          "NOTE",
+          "No source among the five evidence IDs meets REGISTERABLE or REGISTERABLE_WITH_LIMITATIONS under the no-fabrication rule. All five remain INSUFFICIENT_METADATA. Do not add rows to PURI_SOURCE_REGISTER.xlsx based on this analysis alone.",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "SEARCH_GAP_MARKERS",
+        "row_count": 2,
+        "col_count": 7,
+        "populated_rows": 1,
+        "headers": [
+          "source_id",
+          "marker_type",
+          "used_by_domain",
+          "purpose",
+          "evidence_status",
+          "reason",
+          "recommended_treatment"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "DUPLICATE_REVIEW",
+        "row_count": 7,
+        "col_count": 5,
+        "populated_rows": 6,
+        "headers": [
+          "source_id",
+          "possible_existing_source_id",
+          "similarity_reason",
+          "evidence_support",
+          "decision"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      },
+      {
+        "sheetname": "VALIDATION_SUMMARY",
+        "row_count": 17,
+        "col_count": 2,
+        "populated_rows": 16,
+        "headers": [
+          "field",
+          "value"
+        ],
+        "is_header_only": false,
+        "is_empty": false
+      }
+    ]
+  }
+]

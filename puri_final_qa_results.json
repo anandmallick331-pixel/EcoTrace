@@ -1,0 +1,60 @@
+{
+  "QA_1_RAW": {
+    "status": "PASS",
+    "raw_files_count": 14,
+    "raw_rows_count": 172,
+    "immutable_verified": true
+  },
+  "QA_2_SOURCE": {
+    "status": "PASS",
+    "sources_count": 48,
+    "orphan_count": 0
+  },
+  "QA_3_METRIC": {
+    "status": "PASS",
+    "defined_metrics_count": 22,
+    "unmapped_count": 0
+  },
+  "QA_4_GEOGRAPHY": {
+    "status": "PASS",
+    "illegal_bridges_count": 0,
+    "geography_isolation_verified": true
+  },
+  "QA_5_PROVENANCE": {
+    "status": "PASS",
+    "DIRECT": 135,
+    "DIRECT_LOCATION_REFERENCE": 9,
+    "DERIVED": 10,
+    "ESTIMATED": 0,
+    "PROXY": 0,
+    "DATA_GAP": 24
+  },
+  "QA_6_DERIVATION": {
+    "status": "PASS",
+    "derived_records_count": 10,
+    "arithmetic_qa_status": "PASS_100%"
+  },
+  "QA_7_GAP_RECONCILIATION": {
+    "status": "PASS",
+    "master_gaps_count": 15,
+    "cross_layer_reconciled": true
+  },
+  "QA_8_S21": {
+    "status": "PASS",
+    "canonical_count": 178,
+    "s21_count": 178,
+    "derived_lineage_covered": 10
+  },
+  "QA_9_FILE_COUNT": {
+    "status": "PASS",
+    "manifest_file_count": 68,
+    "actual_zip_file_count": 68,
+    "zip_path": "C:\\S21_new\\backend\\REGENLEDGER_DATA_PURI_FINAL_FREEZE.zip"
+  },
+  "QA_10_FRONTEND": {
+    "status": "PASS",
+    "cards_count": 15,
+    "ui_captions_verified": true,
+    "zero_mock_enforced": true
+  }
+}

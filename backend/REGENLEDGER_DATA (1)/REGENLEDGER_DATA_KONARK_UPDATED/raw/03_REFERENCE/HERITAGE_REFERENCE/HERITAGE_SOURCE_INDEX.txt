@@ -1,0 +1,8 @@
+Heritage reference files (copies of official UNESCO documents)
+
+- 246-ICOMOS-274.pdf          → 1984 ICOMOS evaluation (criteria i, iii, vi)
+- PR-C2-S2-246.pdf             → Periodic Reporting Cycle 2
+- PR-C3-S2-4227.pdf            → Periodic Reporting Cycle 3 (2023)
+
+Primary location of originals: 02_SOURCES/UNESCO/
+These copies are placed here for convenient reference while scoring heritage indicators.

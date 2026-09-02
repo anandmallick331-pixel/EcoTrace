@@ -1,0 +1,19 @@
+Tourism reference index
+
+Primary source files (full PDFs):
+  02_SOURCES/ODISHA_TOURISM/
+    Statistical_Bulletin_2024.pdf
+    Annual_Report_2019-20.pdf … Annual_Report_2025-26.pdf
+    SOURCE_MANIFEST.txt  (complete list + official URLs for 2018–2023 bulletins)
+
+Key Konark-specific extractions data already in:
+  01_RAW/KONARK_TOURISM_RAW.xlsx   (hotel occupancy 2019–2024)
+  01_RAW/KONARK_VISITOR_RAW.xlsx   (ASI ticket series 2018–2023)
+
+Official URLs for additional Statistical Bulletins (used for visitor extraction):
+  2023: https://dot.odisha.gov.in/sites/default/files/2024-11/Statistical%20Bulletin%202023.pdf
+  2022: https://dot.odisha.gov.in/sites/default/files/2023-10/Statistical%20Bulletin%202022.pdf
+  2020: https://dot.odisha.gov.in/sites/default/files/2022-06/Statistical%20Bulletin%202020_0.pdf
+  2018: https://dot.odisha.gov.in/sites/default/files/2022-06/Statistical%20Bulletin%202018_2.pdf
+
+Department download page: https://dot.odisha.gov.in (Statistics & Research / Downloads)

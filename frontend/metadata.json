@@ -1,0 +1,6 @@
+{
+  "name": "EcoTrace - Impact Ledger",
+  "description": "EcoTrace Impact Ledger — Tourism that benefits everyone. Transparent economic, community, and ecological metrics for regenerative tourism with verifiable data provenance (SOA Ideathon 2026 S21).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

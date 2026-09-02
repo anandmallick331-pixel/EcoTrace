@@ -1,0 +1,11 @@
+Government statistics reference
+
+- Odisha Tourism Statistical Bulletins 2018–2024 → see 02_SOURCES/ODISHA_TOURISM/ and TOURISM_REFERENCE
+- Odisha Tourism Annual Reports 2019–20 to 2025–26 → same folder
+- Odisha Economic Survey → 02_SOURCES/ODISHA_GOVERNMENT/
+- OSPCB environmental monitoring → 02_SOURCES/OSPCB/
+- Bhulekh land records → 02_SOURCES/ODISHA_GOVERNMENT/
+
+No additional standalone government statistical PDFs beyond the Tourism bulletins
+and annual reports were available as local files in this research pass.
+All official URLs and status notes are recorded in the respective SOURCE folders.

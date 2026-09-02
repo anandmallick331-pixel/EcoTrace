@@ -1,0 +1,59 @@
+# ── Dependencies ───────────────────────────────────────
+node_modules/
+*/node_modules/
+package-lock.json.bak
+
+# ── Python Virtual Environments ────────────────────────
+.venv/
+venv/
+*/.venv/
+*/venv/
+env/
+*/env/
+ENV/
+
+# ── Python Cache & Bytecode ────────────────────────────
+__pycache__/
+*/__pycache__/
+*/*/__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+*/.pytest_cache/
+
+# ── Secrets & Environment Variables ────────────────────
+.env
+.env.*
+!.env.example
+*/.env
+*/.env.*
+!*/.env.example
+
+# ── Local SQLite Databases & Artifacts ─────────────────
+*.sqlite
+*.sqlite3
+*.db
+s21_db.sqlite3
+backend/s21_db.sqlite3
+
+# ── Build & Dist Outputs ───────────────────────────────
+dist/
+*/dist/
+build/
+*/build/
+
+# ── Standalone Binaries & Large Tools ──────────────────
+cloudflared-windows-amd64.exe
+*.exe
+
+# ── IDE & Editor Settings ──────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# ── Agent / IDE Metadata ───────────────────────────────
+.gemini/
+.agents/
