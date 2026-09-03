@@ -34,6 +34,7 @@ interface EcoTraceAIAssistantProps {
   currentDestinationId?: string;
   onSelectDestination?: (destId: string) => void;
   initialQuery?: string;
+  currentPage?: string;
 }
 
 interface ChatMessage {
@@ -47,12 +48,12 @@ interface ChatMessage {
 
 const QUICK_PROMPTS = [
   { label: 'Why is the impact score like this?', query: 'Why is this destination impact score like this, and what should we improve first?' },
-  { label: 'Biggest tourism pressures', query: 'What are the biggest tourism pressures and ecological stress factors at this destination?' },
-  { label: 'What tourists can do', query: 'What can tourists do to reduce their impact and support local livelihoods here?' },
-  { label: 'Government priorities', query: 'What should local authorities and government prioritize for regenerative management?' },
-  { label: 'What-if: 50% electrification', query: 'What happens if boat electrification is increased to 50%?' },
-  { label: 'Show evidence & data gaps', query: 'What verified evidence supports these scores, and what are the current data gaps?' },
-  { label: 'Compare destinations', query: 'Compare this destination with another destination in the corridor on key indicators.' },
+  { label: 'Biggest tourism pressures', query: 'What are the biggest tourism pressures and ecological stress factors here?' },
+  { label: 'What tourists can do', query: 'What can tourists do to reduce their impact and support local communities?' },
+  { label: 'Government & policy priorities', query: 'What should local authorities prioritize for sustainable management?' },
+  { label: 'What-if: 50% boat electrification', query: 'What happens if boat electrification is increased to 50%?' },
+  { label: 'Data gaps & unrecorded metrics', query: 'What verified evidence supports these scores, and what are the current data gaps?' },
+  { label: 'Compare with another destination', query: 'Compare this destination with another destination in the corridor on key indicators.' },
 ];
 
 export const EcoTraceAIAssistant: React.FC<EcoTraceAIAssistantProps> = ({
@@ -62,6 +63,7 @@ export const EcoTraceAIAssistant: React.FC<EcoTraceAIAssistantProps> = ({
   currentDestinationId = 'chilika',
   onSelectDestination,
   initialQuery,
+  currentPage,
 }) => {
   const [selectedDestId, setSelectedDestId] = useState<string>(currentDestinationId);
   const [comparisonDestId, setComparisonDestId] = useState<string>('none');
@@ -97,7 +99,7 @@ export const EcoTraceAIAssistant: React.FC<EcoTraceAIAssistantProps> = ({
           {
             id: 'welcome',
             sender: 'ai',
-            text: 'Hello! I am **EcoTrace AI**, your data-grounded regenerative tourism intelligence assistant. I answer questions using audited telemetry, empirical impact scores, evidence provenance, and scenario simulations from the EcoTrace Consensus Registry.\n\nAsk me anything about this destination or pick a quick prompt below.',
+            text: "Hello! I'm **EcoTrace AI**, your destination intelligence assistant. Ask me anything about impact scores, live telemetry metrics, or intervention scenarios—I'll give you clear, data-backed answers.",
             timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           },
         ]);
@@ -125,13 +127,24 @@ export const EcoTraceAIAssistant: React.FC<EcoTraceAIAssistantProps> = ({
 
   // Resolve numeric destination ID for backend
   const getNumericDestId = (strId: string): number => {
-    const s = strId.toLowerCase();
-    if (s === 'chilika' || s === '44' || s === 'chilika-lake') return 44;
-    if (s === 'bhubaneswar' || s === '100') return 100;
-    if (s === 'konark' || s === '102') return 102;
-    if (s === 'puri' || s === '103') return 103;
+    const s = String(strId).toLowerCase();
+    
+    // First try finding matching destination from props
+    const found = destinations.find(
+      (d) => String(d.id).toLowerCase() === s || d.name.toLowerCase().includes(s) || s.includes(d.name.toLowerCase())
+    );
+    if (found) {
+      const p = typeof found.id === 'number' ? found.id : parseInt(found.id, 10);
+      if (!isNaN(p)) return p;
+    }
+
+    if (s.includes('chilika') || s === '44' || s === '1') return 1;
+    if (s.includes('bhubaneswar') || s === '100' || s === '2') return 2;
+    if (s.includes('konark') || s === '102' || s === '3') return 3;
+    if (s.includes('puri') || s === '103') return 103;
+
     const parsed = parseInt(strId, 10);
-    return isNaN(parsed) ? 44 : parsed;
+    return isNaN(parsed) ? 1 : parsed;
   };
 
   const handleSend = async (queryToSend?: string) => {
@@ -152,12 +165,25 @@ export const EcoTraceAIAssistant: React.FC<EcoTraceAIAssistantProps> = ({
 
     const destNum = getNumericDestId(selectedDestId);
     const compNum = comparisonDestId !== 'none' ? getNumericDestId(comparisonDestId) : undefined;
+    const activeDestObj = destinations.find((d) => d.id === selectedDestId);
+    const compDestObj = destinations.find((d) => d.id === comparisonDestId);
+
+    const historyPayload = messages.slice(-6).map((m) => ({
+      role: m.sender === 'user' ? 'user' : 'assistant',
+      content: m.sender === 'user' ? (m.text || '') : (m.response?.answer || m.text || ''),
+    }));
 
     try {
       const payload: AIAskRequest = {
         destination_id: destNum,
         query: q,
         comparison_destination_id: compNum,
+        context: {
+          currentPage: currentPage || 'landing',
+          selectedDestination: activeDestObj?.name || 'Chilika Lake',
+          comparisonDestination: compDestObj?.name,
+        },
+        history: historyPayload,
       };
 
       const res = await api.askEcoTraceAI(payload);
@@ -228,6 +254,33 @@ export const EcoTraceAIAssistant: React.FC<EcoTraceAIAssistantProps> = ({
     );
   };
 
+  const renderFormattedText = (text: string) => {
+    if (!text) return null;
+    const paragraphs = text.split('\n\n');
+    return (
+      <div className="space-y-3 text-[#1C2A1E]">
+        {paragraphs.map((p, pIdx) => {
+          const lines = p.split('\n');
+          return (
+            <div key={pIdx} className="space-y-1">
+              {lines.map((line, lIdx) => {
+                const formattedLine = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                const isBullet = line.trim().startsWith('•') || line.trim().startsWith('-');
+                return (
+                  <div
+                    key={lIdx}
+                    className={isBullet ? 'pl-3 text-[#1C2A1E]' : ''}
+                    dangerouslySetInnerHTML={{ __html: formattedLine }}
+                  />
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+
   const activeDestName = destinations.find((d) => d.id === selectedDestId)?.name || 'Selected Corridor';
 
   return (
@@ -250,11 +303,11 @@ export const EcoTraceAIAssistant: React.FC<EcoTraceAIAssistantProps> = ({
                   EcoTrace AI
                 </h2>
                 <span className="text-[10px] font-bold uppercase tracking-wider bg-[#A9D19E]/20 text-[#A9D19E] px-2 py-0.5 rounded-full border border-[#A9D19E]/30">
-                  Data-Grounded
+                  Evidence-Based
                 </span>
               </div>
               <p className="text-[11px] text-[#C5D8C3]">
-                Grounded in empirical telemetry, scoring &amp; consensus evidence
+                Verified evidence &amp; destination impact analysis
               </p>
             </div>
           </div>
@@ -262,32 +315,32 @@ export const EcoTraceAIAssistant: React.FC<EcoTraceAIAssistantProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={() => setMessages([])}
-              className="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-xl transition-colors cursor-pointer text-xs"
-              title="Clear chat history"
+              className="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-xl transition-colors cursor-pointer"
+              title="Clear Conversation"
             >
               <RefreshCw className="w-4 h-4" />
             </button>
             <button
               onClick={onClose}
               className="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-xl transition-colors cursor-pointer"
-              title="Close AI Assistant"
+              title="Close Assistant"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
         </div>
 
-        {/* Destination & Comparison Bar */}
-        <div className="px-5 py-2.5 bg-white border-b border-[#E8E3D7] flex flex-wrap items-center justify-between gap-3 text-xs shrink-0">
+        {/* Controls Bar: Destination Selectors */}
+        <div className="px-6 py-3 bg-white border-b border-[#E8E3D7] flex flex-wrap items-center justify-between gap-3 text-xs shrink-0">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-[#556755] text-[11px]">Destination:</span>
+            <span className="font-bold text-[#1A381E]">Destination:</span>
             <select
               value={selectedDestId}
               onChange={(e) => {
                 setSelectedDestId(e.target.value);
                 if (onSelectDestination) onSelectDestination(e.target.value);
               }}
-              className="bg-[#FAF8F5] border border-[#E8E3D7] rounded-xl px-2.5 py-1 font-semibold text-[#1A381E] cursor-pointer"
+              className="bg-[#FAF8F5] border border-[#E8E3D7] text-[#1A381E] font-medium rounded-xl px-3 py-1.5 focus:outline-hidden focus:ring-1 focus:ring-[#244E31]"
             >
               {destinations.map((d) => (
                 <option key={d.id} value={d.id}>
@@ -298,11 +351,11 @@ export const EcoTraceAIAssistant: React.FC<EcoTraceAIAssistantProps> = ({
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="font-bold text-[#556755] text-[11px]">Compare with:</span>
+            <span className="text-[#6B7E6A] font-medium">Compare with:</span>
             <select
               value={comparisonDestId}
               onChange={(e) => setComparisonDestId(e.target.value)}
-              className="bg-[#FAF8F5] border border-[#E8E3D7] rounded-xl px-2.5 py-1 text-[11px] font-semibold text-[#1A381E] cursor-pointer"
+              className="bg-[#FAF8F5] border border-[#E8E3D7] text-[#1A381E] font-medium rounded-xl px-3 py-1.5 focus:outline-hidden focus:ring-1 focus:ring-[#244E31]"
             >
               <option value="none">None (Single Destination)</option>
               {destinations
@@ -316,9 +369,8 @@ export const EcoTraceAIAssistant: React.FC<EcoTraceAIAssistantProps> = ({
           </div>
         </div>
 
-        {/* Chat Stream Body */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
-          
+        {/* Messages Feed */}
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5 scrollbar-thin scrollbar-thumb-[#D0C8B8]">
           {messages.map((msg) => {
             const isAI = msg.sender === 'ai';
             return (
@@ -352,8 +404,8 @@ export const EcoTraceAIAssistant: React.FC<EcoTraceAIAssistantProps> = ({
                     <div className="space-y-4">
                       
                       {/* Top AI Answer Text */}
-                      <div className="whitespace-pre-line text-[#1C2A1E] font-normal leading-relaxed border-b border-[#F0EBE1] pb-3">
-                        {msg.response.answer}
+                      <div className="border-b border-[#F0EBE1] pb-3 text-xs sm:text-sm leading-relaxed">
+                        {renderFormattedText(msg.response.answer)}
                       </div>
 
                       {/* Supporting Telemetry & Indicators Card */}
@@ -362,10 +414,10 @@ export const EcoTraceAIAssistant: React.FC<EcoTraceAIAssistantProps> = ({
                           <div className="flex items-center justify-between">
                             <span className="text-[11px] font-bold text-[#1A381E] uppercase tracking-wider flex items-center gap-1.5">
                               <BarChart3 className="w-3.5 h-3.5 text-[#244E31]" />
-                              <span>Grounded Observations ({msg.response.supporting_metrics.length})</span>
+                              <span>Relevant Evidence Records ({msg.response.supporting_metrics.length})</span>
                             </span>
                             <span className="text-[10px] text-[#6B7E6A] font-mono">
-                              Consensus SQL Records
+                              Database Records
                             </span>
                           </div>
 
@@ -386,7 +438,7 @@ export const EcoTraceAIAssistant: React.FC<EcoTraceAIAssistantProps> = ({
                                     {m.value !== null ? `${m.value} ${m.unit || ''}` : 'Pending'}
                                   </span>
                                   <span className="text-[10px] text-[#6B7E6A] truncate max-w-[50%]">
-                                    {m.period || '2024-2026'}
+                                    {m.period || '2023-24'}
                                   </span>
                                 </div>
                               </div>
@@ -430,7 +482,7 @@ export const EcoTraceAIAssistant: React.FC<EcoTraceAIAssistantProps> = ({
                           </div>
 
                           <p className="text-[10px] text-[#92400E] italic">
-                            *Projected via EcoTrace dynamic simulation engine. Not a historical fact.
+                            *Projected via scenario simulation model. Not a historical fact.
                           </p>
                         </div>
                       )}
@@ -454,7 +506,7 @@ export const EcoTraceAIAssistant: React.FC<EcoTraceAIAssistantProps> = ({
                       {msg.response.recommendations && msg.response.recommendations.length > 0 && (
                         <div className="space-y-2 pt-1">
                           <span className="text-[11px] font-bold text-[#1A381E] uppercase tracking-wider block">
-                            Prioritized Regenerative Actions:
+                            Recommended Priorities:
                           </span>
                           <div className="space-y-1.5">
                             {msg.response.recommendations.slice(0, 2).map((r, rIdx) => (
@@ -484,7 +536,7 @@ export const EcoTraceAIAssistant: React.FC<EcoTraceAIAssistantProps> = ({
                             <span>Cited Source: <strong>{msg.response.evidence[0].source}</strong></span>
                           </span>
                           <span className="font-mono text-[9px] bg-[#FAF8F5] px-2 py-0.5 rounded border border-[#E8E3D7]">
-                            {msg.response.model}
+                            EcoTrace Evidence Engine
                           </span>
                         </div>
                       )}
@@ -534,7 +586,7 @@ export const EcoTraceAIAssistant: React.FC<EcoTraceAIAssistantProps> = ({
               </div>
               <div className="bg-white border border-[#E8E3D7] rounded-3xl p-4 text-xs text-[#556755] flex items-center gap-2 shadow-xs">
                 <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#244E31]" />
-                <span>Retrieving observations &amp; synthesizing verified evidence for {activeDestName}...</span>
+                <span>Reviewing verified evidence records for {activeDestName}...</span>
               </div>
             </div>
           )}
@@ -590,7 +642,7 @@ export const EcoTraceAIAssistant: React.FC<EcoTraceAIAssistantProps> = ({
             </button>
           </form>
           <div className="text-[10px] text-center text-[#8C9B8B] mt-2">
-            Strictly grounded in EcoTrace database metrics &amp; statutory evidence. Zero hallucinated values.
+            Based on verified EcoTrace database records and statutory sources.
           </div>
         </div>
 

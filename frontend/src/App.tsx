@@ -629,6 +629,7 @@ export default function App() {
         currentDestinationId={selectedDestinationId}
         onSelectDestination={handleSelectDestination}
         initialQuery={aiInitialQuery}
+        currentPage={activeScreen}
       />
 
       {/* Floating EcoTrace AI Assistant Button */}
