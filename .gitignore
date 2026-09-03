@@ -57,3 +57,6 @@ cloudflared-windows-amd64.exe
 # ── Agent / IDE Metadata ───────────────────────────────
 .gemini/
 .agents/
+
+# ── Logs ───────────────────────────────────────────────
+*.log
