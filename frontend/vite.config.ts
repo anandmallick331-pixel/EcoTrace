@@ -20,7 +20,7 @@ export default defineConfig(() => {
       // Disable file watching when DISABLE_HMR is true.
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
 
-      allowedHosts: ['.trycloudflare.com'],
+      allowedHosts: true,
 
       proxy: {
         '/api': {

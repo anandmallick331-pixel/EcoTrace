@@ -1,0 +1,50 @@
+{"level":"info","time":"2026-09-02T14:04:53Z","message":"Thank you for trying Cloudflare Tunnel. Doing so, without a Cloudflare account, is a quick way to experiment and try it out. However, be aware that these account-less Tunnels have no uptime guarantee, are subject to the Cloudflare Online Services Terms of Use (https://www.cloudflare.com/website-terms/), and Cloudflare reserves the right to investigate your use of Tunnels for violations of such terms. If you intend to use Tunnels in production you should use a pre-created named tunnel by following: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps"}
+{"level":"info","time":"2026-09-02T14:04:53Z","message":"Requesting new quick Tunnel on trycloudflare.com..."}
+{"level":"info","time":"2026-09-02T14:04:59Z","message":"+--------------------------------------------------------------------------------------------+"}
+{"level":"info","time":"2026-09-02T14:04:59Z","message":"|  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |"}
+{"level":"info","time":"2026-09-02T14:04:59Z","message":"|  https://phones-mrna-creature-models.trycloudflare.com                                     |"}
+{"level":"info","time":"2026-09-02T14:04:59Z","message":"+--------------------------------------------------------------------------------------------+"}
+{"level":"info","time":"2026-09-02T14:04:59Z","message":"Cannot determine default configuration path. No file [config.yml config.yaml] in [~/.cloudflared ~/.cloudflare-warp ~/cloudflare-warp]"}
+{"level":"info","time":"2026-09-02T14:04:59Z","message":"Version 2026.8.2 (Checksum c29eee2b121f5436a642eed69fd9767da7e7b8c510fa50aaa130337f931357b5)"}
+{"level":"info","time":"2026-09-02T14:04:59Z","message":"GOOS: windows, GOVersion: go1.26.4, GoArch: amd64"}
+{"level":"info","time":"2026-09-02T14:04:59Z","message":"Settings: map[ha-connections:1 logfile:cloudflare.log protocol:quic url:http://localhost:3000]"}
+{"level":"info","time":"2026-09-02T14:04:59Z","message":"cloudflared will not automatically update on Windows systems."}
+{"level":"info","time":"2026-09-02T14:04:59Z","message":"Generated Connector ID: 856d983f-619e-4302-bb5c-90754d2799da"}
+{"level":"info","time":"2026-09-02T14:04:59Z","message":"Initial protocol quic"}
+{"level":"info","time":"2026-09-02T14:04:59Z","message":"ICMP proxy will use 192.168.1.8 as source for IPv4"}
+{"level":"info","time":"2026-09-02T14:04:59Z","message":"ICMP proxy will use 2401:4900:88ad:1573:b1e1:e7c0:bce6:aa2c in zone Wi-Fi as source for IPv6"}
+{"level":"info","time":"2026-09-02T14:04:59Z","message":"cloudflared does not support loading the system root certificate pool on Windows. Please use --origin-ca-pool <PATH> to specify the path to the certificate pool"}
+{"level":"info","time":"2026-09-02T14:04:59Z","message":"ICMP proxy will use 192.168.1.8 as source for IPv4"}
+{"level":"info","event":0,"ip":"2606:4700:a8::7","connIndex":0,"time":"2026-09-02T14:04:59Z","message":"Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256]"}
+{"level":"info","time":"2026-09-02T14:04:59Z","message":"ICMP proxy will use 2401:4900:88ad:1573:b1e1:e7c0:bce6:aa2c in zone Wi-Fi as source for IPv6"}
+{"level":"info","time":"2026-09-02T14:04:59Z","message":"Starting metrics server on 127.0.0.1:20241/metrics"}
+{"level":"info","time":"2026-09-02T14:05:00Z","message":"+-------------------------------------------------------------------------------------+"}
+{"level":"info","time":"2026-09-02T14:05:00Z","message":"|                               CONNECTIVITY PRE-CHECKS                               |"}
+{"level":"info","time":"2026-09-02T14:05:00Z","message":"+-------------------------------------------------------------------------------------+"}
+{"level":"info","time":"2026-09-02T14:05:00Z","message":"|  COMPONENT         TARGET                     STATUS  DETAILS                       |"}
+{"level":"info","time":"2026-09-02T14:05:00Z","message":"|  DNS Resolution    region1.v2.argotunnel.com  PASS    DNS Resolved successfully     |"}
+{"level":"info","time":"2026-09-02T14:05:00Z","message":"|  DNS Resolution    region2.v2.argotunnel.com  PASS    DNS Resolved successfully     |"}
+{"level":"info","time":"2026-09-02T14:05:00Z","message":"|  UDP Connectivity  region1.v2.argotunnel.com  PASS    QUIC connection successful    |"}
+{"level":"info","time":"2026-09-02T14:05:00Z","message":"|  UDP Connectivity  region2.v2.argotunnel.com  PASS    QUIC connection successful    |"}
+{"level":"info","time":"2026-09-02T14:05:00Z","message":"|  TCP Connectivity  region1.v2.argotunnel.com  PASS    HTTP/2 connection successful  |"}
+{"level":"info","time":"2026-09-02T14:05:00Z","message":"|  TCP Connectivity  region2.v2.argotunnel.com  PASS    HTTP/2 connection successful  |"}
+{"level":"info","time":"2026-09-02T14:05:00Z","message":"|  Cloudflare API    api.cloudflare.com:443     PASS    API is reachable              |"}
+{"level":"info","time":"2026-09-02T14:05:00Z","message":"|                                                                                     |"}
+{"level":"info","time":"2026-09-02T14:05:00Z","message":"|  SUMMARY: Environment is healthy. cloudflared will use 'quic' as primary protocol.  |"}
+{"level":"info","time":"2026-09-02T14:05:00Z","message":"+-------------------------------------------------------------------------------------+"}
+{"level":"info","run_id":"9fc01533-3314-4ac6-8662-02997333944a","component":"DNS Resolution","target":"region1.v2.argotunnel.com","status":"pass","details":"DNS Resolved successfully","time":"2026-09-02T14:05:00Z","message":"precheck"}
+{"level":"info","run_id":"9fc01533-3314-4ac6-8662-02997333944a","component":"DNS Resolution","target":"region2.v2.argotunnel.com","status":"pass","details":"DNS Resolved successfully","time":"2026-09-02T14:05:00Z","message":"precheck"}
+{"level":"info","run_id":"9fc01533-3314-4ac6-8662-02997333944a","component":"UDP Connectivity","target":"region1.v2.argotunnel.com","status":"pass","details":"QUIC connection successful","time":"2026-09-02T14:05:00Z","message":"precheck"}
+{"level":"info","run_id":"9fc01533-3314-4ac6-8662-02997333944a","component":"UDP Connectivity","target":"region2.v2.argotunnel.com","status":"pass","details":"QUIC connection successful","time":"2026-09-02T14:05:00Z","message":"precheck"}
+{"level":"info","run_id":"9fc01533-3314-4ac6-8662-02997333944a","component":"TCP Connectivity","target":"region1.v2.argotunnel.com","status":"pass","details":"HTTP/2 connection successful","time":"2026-09-02T14:05:00Z","message":"precheck"}
+{"level":"info","run_id":"9fc01533-3314-4ac6-8662-02997333944a","component":"TCP Connectivity","target":"region2.v2.argotunnel.com","status":"pass","details":"HTTP/2 connection successful","time":"2026-09-02T14:05:00Z","message":"precheck"}
+{"level":"info","run_id":"9fc01533-3314-4ac6-8662-02997333944a","component":"Cloudflare API","target":"api.cloudflare.com:443","status":"pass","details":"API is reachable","time":"2026-09-02T14:05:00Z","message":"precheck"}
+{"level":"info","run_id":"9fc01533-3314-4ac6-8662-02997333944a","hard_fail":false,"suggested_protocol":"quic","time":"2026-09-02T14:05:00Z","message":"precheck complete"}
+{"level":"info","event":0,"connection":"ffd0f202-f511-4dae-8580-d2c8aa08676f","connIndex":0,"location":"bom08","ip":"2606:4700:a8::7","protocol":"quic","time":"2026-09-02T14:05:00Z","message":"Registered tunnel connection"}
+{"level":"error","event":1,"connIndex":0,"originService":"http://localhost:3000","ingressRule":0,"error":"stream 249 canceled by remote with error code 0","time":"2026-09-02T14:05:55Z"}
+{"level":"error","event":0,"ip":"2606:4700:a8::7","connIndex":0,"error":"stream 249 canceled by remote with error code 0","type":"http","dest":"https://phones-mrna-creature-models.trycloudflare.com/hero-bg.mp4","time":"2026-09-02T14:05:55Z","message":"Request failed"}
+{"level":"error","event":1,"connIndex":0,"originService":"http://localhost:3000","ingressRule":0,"error":"stream 317 canceled by remote with error code 0","time":"2026-09-02T14:05:55Z"}
+{"level":"error","event":0,"ip":"2606:4700:a8::7","connIndex":0,"error":"stream 317 canceled by remote with error code 0","type":"http","dest":"https://phones-mrna-creature-models.trycloudflare.com/hero-bg.mp4","time":"2026-09-02T14:05:55Z","message":"Request failed"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-09-02T14:25:04Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-09-02T14:55:10Z","message":"Failed to refresh DNS local resolver"}
+{"level":"error","error":"lookup region1.v2.argotunnel.com: i/o timeout","time":"2026-09-02T15:35:15Z","message":"Failed to refresh DNS local resolver"}

@@ -1,0 +1,7 @@
+[
+  "backend/tests/test_business_registration.py::test_business_registration_rejection",
+  "backend/tests/test_business_registration.py::test_business_registration_retrieval",
+  "backend/tests/test_business_registration.py::test_business_registration_status_transitions",
+  "backend/tests/test_business_registration.py::test_business_registration_submission",
+  "backend/tests/test_business_registration.py::test_recommendation_eligibility_enforcement"
+]
