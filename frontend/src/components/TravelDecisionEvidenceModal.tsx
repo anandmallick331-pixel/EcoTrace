@@ -256,12 +256,24 @@ export const TravelDecisionEvidenceModal: React.FC<TravelDecisionEvidenceModalPr
                     'Decision would be reconsidered if a new official Red or Orange warning is issued by IMD / OSDMA.',
                     'Decision would escalate if Doppler radar detects active convective lightning within 15 km.',
                     'Decision would improve if rainfall rates subside below 5.0 mm/h and radar echoes clear.',
-                  ]).map((cond, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
-                      <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
-                      <span>{cond}</span>
-                    </div>
-                  ))}
+                  ]).map((item: any, idx: number) => {
+                    const conditionText = typeof item === 'string' ? item : item?.condition || '';
+                    const impactText = typeof item === 'object' && item?.potential_impact ? item.potential_impact : null;
+                    const sourceText = typeof item === 'object' && item?.monitoring_source ? item.monitoring_source : null;
+                    return (
+                      <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
+                        <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
+                        <div className="space-y-0.5">
+                          <span className="font-medium text-slate-200">{conditionText}</span>
+                          {impactText && (
+                            <span className="text-slate-400 block text-[11px]">
+                              Impact: {impactText} {sourceText ? `• Source: ${sourceText}` : ''}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
