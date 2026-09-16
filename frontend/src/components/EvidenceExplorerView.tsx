@@ -27,6 +27,7 @@ interface EvidenceExplorerViewProps {
   liveObservations?: BackendObservation[];
   destinationDbId?: number;
   onOpenEvidencePanel?: (observationId?: number) => void;
+  onOpenSubmitEvidence?: () => void;
 }
 
 export const EvidenceExplorerView: React.FC<EvidenceExplorerViewProps> = ({
@@ -36,6 +37,7 @@ export const EvidenceExplorerView: React.FC<EvidenceExplorerViewProps> = ({
   liveObservations = [],
   destinationDbId,
   onOpenEvidencePanel,
+  onOpenSubmitEvidence,
 }) => {
   const [conflicts, setConflicts] = useState<BackendSourceConflict[]>([]);
   const [isLoadingConflicts, setIsLoadingConflicts] = useState<boolean>(false);
@@ -167,10 +169,21 @@ export const EvidenceExplorerView: React.FC<EvidenceExplorerViewProps> = ({
               </p>
             </div>
 
-            <div className="p-4 bg-[#FAF8F5] rounded-2xl border border-[#E8E3D7] shrink-0 text-left md:text-right">
-              <span className="text-[11px] font-bold text-[#65735B] uppercase tracking-wider block">Audited Multi-Source Records</span>
-              <span className="text-2xl font-serif font-bold text-[#244E31]">{conflicts.length > 0 ? `${conflicts.length} Evaluated Conflict Pair` : 'Consensus Established'}</span>
-              <span className="text-xs text-[#556755] block mt-0.5">100% Provenance Ledger Retained</span>
+            <div className="flex flex-col sm:flex-row md:flex-col items-start md:items-end gap-2.5 shrink-0">
+              {onOpenSubmitEvidence && (
+                <button
+                  id="evidence-explorer-submit-btn"
+                  onClick={onOpenSubmitEvidence}
+                  className="px-4 py-2 rounded-full text-xs font-bold bg-[#EBF2EA] hover:bg-[#D5E4D2] text-[#1A381E] border border-[#C2D8BF] transition-all cursor-pointer flex items-center gap-1.5 shadow-xs"
+                >
+                  <span>+ Submit Local Evidence</span>
+                </button>
+              )}
+              <div className="p-4 bg-[#FAF8F5] rounded-2xl border border-[#E8E3D7] text-left md:text-right w-full sm:w-auto">
+                <span className="text-[11px] font-bold text-[#65735B] uppercase tracking-wider block">Audited Multi-Source Records</span>
+                <span className="text-2xl font-serif font-bold text-[#244E31]">{conflicts.length > 0 ? `${conflicts.length} Evaluated Conflict Pair` : 'Consensus Established'}</span>
+                <span className="text-xs text-[#556755] block mt-0.5">100% Provenance Ledger Retained</span>
+              </div>
             </div>
           </div>
         </div>

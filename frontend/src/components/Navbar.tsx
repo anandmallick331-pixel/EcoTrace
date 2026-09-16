@@ -12,6 +12,7 @@ import {
   Leaf, 
   Users, 
   Database, 
+  UploadCloud,
   ChevronDown, 
   Activity, 
   ArrowRight,
@@ -27,6 +28,7 @@ interface NavbarProps {
   selectedDestinationId?: string;
   onSelectDestination?: (destId: string) => void;
   onOpenAI?: () => void;
+  onOpenSubmitEvidence?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ 
@@ -35,7 +37,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onExploreDestinations,
   selectedDestinationId = 'chilika',
   onSelectDestination,
-  onOpenAI
+  onOpenAI,
+  onOpenSubmitEvidence
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [moreDropdownOpen, setMoreDropdownOpen] = useState(false);

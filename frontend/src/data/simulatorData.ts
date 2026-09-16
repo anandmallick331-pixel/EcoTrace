@@ -92,6 +92,8 @@ export interface SimulatedImpactForecast {
   confidenceScore: number;
   dataGapCount: number;
   keyDrivers: string[];
+  primaryDrivers?: string[];
+  status?: string;
 }
 
 export interface PresetScenario {
@@ -316,36 +318,36 @@ export function getDestinationBaseline(
 
   switch (problemId) {
     case 'visitor_flow':
-      headline = `Peak bottleneck footfall reaching ${peakCong}× baseline capacity during weekend windows.`;
+      headline = `Peak visitor pressure is ${peakCong}× the safe baseline.`;
       narrative = `Concentration is concentrated around prime choke points (${isChilika ? 'Satapada Jetty Channel' : isKonark ? 'Sun Temple Plinth & Perimeter' : isPuri ? 'Grand Road (Bada Danda)' : 'Khandagiri-Udayagiri Caves'}) resulting in queue delays and localized physical wear.`;
       break;
     case 'economic_leakage':
-      headline = `Estimated ${100 - localRet}% of visitor expenditure routes out of local resident economy.`;
+      headline = `${100 - localRet}% of visitor spend is lost to outside intermediaries.`;
       narrative = `Aggregator platforms and non-local tour intermediaries capture the majority of hospitality bookings, leaving grassroots artisans, boatmen, and SHGs with limited direct yield.`;
       break;
     case 'tourism_revenue':
-      headline = `Gross tourism generates ₹${monthlyRev} Cr/mo, but dedicated municipal conservation reinvestment remains below 4%.`;
+      headline = `Dedicated municipal conservation funding is below 4% of gross tourism revenue.`;
       narrative = `Without an earmarked conservation eco-cess, municipal upkeep of public amenities, waste processing, and heritage maintenance operates on tight deficits.`;
       break;
     case 'waste_management':
-      headline = `Tourist waste intensity index at ${wasteInt}/100 with elevated single-use plastic dispersal.`;
+      headline = `Tourist waste intensity is elevated (${wasteInt}/100) with single-use plastic dispersal.`;
       narrative = `Seasonal surges overwhelm primary collection bins, elevating litter loads along ${isChilika ? 'wetland shorelines' : isKonark ? 'Chandrabhaga beach' : isPuri ? 'Golden Beach & Grand Road' : 'Daya river drainage'}.`;
       break;
     case 'water_pressure':
-      headline = `Hospitality water stress index at ${waterStress}/100 in peak dry season.`;
+      headline = `Peak season water stress is elevated at ${waterStress}/100 in lodging corridors.`;
       narrative = `Heavy lodging consumption places localized drawdown on the regional aquifer, while untreated greywater runoff elevates downstream organic load.`;
       break;
     case 'biodiversity_pressure':
-      headline = `Acoustic and physical intrusion elevated in critical wildlife habitat buffers.`;
+      headline = `Wildlife and sensitive habitats are under heavy visitor and noise pressure.`;
       narrative = `${isChilika ? 'Motorized diesel propeller cavitation stresses Irrawaddy dolphin nursery corridors in Satapada channel.' : isKonark ? 'Nighttime light pollution and traffic spillover along the Balukhand-Konark coastal sanctuary buffer.' : isPuri ? 'Coastal marine turtle nesting zones impacted by unregulated beachfront motorized vehicular access.' : 'Urban forest canopy fragmentation near Bharatpur Reserve Forest.'}`;
       break;
     case 'community_benefits':
-      headline = `Community benefit score stands at ${commScore}/100 with uneven guide and SHG procurement.`;
+      headline = `Local residents receive only ${commScore}/100 in direct economic benefits.`;
       narrative = `Formalized heritage tours and hospitality supply chains bypass indigenous boat cooperatives and local women SHGs, depressing local resident equity.`;
       break;
     case 'overall_sustainability':
     default:
-      headline = `Overall Destination Impact Score baseline stands at ${impactScore}/100.`;
+      headline = `Overall sustainability score is ${impactScore}/100, requiring balanced solutions.`;
       narrative = `Balanced assessment across environmental carrying capacity, economic retention, and local livelihood equity highlights immediate opportunity for evidence-backed policy levers.`;
       break;
   }
@@ -499,7 +501,7 @@ export function getControlsForProblem(problemId: ProblemCategoryId): ControlDefi
       return [
         {
           id: 'timedEntryQuota',
-          label: 'Timed-Entry Slot Quota Enforcement',
+          label: 'Limit peak-time entries',
           description: 'Percentage of daily entries routed through pre-booked time windows to flatten peak arrival surges.',
           type: 'slider',
           min: 0,
@@ -511,7 +513,7 @@ export function getControlsForProblem(problemId: ProblemCategoryId): ControlDefi
         },
         {
           id: 'dynamicRerouting',
-          label: 'Automated Real-Time Visitor Rerouting',
+          label: 'Reroute excess visitors',
           description: 'Auto-divert queue overflow and navigation advisories to secondary heritage and lake zones.',
           type: 'toggle',
           defaultValue: true,
@@ -985,14 +987,14 @@ export function calculateSimulatedImpact(
     return typeof val === 'boolean' ? val : def;
   };
 
-  let visitorPressureShift = 0; // negative is reduction/improvement
-  let wasteShift = 0; // negative is reduction/improvement
-  let waterShift = 0; // negative is reduction/improvement
-  let bioShift = 0; // positive is improvement
-  let revShift = 0; // positive is gain
-  let retShift = 0; // positive is gain
-  let commShift = 0; // positive is gain
-  let envScoreShift = 0; // positive is gain
+  let visitorPressureShift = 0;
+  let wasteShift = 0;
+  let waterShift = 0;
+  let bioShift = 0;
+  let revShift = 0;
+  let retShift = 0;
+  let commShift = 0;
+  let envScoreShift = 0;
 
   const drivers: string[] = [];
 
@@ -1005,17 +1007,17 @@ export function calculateSimulatedImpact(
       const alt = bool('altSitePromotion', true);
 
       visitorPressureShift = -(quota * 0.28 + (reroute ? 14 : 0) + discount * 0.18 + (100 - cap) * 0.22 + (alt ? 8 : 0));
-      wasteShift = -(quota * 0.12 + (reroute ? 6 : 0) + (100 - cap) * 0.15);
-      waterShift = -(quota * 0.08 + (100 - cap) * 0.10);
-      bioShift = Math.round(quota * 0.18 + (reroute ? 10 : 0) + (100 - cap) * 0.15);
-      revShift = Math.round((discount > 30 ? -1.2 : 0.8) + (reroute ? 1.4 : 0.4));
-      retShift = Math.round((alt ? 6 : 2) + quota * 0.08);
-      commShift = Math.round((reroute ? 8 : 2) + (alt ? 7 : 0));
+      wasteShift = -(quota * 0.12 + (reroute ? 6 : 0) + (100 - cap) * 0.15 + (alt ? 3 : 0));
+      waterShift = -(quota * 0.08 + (100 - cap) * 0.10 + (reroute ? 4 : 0));
+      bioShift = Math.round(quota * 0.18 + (reroute ? 10 : 0) + (100 - cap) * 0.15 + (alt ? 5 : 0));
+      revShift = Number(((discount > 30 ? -1.2 : 0.8) + (reroute ? 1.4 : 0.4) + (quota * 0.02)).toFixed(1));
+      retShift = Math.round((alt ? 6 : 2) + quota * 0.08 + (reroute ? 3 : 0));
+      commShift = Math.round((reroute ? 8 : 2) + (alt ? 7 : 0) + (quota * 0.06));
       envScoreShift = Math.round(-visitorPressureShift * 0.45 + bioShift * 0.35);
 
       drivers.push(`Timed entry quota (${quota}%) flattens peak arrival spikes by an estimated ${Math.round(quota * 0.28)}%.`);
       if (reroute) drivers.push('Dynamic rerouting diverts excess footfall to secondary nodes.');
-      if (alt) drivers.push('Electric shuttle connection shifts 18% of transit load away from primary choke points.');
+      if (alt) drivers.push('Electric shuttle connection shifts transit load away from primary choke points.');
       break;
     }
 
@@ -1026,17 +1028,17 @@ export function calculateSimulatedImpact(
       const rebate = num('giLocalProductDiscount', 20);
       const guide = bool('reducedIntermediaryDependence', true);
 
-      retShift = Math.round(qr * 0.16 + localSupply * 0.14 + (coop ? 6 : 0) + rebate * 0.15 + (guide ? 8 : 0));
-      commShift = Math.round(qr * 0.18 + (coop ? 9 : 0) + (guide ? 10 : 0) + localSupply * 0.12);
-      revShift = Math.round(qr * 0.04 + (coop ? 1.8 : 0.5));
-      visitorPressureShift = -(coop ? 4 : 0);
-      wasteShift = -(localSupply > 60 ? 5 : 2); // local packaging reduces single-use transport waste
-      waterShift = 0;
+      retShift = Math.round(qr * 0.18 + localSupply * 0.16 + (coop ? 6 : 0) + rebate * 0.18 + (guide ? 8 : 0));
+      commShift = Math.round(qr * 0.16 + (coop ? 9 : 0) + (guide ? 10 : 0) + localSupply * 0.14);
+      revShift = Number((qr * 0.03 + (coop ? 1.4 : 0.4) + localSupply * 0.02 - rebate * 0.02).toFixed(1));
+      visitorPressureShift = -(qr * 0.05 + (coop ? 4 : 0) + (guide ? 3 : 0));
+      wasteShift = -(localSupply * 0.08 + qr * 0.03 + (coop ? 3 : 0));
+      waterShift = -(localSupply * 0.02);
       bioShift = Math.round(commShift * 0.2);
       envScoreShift = Math.round(retShift * 0.3 + commShift * 0.4);
 
       drivers.push(`Direct Merchant QR adoption (${qr}%) bypasses aggregator commissions, boosting local retention.`);
-      if (guide) drivers.push('Decentralized guide booking mandate guarantees 100% direct village guide wage retention.');
+      if (guide) drivers.push('Decentralized guide booking mandate guarantees direct village guide wage retention.');
       if (coop) drivers.push('Cooperative directory drives verified GI artisan craft purchases.');
       break;
     }
@@ -1047,12 +1049,12 @@ export function calculateSimulatedImpact(
       const vendorShare = num('directVendorSharePct', 70);
       const dividend = num('coopDividendAllocationPct', 35);
 
-      revShift = Math.round((cess * 0.024) + (dynamic ? 2.5 : 0));
-      retShift = Math.round(vendorShare * 0.15 + dividend * 0.18);
-      commShift = Math.round(vendorShare * 0.20 + (cess > 100 ? 10 : 4) + dividend * 0.15);
-      visitorPressureShift = -(cess > 200 ? 12 : dynamic ? 6 : 2);
-      wasteShift = -(cess > 100 ? 8 : 3);
-      waterShift = 0;
+      revShift = Number(((cess * 0.024) + (dynamic ? 2.5 : 0) - vendorShare * 0.01).toFixed(1));
+      retShift = Math.round(vendorShare * 0.18 + dividend * 0.20 + cess * 0.03);
+      commShift = Math.round(vendorShare * 0.22 + (cess * 0.05) + dividend * 0.16 + (dynamic ? 4 : 0));
+      visitorPressureShift = -(cess * 0.05 + (dynamic ? 6 : 2));
+      wasteShift = -(cess * 0.035 + (dynamic ? 4 : 1) + vendorShare * 0.04);
+      waterShift = -(cess * 0.02);
       bioShift = Math.round(cess * 0.08);
       envScoreShift = Math.round((cess / 30) * 2 + bioShift * 0.4);
 
@@ -1069,13 +1071,13 @@ export function calculateSimulatedImpact(
       const dep = bool('vendorWasteResponsibility', true);
       const cap = num('visitorCapIntervention', 75);
 
-      wasteShift = -(freq * 5 + (ban ? 18 : 0) + seg * 0.20 + (dep ? 8 : 0) + (100 - cap) * 0.25);
-      visitorPressureShift = -(100 - cap) * 0.35;
+      wasteShift = -(freq * 4.5 + (ban ? 16 : 0) + seg * 0.22 + (dep ? 8 : 0) + (100 - cap) * 0.25 + fee * 0.06);
+      visitorPressureShift = -((100 - cap) * 0.40 + fee * 0.04 + (ban ? 4 : 0) + freq * 0.8);
       waterShift = -(ban ? 6 : 0);
-      bioShift = Math.round((ban ? 14 : 4) + seg * 0.12 + (dep ? 6 : 0));
-      revShift = Math.round((fee * 0.015) - (ban ? 0.3 : 0));
-      retShift = Math.round((dep ? 4 : 0) + seg * 0.06);
-      commShift = Math.round((dep ? 5 : 2) + (freq > 3 ? 6 : 2));
+      bioShift = Math.round((ban ? 14 : 4) + seg * 0.12 + (dep ? 6 : 0) + (100 - cap) * 0.10);
+      revShift = Number(((fee * 0.02) + (freq * 0.2) - (ban ? 0.2 : 0) - (100 - cap) * 0.02).toFixed(1));
+      retShift = Math.round((dep ? 4 : 1) + seg * 0.08 + fee * 0.02 + freq * 0.8);
+      commShift = Math.round((dep ? 5 : 2) + freq * 1.5 + seg * 0.10 + fee * 0.03);
       envScoreShift = Math.round(-wasteShift * 0.55 + bioShift * 0.3);
 
       drivers.push(`Zero-plastic mandate & inspection cuts immediate shoreline plastic dispersion by an estimated 18%.`);
@@ -1091,13 +1093,13 @@ export function calculateSimulatedImpact(
       const cut = num('visitorCapacityReductionPct', 20);
       const poolBan = bool('seasonalWaterRestrictions', true);
 
-      waterShift = -((300 - lpcd) * 0.15 + reuse * 0.25 + (rain ? 10 : 0) + cut * 0.45 + (poolBan ? 8 : 0));
-      visitorPressureShift = -cut * 0.65;
-      wasteShift = -(cut * 0.15);
-      bioShift = Math.round(reuse * 0.15 + (rain ? 8 : 0) + (poolBan ? 5 : 0));
-      revShift = Math.round(-(cut * 0.08) + (reuse * 0.02));
-      retShift = Math.round(reuse * 0.05);
-      commShift = Math.round((rain ? 6 : 2) + (poolBan ? 4 : 0));
+      waterShift = -((300 - lpcd) * 0.16 + reuse * 0.26 + (rain ? 10 : 0) + cut * 0.45 + (poolBan ? 8 : 0));
+      visitorPressureShift = -(cut * 0.70 + (300 - lpcd) * 0.05 + (poolBan ? 3 : 0));
+      wasteShift = -(cut * 0.25 + (300 - lpcd) * 0.04 + reuse * 0.06);
+      bioShift = Math.round(reuse * 0.15 + (rain ? 8 : 0) + (poolBan ? 5 : 0) + cut * 0.15);
+      revShift = Number((-(cut * 0.08) + (reuse * 0.02) - (300 - lpcd) * 0.005).toFixed(1));
+      retShift = Math.round(reuse * 0.06 + (300 - lpcd) * 0.03 + (rain ? 2 : 0));
+      commShift = Math.round((rain ? 6 : 2) + (poolBan ? 4 : 0) + reuse * 0.08 + (300 - lpcd) * 0.04);
       envScoreShift = Math.round(-waterShift * 0.55 + bioShift * 0.3);
 
       drivers.push(`Water reuse mandate (${reuse}%) recycles graywater for grounds and sanitation.`);
@@ -1113,13 +1115,13 @@ export function calculateSimulatedImpact(
       const escort = bool('guidedAccessMandate', true);
       const altDiv = num('altSiteDiversionPct', 40);
 
-      bioShift = Math.round(electric * 0.28 + (silent ? 16 : 0) + (seasonal ? 14 : 0) + (buffer / 50) * 2 + (escort ? 6 : 0) + altDiv * 0.15);
-      visitorPressureShift = -(altDiv * 0.40 + (seasonal ? 8 : 0));
-      wasteShift = -(altDiv * 0.12);
-      waterShift = -(electric * 0.08); // reduced motor oil leakage in lagoon
-      revShift = Math.round((escort ? 1.2 : 0) - (seasonal ? 0.8 : 0));
-      retShift = Math.round((escort ? 8 : 2) + altDiv * 0.08);
-      commShift = Math.round((escort ? 12 : 3) + (silent ? 5 : 0));
+      bioShift = Math.round(electric * 0.28 + (silent ? 16 : 0) + (seasonal ? 14 : 0) + (buffer / 50) * 2 + (escort ? 6 : 0) + altDiv * 0.16);
+      visitorPressureShift = -(altDiv * 0.45 + (seasonal ? 8 : 0) + (buffer - 50) * 0.02 + (silent ? 3 : 0));
+      wasteShift = -(altDiv * 0.15 + (buffer - 50) * 0.015 + electric * 0.04);
+      waterShift = -(electric * 0.08);
+      revShift = Number(((escort ? 1.2 : 0) - (seasonal ? 0.8 : 0) + altDiv * 0.02 + electric * 0.02).toFixed(1));
+      retShift = Math.round((escort ? 8 : 2) + altDiv * 0.10 + electric * 0.07);
+      commShift = Math.round((escort ? 12 : 3) + (silent ? 5 : 0) + altDiv * 0.08 + electric * 0.08);
       envScoreShift = Math.round(bioShift * 0.65 - visitorPressureShift * 0.2);
 
       drivers.push(`Electric boat conversion (${electric}%) and 50 dBA silent zone drops underwater cavitation noise by ~42%.`);
@@ -1135,13 +1137,13 @@ export function calculateSimulatedImpact(
       const guideAlloc = num('localGuideAllocationPct', 85);
       const grantPool = num('communityConservationFundLakhs', 25);
 
-      commShift = Math.round((ecoFee / 10) * 1.2 + localHire * 0.18 + directPay * 0.16 + guideAlloc * 0.18 + grantPool * 0.35);
-      retShift = Math.round(localHire * 0.14 + directPay * 0.20 + guideAlloc * 0.15);
-      revShift = Math.round((ecoFee * 0.018) + 0.6);
-      visitorPressureShift = -(guideAlloc > 80 ? 5 : 0);
-      wasteShift = -(grantPool > 20 ? 8 : 3); // community cleanup drives
+      commShift = Math.round((ecoFee / 10) * 1.3 + localHire * 0.20 + directPay * 0.18 + guideAlloc * 0.20 + grantPool * 0.40);
+      retShift = Math.round(localHire * 0.18 + directPay * 0.22 + guideAlloc * 0.16 + (ecoFee * 0.04) + grantPool * 0.12);
+      revShift = Number(((ecoFee * 0.018) + directPay * 0.01 + 0.5).toFixed(1));
+      visitorPressureShift = -(guideAlloc * 0.06 + ecoFee * 0.025 + localHire * 0.03);
+      wasteShift = -(grantPool * 0.22 + localHire * 0.06 + ecoFee * 0.02);
       waterShift = 0;
-      bioShift = Math.round(commShift * 0.22);
+      bioShift = Math.round(commShift * 0.22 + grantPool * 0.25);
       envScoreShift = Math.round(commShift * 0.4 + retShift * 0.3);
 
       drivers.push(`Local hiring target (${localHire}%) and guide allocation (${guideAlloc}%) secure permanent resident wages.`);
@@ -1157,13 +1159,13 @@ export function calculateSimulatedImpact(
       const buffer = bool('environmentalBufferMandate', true);
       const localSourcing = num('localProcurementTargetPct', 65);
 
-      visitorPressureShift = -( (100 - quota) * 0.45 + (reroute ? 12 : 0) );
-      wasteShift = -( (100 - quota) * 0.25 + (cess > 100 ? 8 : 3) );
-      waterShift = -( (100 - quota) * 0.20 );
-      bioShift = Math.round( (buffer ? 16 : 4) + (100 - quota) * 0.15 + (cess / 40) * 2 );
-      revShift = Math.round( (cess * 0.02) + (reroute ? 1.2 : 0) );
-      retShift = Math.round( localSourcing * 0.18 + (reroute ? 4 : 0) );
-      commShift = Math.round( (cess > 100 ? 10 : 4) + localSourcing * 0.15 );
+      visitorPressureShift = -( (100 - quota) * 0.45 + (reroute ? 12 : 0) + cess * 0.03 );
+      wasteShift = -( (100 - quota) * 0.25 + cess * 0.04 + localSourcing * 0.06 + (reroute ? 4 : 0) );
+      waterShift = -( (100 - quota) * 0.20 + (buffer ? 6 : 0) );
+      bioShift = Math.round( (buffer ? 16 : 4) + (100 - quota) * 0.15 + (cess / 40) * 2 + localSourcing * 0.08 );
+      revShift = Number(((cess * 0.022) + (reroute ? 1.2 : 0) + localSourcing * 0.02 - (100 - quota) * 0.02).toFixed(1));
+      retShift = Math.round( localSourcing * 0.18 + (reroute ? 4 : 0) + quota * 0.06 + cess * 0.04 );
+      commShift = Math.round( (cess * 0.06) + localSourcing * 0.15 + (reroute ? 3 : 0) + (buffer ? 3 : 0) );
       envScoreShift = Math.round(-visitorPressureShift * 0.35 + bioShift * 0.4 + -wasteShift * 0.25);
 
       drivers.push(`Integrated capacity quota (${quota}%) limits excessive peak environmental wear.`);
@@ -1173,7 +1175,6 @@ export function calculateSimulatedImpact(
     }
   }
 
-  // Calculate projected values clamped within realistic bounds
   const projVP = Math.max(25, Math.min(100, Math.round(m.visitorPressure.value + visitorPressureShift)));
   const projWaste = Math.max(20, Math.min(100, Math.round(m.wasteIntensity.value + wasteShift)));
   const projWater = Math.max(20, Math.min(100, Math.round(m.waterStressIndex.value + waterShift)));
@@ -1182,7 +1183,6 @@ export function calculateSimulatedImpact(
   const projRet = Math.max(40, Math.min(96, Math.round(m.localRetentionPercent.value + retShift)));
   const projComm = Math.max(35, Math.min(98, Math.round(m.communityBenefitScore.value + commShift)));
 
-  // Overall Impact Score projection
   const currentOverall = m.overallImpactScore.value;
   const overallDelta = Math.round(
     -visitorPressureShift * 0.20 +
@@ -1251,28 +1251,32 @@ export function calculateSimulatedImpact(
     },
     confidenceScore: baseline.dataConfidencePercent,
     dataGapCount: baseline.criticalDataGapsCount,
-    keyDrivers: drivers
+    keyDrivers: drivers,
+    primaryDrivers: drivers,
+    status: projOverall >= 75 ? 'RECOMMENDED' : projOverall >= 60 ? 'VIABLE' : 'HIGH_IMPACT_RISK'
   };
 }
-
-// ── Preset Scenarios Generator (Scenario A, B, C & Comparative Ranking) ──────
 
 export function generatePresetScenarios(
   baseline: DestinationProblemBaseline,
   problemId: ProblemCategoryId,
   currentCustomControls: Record<string, number | boolean | string>
 ): PresetScenario[] {
-  // Scenario A: No Intervention (Status Quo Baseline)
   const controlsA: Record<string, number | boolean | string> = {};
   const controlsB: Record<string, number | boolean | string> = {};
   const controlsC: Record<string, number | boolean | string> = {};
 
   const defs = getControlsForProblem(problemId);
   defs.forEach(ctrl => {
+    const step = ctrl.step ?? 1;
+    const min = ctrl.min ?? 0;
+    const max = ctrl.max ?? 100;
     if (ctrl.type === 'slider') {
-      controlsA[ctrl.id] = ctrl.min ?? 0;
-      controlsB[ctrl.id] = Math.round(((ctrl.min ?? 0) + (ctrl.max ?? 100)) * 0.45);
-      controlsC[ctrl.id] = Math.round(((ctrl.min ?? 0) + (ctrl.max ?? 100)) * 0.85);
+      controlsA[ctrl.id] = min;
+      const rawB = min + (max - min) * 0.5;
+      controlsB[ctrl.id] = Math.round(rawB / step) * step;
+      const rawC = min + (max - min) * 0.85;
+      controlsC[ctrl.id] = Math.round(rawC / step) * step;
     } else if (ctrl.type === 'toggle') {
       controlsA[ctrl.id] = false;
       controlsB[ctrl.id] = true;
@@ -1286,7 +1290,6 @@ export function generatePresetScenarios(
   const impactCustom = calculateSimulatedImpact(baseline, problemId, currentCustomControls);
 
   const evalStrength = (impact: SimulatedImpactForecast): number => {
-    // Multi-criteria balanced score (Environment 25%, Economy Retention 20%, Community 20%, Visitor Pressure Relief 20%, Confidence 15%)
     const envComponent = (impact.environmentalScore.projected / 100) * 25;
     const econComponent = (impact.localRetentionPercent.projected / 100) * 20;
     const commComponent = (impact.communityBenefitScore.projected / 100) * 20;
@@ -1359,12 +1362,12 @@ export function generatePresetScenarios(
     }
   ];
 
-  // Identify the strongest scenario based on balanced multi-criteria strength score
+  const candidateIndices = [1, 2];
+  let bestIdx = 1;
   let maxStrength = -1;
-  let bestIdx = 0;
-  scenarios.forEach((s, idx) => {
-    if (s.balancedStrengthScore > maxStrength) {
-      maxStrength = s.balancedStrengthScore;
+  candidateIndices.forEach(idx => {
+    if (scenarios[idx].balancedStrengthScore > maxStrength) {
+      maxStrength = scenarios[idx].balancedStrengthScore;
       bestIdx = idx;
     }
   });

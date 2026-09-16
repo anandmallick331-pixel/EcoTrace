@@ -78,9 +78,16 @@ async def http_exception_handler(request: Request, exc: HTTPException) -> JSONRe
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError) -> JSONResponse:
     """Standardized handler for schema validation failures (422)."""
+    try:
+        content = jsonable_encoder(
+            exc.errors(),
+            custom_encoder={bytes: lambda b: b.decode("utf-8", errors="replace")}
+        )
+    except Exception:
+        content = [{"msg": str(getattr(err, "get", lambda k, d=None: str(err))("msg", "Validation error")), "type": "value_error"} for err in exc.errors()]
     return JSONResponse(
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        content={"detail": jsonable_encoder(exc.errors())},
+        content={"detail": content},
     )
 
 
@@ -114,5 +121,7 @@ app.include_router(health.router)
 
 # Versioned API endpoints (/api/v1/...)
 app.include_router(api_v1_router)
+
+# Registered routers updated
 
 

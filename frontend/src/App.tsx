@@ -16,6 +16,7 @@ import { GovernmentDashboard } from './components/GovernmentDashboard';
 import { BusinessBadge } from './components/BusinessBadge';
 import { EvidencePanel } from './components/EvidencePanel';
 import { EvidenceExplorerView } from './components/EvidenceExplorerView';
+import { PublicEvidenceSubmissionModal } from './components/PublicEvidenceSubmissionModal';
 import { EcoTraceAIAssistant } from './components/EcoTraceAIAssistant';
 import { Footer } from './components/Footer';
 import { Sparkles } from 'lucide-react';
@@ -80,6 +81,7 @@ export default function App() {
   const [activePillarForEvidence, setActivePillarForEvidence] = useState<PillarType>('economy');
   const [isAIAssistantOpen, setIsAIAssistantOpen] = useState<boolean>(false);
   const [aiInitialQuery, setAiInitialQuery] = useState<string>('');
+  const [isSubmitEvidenceModalOpen, setIsSubmitEvidenceModalOpen] = useState<boolean>(false);
 
   const handleOpenAI = (initialQuery?: string) => {
     setAiInitialQuery(initialQuery || '');
@@ -114,6 +116,8 @@ export default function App() {
       }
     >
   >({});
+
+  const [dataRefreshTrigger, setDataRefreshTrigger] = useState<number>(0);
 
   // 1. Fetch initial global backend metadata (Destinations, Sources, Datasets, Metrics) with auto-reconnect
   useEffect(() => {
@@ -159,7 +163,7 @@ export default function App() {
       isMounted = false;
       if (timerId) clearTimeout(timerId);
     };
-  }, []);
+  }, [dataRefreshTrigger]);
 
   // 2. Fetch all destinations' live data whenever selectedDestinationId or backendDestinations changes
   useEffect(() => {
@@ -230,21 +234,33 @@ export default function App() {
     return () => {
       isMounted = false;
     };
-  }, [selectedDestinationId, backendDestinations]);
+  }, [selectedDestinationId, backendDestinations, dataRefreshTrigger]);
 
   // Enrich raw active observations with full backend metric definitions, datasets, and locations
+  // Enforce temporal versioning: latest measurement period first
   const activeObservationsEnriched: BackendObservation[] = React.useMemo(() => {
     if (!activeObservations || activeObservations.length === 0) return [];
     const metricMap = new Map(backendMetrics.map((m) => [m.id, m]));
     const datasetMap = new Map(backendDatasets.map((d) => [d.id, d]));
     const locationMap = new Map(activeLocations.map((l) => [l.id, l]));
 
-    return activeObservations.map((obs) => ({
+    const enriched = activeObservations.map((obs) => ({
       ...obs,
       metric_definition: obs.metric_definition || metricMap.get(obs.metric_definition_id),
       dataset: obs.dataset || datasetMap.get(obs.dataset_id),
       location: obs.location || (obs.location_id ? locationMap.get(obs.location_id) : undefined),
     }));
+
+    // Sort by measurement period: latest end/start date first, deterministic ID fallback
+    return enriched.sort((a, b) => {
+      const endA = a.period_end || a.period_start || '';
+      const endB = b.period_end || b.period_start || '';
+      if (endA !== endB) return endB.localeCompare(endA);
+      const startA = a.period_start || '';
+      const startB = b.period_start || '';
+      if (startA !== startB) return startB.localeCompare(startA);
+      return (b.id || 0) - (a.id || 0);
+    });
   }, [activeObservations, backendMetrics, backendDatasets, activeLocations]);
 
   // Compute dynamic authentic destinations strictly from backend with ALL destinations populated
@@ -347,6 +363,7 @@ export default function App() {
         selectedDestinationId={selectedDestinationId}
         onSelectDestination={handleSelectDestination}
         onOpenAI={() => handleOpenAI()}
+        onOpenSubmitEvidence={() => setIsSubmitEvidenceModalOpen(true)}
       />
 
       {/* Backend Offline / Connection Error Banner */}
@@ -389,6 +406,7 @@ export default function App() {
               setActiveScreen(screen);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+            onOpenSubmitEvidence={() => setIsSubmitEvidenceModalOpen(true)}
             destinations={dynamicDestinations}
           />
         )}
@@ -417,6 +435,7 @@ export default function App() {
             selectedDestinationId={selectedDestinationId}
             onSelectDestination={handleSelectDestination}
             onOpenEvidence={handleOpenEvidence}
+            onOpenObservationProvenance={handleOpenObservationProvenance}
             onGoToRecommendations={() => {
               setActiveScreen('recommendations');
               window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -572,6 +591,9 @@ export default function App() {
               setActiveScreen('impact-ledger');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+            onOpenObservationProvenance={handleOpenObservationProvenance}
+            onDataIngested={() => setDataRefreshTrigger(prev => prev + 1)}
+            onOpenSubmitEvidence={() => setIsSubmitEvidenceModalOpen(true)}
             liveSources={backendSources}
             liveDatasets={backendDatasets}
             liveObservations={activeObservationsEnriched}
@@ -589,6 +611,7 @@ export default function App() {
             liveObservations={activeObservationsEnriched}
             destinationDbId={activeDest?.id}
             onOpenEvidencePanel={(obsId) => (obsId ? handleOpenObservationProvenance(obsId) : handleOpenEvidence('economy'))}
+            onOpenSubmitEvidence={() => setIsSubmitEvidenceModalOpen(true)}
           />
         )}
 
@@ -619,6 +642,14 @@ export default function App() {
         liveObservations={activeObservationsEnriched.length > 0 ? activeObservationsEnriched : activeObservations}
         sources={backendSources}
         datasets={backendDatasets}
+      />
+
+      {/* Public Community Evidence Submission Modal */}
+      <PublicEvidenceSubmissionModal
+        isOpen={isSubmitEvidenceModalOpen}
+        onClose={() => setIsSubmitEvidenceModalOpen(false)}
+        destinations={backendDestinations}
+        initialDestinationId={activeDest?.id}
       />
 
       {/* EcoTrace AI Intelligence Assistant Modal / Drawer */}
@@ -656,6 +687,7 @@ export default function App() {
         onSelectDestination={handleSelectDestination}
         destinations={dynamicDestinations}
         liveError={liveError}
+        onOpenSubmitEvidence={() => setIsSubmitEvidenceModalOpen(true)}
       />
     </div>
   );

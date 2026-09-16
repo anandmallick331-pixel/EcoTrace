@@ -19,10 +19,11 @@ class ObservationRepository(BaseRepository[Observation]):
     def get_by_destination(
         self, destination_id: int, skip: int = 0, limit: int = 100
     ) -> Sequence[Observation]:
-        """Fetch all observations recorded for a specific destination."""
+        """Fetch all observations recorded for a specific destination, ordered by latest measurement period."""
         stmt = (
             select(Observation)
             .where(Observation.destination_id == destination_id)
+            .order_by(Observation.period_end.desc(), Observation.period_start.desc(), Observation.id.desc())
             .offset(skip)
             .limit(limit)
         )
@@ -31,10 +32,11 @@ class ObservationRepository(BaseRepository[Observation]):
     def get_by_metric(
         self, metric_definition_id: int, skip: int = 0, limit: int = 100
     ) -> Sequence[Observation]:
-        """Fetch all observations referencing a specific metric definition."""
+        """Fetch all observations referencing a specific metric definition, ordered by latest measurement period."""
         stmt = (
             select(Observation)
             .where(Observation.metric_definition_id == metric_definition_id)
+            .order_by(Observation.period_end.desc(), Observation.period_start.desc(), Observation.id.desc())
             .offset(skip)
             .limit(limit)
         )
@@ -43,10 +45,11 @@ class ObservationRepository(BaseRepository[Observation]):
     def get_by_dataset(
         self, dataset_id: int, skip: int = 0, limit: int = 100
     ) -> Sequence[Observation]:
-        """Fetch all observations sourced from a specific dataset."""
+        """Fetch all observations sourced from a specific dataset, ordered by latest measurement period."""
         stmt = (
             select(Observation)
             .where(Observation.dataset_id == dataset_id)
+            .order_by(Observation.period_end.desc(), Observation.period_start.desc(), Observation.id.desc())
             .offset(skip)
             .limit(limit)
         )
@@ -55,10 +58,11 @@ class ObservationRepository(BaseRepository[Observation]):
     def get_by_location(
         self, location_id: int, skip: int = 0, limit: int = 100
     ) -> Sequence[Observation]:
-        """Fetch all observations recorded for a specific sub-location."""
+        """Fetch all observations recorded for a specific sub-location, ordered by latest measurement period."""
         stmt = (
             select(Observation)
             .where(Observation.location_id == location_id)
+            .order_by(Observation.period_end.desc(), Observation.period_start.desc(), Observation.id.desc())
             .offset(skip)
             .limit(limit)
         )
@@ -67,10 +71,11 @@ class ObservationRepository(BaseRepository[Observation]):
     def get_by_status(
         self, status: ObservationStatus | str, skip: int = 0, limit: int = 100
     ) -> Sequence[Observation]:
-        """Fetch observations filtered by data quality / verification status."""
+        """Fetch observations filtered by data quality / verification status, ordered by latest measurement period."""
         stmt = (
             select(Observation)
             .where(Observation.status == status)
+            .order_by(Observation.period_end.desc(), Observation.period_start.desc(), Observation.id.desc())
             .offset(skip)
             .limit(limit)
         )

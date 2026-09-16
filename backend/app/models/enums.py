@@ -49,6 +49,32 @@ class EvidenceType(str, enum.Enum):
     OTHER = "other"
 
 
+class UserRole(str, enum.Enum):
+    """Role-based access control roles for EcoTrace."""
+    PUBLIC = "PUBLIC"
+    OFFICIAL = "OFFICIAL"
+    ADMIN = "ADMIN"
+
+
+class CommunityEvidenceStatus(str, enum.Enum):
+    """Lifecycle status of a community-submitted evidence record."""
+    SUBMITTED = "SUBMITTED"
+    UNDER_REVIEW = "UNDER_REVIEW"
+    VERIFIED = "VERIFIED"
+    ACCEPTED = "ACCEPTED"
+    NEEDS_CLARIFICATION = "NEEDS_CLARIFICATION"
+    REJECTED = "REJECTED"
+
+
+class CommunityEvidenceType(str, enum.Enum):
+    """Format/type of evidence provided by community users."""
+    PDF = "pdf"
+    CSV = "csv"
+    XLSX = "xlsx"
+    URL = "url"
+    TEXT = "text"
+
+
 class BusinessRegistrationStatus(str, enum.Enum):
     """Lifecycle status of a local business registration."""
     PENDING_VERIFICATION = "PENDING_VERIFICATION"

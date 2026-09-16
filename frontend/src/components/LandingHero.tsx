@@ -6,6 +6,7 @@ interface LandingHeroProps {
   onSelectDestination: (destId: string) => void;
   onOpenPillarEvidence: (destId: string, pillarId: string) => void;
   onNavigateToScreen?: (screen: string) => void;
+  onOpenSubmitEvidence?: () => void;
   destinations?: Destination[];
 }
 
@@ -14,6 +15,7 @@ export const LandingHero: React.FC<LandingHeroProps> = ({
   onSelectDestination,
   onOpenPillarEvidence,
   onNavigateToScreen,
+  onOpenSubmitEvidence,
   destinations = []
 }) => {
   const [selectedDestId, setSelectedDestId] = useState<string>('chilika');
@@ -327,7 +329,20 @@ export const LandingHero: React.FC<LandingHeroProps> = ({
             </p>
           </div>
 
-          <div className="flex items-center gap-3 z-10 shrink-0 w-full md:w-auto">
+          <div className="flex flex-wrap items-center gap-3 z-10 shrink-0 w-full md:w-auto">
+            {onOpenSubmitEvidence && (
+              <button
+                type="button"
+                id="hero-submit-evidence-btn"
+                onClick={onOpenSubmitEvidence}
+                className="w-full md:w-auto bg-[#cdead0]/20 hover:bg-[#cdead0]/30 text-white font-semibold px-5 py-3 rounded-full text-sm border border-[#cdead0]/40 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+              >
+                <span className="material-symbols-outlined text-base" data-icon="upload_file">
+                  upload_file
+                </span>
+                <span>Submit Evidence</span>
+              </button>
+            )}
             <button
               type="button"
               onClick={() => onNavigateToScreen ? onNavigateToScreen('report-card') : onExploreDestinations()}

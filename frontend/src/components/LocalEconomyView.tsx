@@ -81,7 +81,9 @@ export const LocalEconomyView: React.FC<LocalEconomyViewProps> = ({
     if (!liveObservations || liveObservations.length === 0) return null;
 
     const findMetric = (codes: string[], id?: number) => {
-      const match = liveObservations.find((o) => {
+      const matches = liveObservations.filter((o) => {
+        const status = (o.status || '').toLowerCase();
+        if (status !== 'verified') return false;
         const code = o.metric_definition?.code;
         if (code && codes.includes(code)) return true;
         if (id && o.metric_definition_id === id) return true;
@@ -90,12 +92,25 @@ export const LocalEconomyView: React.FC<LocalEconomyViewProps> = ({
           if (notesCode) return true;
         }
         return false;
+      }).filter((o) => (o.normalized_value ?? o.original_value) !== null);
+
+      if (matches.length === 0) return null;
+      const sorted = [...matches].sort((a, b) => {
+        const endA = a.period_end || a.period_start || '';
+        const endB = b.period_end || b.period_start || '';
+        if (endA !== endB) return endB.localeCompare(endA);
+        const startA = a.period_start || '';
+        const startB = b.period_start || '';
+        if (startA !== startB) return startB.localeCompare(startA);
+        return (b.id || 0) - (a.id || 0);
       });
-      return match?.normalized_value ?? null;
+      return sorted[0].normalized_value ?? sorted[0].original_value;
     };
 
     const findMetricByPeriod = (codes: string[], year?: number) => {
-      const match = liveObservations.find((o) => {
+      const matches = liveObservations.filter((o) => {
+        const status = (o.status || '').toLowerCase();
+        if (status !== 'verified') return false;
         const code = o.metric_definition?.code;
         let isCodeMatch = (code && codes.includes(code)) || false;
         if (!isCodeMatch && o.notes) {
@@ -104,12 +119,24 @@ export const LocalEconomyView: React.FC<LocalEconomyViewProps> = ({
         if (!isCodeMatch) return false;
         if (year) {
           if (o.period_start && o.period_start.startsWith(String(year))) return true;
+          if (o.period_end && o.period_end.startsWith(String(year))) return true;
           if (o.notes && o.notes.includes(`year: ${year}`)) return true;
           return false;
         }
         return true;
+      }).filter((o) => (o.normalized_value ?? o.original_value) !== null);
+
+      if (matches.length === 0) return null;
+      const sorted = [...matches].sort((a, b) => {
+        const endA = a.period_end || a.period_start || '';
+        const endB = b.period_end || b.period_start || '';
+        if (endA !== endB) return endB.localeCompare(endA);
+        const startA = a.period_start || '';
+        const startB = b.period_start || '';
+        if (startA !== startB) return startB.localeCompare(startA);
+        return (b.id || 0) - (a.id || 0);
       });
-      return match?.normalized_value ?? null;
+      return sorted[0].normalized_value ?? sorted[0].original_value;
     };
 
     // Real PostgreSQL observations for Chilika mapped to valid backend metric definitions

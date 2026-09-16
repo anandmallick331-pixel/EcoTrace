@@ -17,8 +17,10 @@ import {
   FileCheck2, 
   Info,
   Scale,
-  HelpCircle
+  HelpCircle,
+  Maximize2,
 } from 'lucide-react';
+import { ImageModal } from './ImageModal';
 import { Destination, PillarType } from '../types';
 import { ComparisonUnderstandingModal } from './ComparisonUnderstandingModal';
 
@@ -60,6 +62,8 @@ export const DestinationComparison: React.FC<DestinationComparisonProps> = ({
   }
 
   const [selectedDestIds, setSelectedDestIds] = useState<string[]>(destinations.map(d => d.id));
+  const [selectedPillar, setSelectedPillar] = useState<string>('all');
+  const [expandedImage, setExpandedImage] = useState<{ src: string; alt: string; caption?: string; subtitle?: string } | null>(null);
   const [isGuideOpen, setIsGuideOpen] = useState<boolean>(false);
   const [activeDetailModal, setActiveDetailModal] = useState<{
     indicatorTitle: string;
@@ -675,15 +679,34 @@ export const DestinationComparison: React.FC<DestinationComparisonProps> = ({
                   </div>
 
                   <div className="flex items-center gap-3.5 mb-3.5">
-                    <img
-                      src={dest.image}
-                      alt={dest.name}
-                      className="w-14 h-14 rounded-xl object-cover border border-[#E8E3D7] shrink-0 bg-[#EBF2EA]"
-                      referrerPolicy="no-referrer"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=600&q=80';
+                    <div
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setExpandedImage({
+                          src: dest.image,
+                          alt: dest.name,
+                          caption: dest.name,
+                          subtitle: `${dest.region} • ${dest.category} • ${dest.summary}`,
+                        });
                       }}
-                    />
+                      className="relative group/compimg cursor-pointer shrink-0 rounded-xl overflow-hidden border border-[#E8E3D7] bg-[#EBF2EA] hover:shadow-md transition-all duration-200"
+                      title="Click to expand picture"
+                    >
+                      <img
+                        src={dest.image}
+                        alt={dest.name}
+                        className="w-14 h-14 object-cover group-hover/compimg:scale-110 transition-transform duration-300"
+                        referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=600&q=80';
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover/compimg:bg-black/30 transition-colors flex items-center justify-center">
+                        <div className="w-5 h-5 rounded-full bg-white/90 text-[#1C2A1E] flex items-center justify-center opacity-0 group-hover/compimg:opacity-100 transition-opacity shadow-xs">
+                          <Maximize2 className="w-2.5 h-2.5" />
+                        </div>
+                      </div>
+                    </div>
                     <div>
                       <h3 className="text-base sm:text-lg font-serif font-bold text-[#1A381E] leading-tight">
                         {dest.name}
@@ -963,6 +986,16 @@ export const DestinationComparison: React.FC<DestinationComparisonProps> = ({
             </div>
           </div>
         )}
+
+        {/* Expanded Picture Modal */}
+        <ImageModal
+          isOpen={!!expandedImage}
+          onClose={() => setExpandedImage(null)}
+          imageSrc={expandedImage?.src || ''}
+          imageAlt={expandedImage?.alt}
+          caption={expandedImage?.caption}
+          subtitle={expandedImage?.subtitle}
+        />
 
       </div>
     </section>

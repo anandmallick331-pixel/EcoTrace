@@ -64,6 +64,8 @@ export const EnvironmentalImpactView: React.FC<EnvironmentalImpactViewProps> = (
 
     const findAvgMetric = (codes: string[], id?: number) => {
       const matches = liveObservations.filter((o) => {
+        const status = (o.status || '').toLowerCase();
+        if (status !== 'verified') return false;
         const code = o.metric_definition?.code;
         if (code && codes.includes(code)) return true;
         if (id && o.metric_definition_id === id) return true;
@@ -72,13 +74,24 @@ export const EnvironmentalImpactView: React.FC<EnvironmentalImpactViewProps> = (
           if (notesCode) return true;
         }
         return false;
-      }).filter((o) => o.normalized_value !== null);
+      }).filter((o) => (o.normalized_value ?? o.original_value) !== null);
 
       if (matches.length === 0) return null;
-      const sum = matches.reduce((acc, curr) => acc + (curr.normalized_value as number), 0);
+      // Sort by measurement period: latest first
+      const sorted = [...matches].sort((a, b) => {
+        const endA = a.period_end || a.period_start || '';
+        const endB = b.period_end || b.period_start || '';
+        if (endA !== endB) return endB.localeCompare(endA);
+        const startA = a.period_start || '';
+        const startB = b.period_start || '';
+        if (startA !== startB) return startB.localeCompare(startA);
+        return (b.id || 0) - (a.id || 0);
+      });
+
+      const latestVal = sorted[0].normalized_value ?? sorted[0].original_value;
       return {
-        avg: Math.round((sum / matches.length) * 100) / 100,
-        count: matches.length
+        avg: typeof latestVal === 'number' ? Math.round(latestVal * 100) / 100 : latestVal,
+        count: sorted.length
       };
     };
 

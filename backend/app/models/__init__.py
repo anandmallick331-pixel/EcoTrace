@@ -4,6 +4,8 @@
 
 from app.models.enums import (  # noqa: F401
     BusinessRegistrationStatus,
+    CommunityEvidenceStatus,
+    CommunityEvidenceType,
     ComparabilityStatus,
     ConfidenceLevel,
     ConflictResolutionStatus,
@@ -13,6 +15,7 @@ from app.models.enums import (  # noqa: F401
     ObservationStatus,
     ReconciliationMemberRole,
     ResolutionMethod,
+    UserRole,
 )
 from app.models.destination import Destination, Location  # noqa: F401
 from app.models.source import Dataset, Source  # noqa: F401
@@ -20,6 +23,7 @@ from app.models.metric import MetricDefinition  # noqa: F401
 from app.models.observation import Observation  # noqa: F401
 from app.models.evidence import Evidence  # noqa: F401
 from app.models.business_registration import BusinessRegistration  # noqa: F401
+from app.models.community_evidence import CommunityEvidenceSubmission  # noqa: F401
 from app.models.conflict import SourceConflict  # noqa: F401
 from app.models.reconciliation import (  # noqa: F401
     ObservationReconciliation,
@@ -34,6 +38,8 @@ __all__ = [
     "DestinationSpecificity",
     "EvidenceType",
     "BusinessRegistrationStatus",
+    "CommunityEvidenceStatus",
+    "CommunityEvidenceType",
     "ComparabilityStatus",
     "ConflictResolutionStatus",
     "ResolutionMethod",
@@ -47,6 +53,7 @@ __all__ = [
     "Observation",
     "Evidence",
     "BusinessRegistration",
+    "CommunityEvidenceSubmission",
     "SourceConflict",
     "ObservationReconciliation",
     "ObservationReconciliationMember",

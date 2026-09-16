@@ -8,13 +8,15 @@ interface FooterProps {
   onSelectDestination: (destId: string) => void;
   destinations?: Destination[];
   liveError?: string | null;
+  onOpenSubmitEvidence?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ 
   setActiveScreen, 
   onSelectDestination,
   destinations = [],
-  liveError
+  liveError,
+  onOpenSubmitEvidence
 }) => {
   const isLive = destinations.length > 0 && !liveError;
 
@@ -203,6 +205,15 @@ export const Footer: React.FC<FooterProps> = ({
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-6 text-[#A3B899]">
+            {onOpenSubmitEvidence && (
+              <button 
+                id="footer-submit-evidence-btn"
+                onClick={onOpenSubmitEvidence} 
+                className="text-[#D8E6D5] hover:text-white font-semibold transition-colors cursor-pointer flex items-center gap-1"
+              >
+                <span>Submit Evidence</span>
+              </button>
+            )}
             <button onClick={() => setActiveScreen('landing')} className="hover:text-white transition-colors cursor-pointer">
               Privacy Policy
             </button>

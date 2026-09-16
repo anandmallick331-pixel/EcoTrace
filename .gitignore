@@ -60,3 +60,6 @@ cloudflared-windows-amd64.exe
 
 # ── Logs ───────────────────────────────────────────────
 *.log
+backend/scratch/
+backend/uploads/
+backend/uploads/

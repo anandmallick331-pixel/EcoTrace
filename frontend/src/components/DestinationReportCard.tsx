@@ -19,13 +19,16 @@ import {
   ExternalLink,
   Sliders,
   Scale,
-  Sparkles
+  Sparkles,
+  Maximize2,
 } from 'lucide-react';
+import { ImageModal } from './ImageModal';
 import { Destination, PillarType, InterpretedMetric } from '../types';
 import { DESTINATIONS } from '../data/destinations';
 import { IntelligentMetricCard } from './IntelligentMetricCard';
 import { DestinationPressureBreakdownModal } from './DestinationPressureBreakdownModal';
 import { MetricStatusBadge, QualityBadge } from './MetricStatusBadge';
+import { LiveTravelRiskAdvisoryCard } from './LiveTravelRiskAdvisoryCard';
 import { BackendObservation } from '../services/api';
 import { adaptObservationsToInterpretedMetrics } from '../services/adapters';
 
@@ -33,6 +36,7 @@ interface DestinationReportCardProps {
   selectedDestinationId: string;
   onSelectDestination: (destId: string) => void;
   onOpenEvidence: (pillarId: PillarType) => void;
+  onOpenObservationProvenance?: (observationId: number) => void;
   onGoToRecommendations: () => void;
   onNavigateToMap?: () => void;
   onNavigateToLedger?: () => void;
@@ -48,6 +52,7 @@ export const DestinationReportCard: React.FC<DestinationReportCardProps> = ({
   selectedDestinationId,
   onSelectDestination,
   onOpenEvidence,
+  onOpenObservationProvenance,
   onGoToRecommendations,
   onNavigateToMap,
   onNavigateToLedger,
@@ -59,6 +64,7 @@ export const DestinationReportCard: React.FC<DestinationReportCardProps> = ({
   liveObservations = [],
 }) => {
   const [scoreBreakdownOpen, setScoreBreakdownOpen] = useState(false);
+  const [expandedImage, setExpandedImage] = useState<{ src: string; alt: string; caption?: string; subtitle?: string } | null>(null);
   const currentDestination: Destination =
     destinations.find((d) => d.id === selectedDestinationId) || destinations[0] || DESTINATIONS[0];
 
@@ -203,12 +209,28 @@ export const DestinationReportCard: React.FC<DestinationReportCardProps> = ({
 
             {/* Left: Destination Identity & Summary (7 cols) */}
             <div className="lg:col-span-7 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-              <img
-                src={currentDestination.image}
-                alt={currentDestination.name}
-                className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover shadow-xs shrink-0 border border-[#E8E3D7]"
-                referrerPolicy="no-referrer"
-              />
+              <div
+                onClick={() => setExpandedImage({
+                  src: currentDestination.image,
+                  alt: currentDestination.name,
+                  caption: currentDestination.name,
+                  subtitle: [currentDestination.category, currentDestination.tagline || currentDestination.summary].filter(Boolean).join(' • '),
+                })}
+                className="relative group cursor-pointer shrink-0 rounded-2xl overflow-hidden border border-[#E8E3D7] shadow-xs hover:shadow-lg transition-all duration-300 hover:scale-[1.03]"
+                title="Click to expand picture"
+              >
+                <img
+                  src={currentDestination.image}
+                  alt={currentDestination.name}
+                  className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover transition-transform duration-500 group-hover:scale-110"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/35 transition-colors flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-full bg-white/90 text-[#1C2A1E] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 transform scale-75 group-hover:scale-100 shadow-md">
+                    <Maximize2 className="w-4 h-4" />
+                  </div>
+                </div>
+              </div>
               <div>
                 <div className="flex flex-wrap items-center gap-2 mb-2">
                   <span className="text-xs font-semibold text-[#244E31] bg-[#EBF2EA] px-3 py-0.5 rounded-full border border-[#D5E4D2]">
@@ -366,7 +388,14 @@ export const DestinationReportCard: React.FC<DestinationReportCardProps> = ({
           </div>
         </div>
 
-        {/* 4.5 NEW SECTION: Primary Destination Impact Indicators & Safe Thresholds */}
+        {/* 5. Live Travel Risk & Advisory Section */}
+        <LiveTravelRiskAdvisoryCard
+          destinationId={currentDestination.id}
+          destinationName={currentDestination.name}
+          onNavigateToRecommendations={onGoToRecommendations}
+        />
+
+        {/* 6. Primary Destination Impact Indicators & Safe Thresholds */}
         <div className="mb-10">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-3">
             <div>
@@ -501,26 +530,142 @@ export const DestinationReportCard: React.FC<DestinationReportCardProps> = ({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {currentDestination.dataGaps && currentDestination.dataGaps.length > 0 ? (
-              currentDestination.dataGaps.map((gap) => (
-                <div key={gap.id} className="p-4 bg-[#FAF8F5] rounded-2xl border border-[#E8E3D7] text-xs flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-start justify-between gap-3 mb-1.5">
-                      <span className="font-bold text-[#1A381E] text-sm">{gap.title}</span>
-                      <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-white border border-[#E8E3D7] text-[#6B7E6A] shrink-0">
-                        {gap.category} · {gap.priority} Priority
-                      </span>
+              currentDestination.dataGaps.map((gap) => {
+                // Check if an ingested VERIFIED observation exists for this metric/gap (select latest measurement period)
+                const matchingObsList = (liveObservations || []).filter((o) => {
+                  const status = (o.status || '').toLowerCase();
+                  if (status !== 'verified') return false;
+                  const val = o.normalized_value ?? o.original_value;
+                  if (val === null || val === undefined || (typeof val === 'number' && isNaN(val))) return false;
+
+                  const code = (o.metric_definition?.code || (o as any).metric_code || '').toLowerCase();
+                  const name = (o.metric_definition?.name || (o as any).metric_name || '').toLowerCase();
+                  const notes = (o.notes || '').toLowerCase();
+                  const gapCat = (gap.category || '').toLowerCase();
+                  const gapTitle = (gap.title || '').toLowerCase();
+
+                  // 1. Match WAT-024 specifically for water quality / water gaps
+                  if (code.includes('wat-024') || code.includes('wat_024') || notes.includes('wat-024') || name.includes('wat-024')) {
+                    return gap.id === 'GAP-PUR-02' || gapCat.includes('water') || gapTitle.includes('water');
+                  }
+
+                  // 2. Match exact gap ID
+                  if (code === gap.id.toLowerCase() || code.includes(gap.id.toLowerCase())) return true;
+
+                  // 3. Match specific domain gaps when explicitly mapped by metric code
+                  if (gap.id === 'GAP-PUR-01' && (code.includes('air-') || code.includes('caaqms') || code.includes('aqi_live'))) return true;
+                  if (gap.id === 'GAP-PUR-03' && (code.includes('local_retention') || code.includes('retention_rate'))) return true;
+                  if (gap.id === 'GAP-PUR-04' && (code.includes('weighbridge') || code.includes('msw_weighbridge'))) return true;
+                  if (gap.id === 'GAP-PUR-05' && (code.includes('carrying_capacity') || code.includes('peak_capacity'))) return true;
+
+                  return false;
+                });
+
+                // Pick the latest VERIFIED observation by measurement period
+                const matchingObs = matchingObsList.sort((a, b) => {
+                  const endA = a.period_end || a.period_start || '';
+                  const endB = b.period_end || b.period_start || '';
+                  if (endA !== endB) return endB.localeCompare(endA);
+                  const startA = a.period_start || '';
+                  const startB = b.period_start || '';
+                  if (startA !== startB) return startB.localeCompare(startA);
+                  return (b.id || 0) - (a.id || 0);
+                })[0];
+
+                if (matchingObs) {
+                  const val = matchingObs.normalized_value ?? matchingObs.original_value;
+                  const unit = matchingObs.metric_definition?.unit || '';
+                  const metricCode = matchingObs.metric_definition?.code || 'WAT-024';
+                  const periodStr = matchingObs.period_start === matchingObs.period_end 
+                    ? matchingObs.period_start 
+                    : `${matchingObs.period_start} → ${matchingObs.period_end}`;
+                  const sourceName = matchingObs.dataset?.name || 'Verified Statutory Source';
+
+                  return (
+                    <div key={gap.id} className="p-4 bg-white rounded-2xl border border-[#D5E4D2] text-xs flex flex-col justify-between shadow-2xs">
+                      <div>
+                        <div className="flex items-start justify-between gap-3 mb-2">
+                          <div>
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-[#244E31] block">
+                              Resolved Data Gap · Verified Telemetry
+                            </span>
+                            <span className="font-bold text-[#1A381E] text-sm">{gap.title}</span>
+                          </div>
+                          <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#EBF2EA] border border-[#D5E4D2] text-[#244E31] flex items-center gap-1 shrink-0">
+                            <CheckCircle2 className="w-3 h-3 text-[#244E31]" />
+                            <span>VERIFIED</span>
+                          </span>
+                        </div>
+
+                        {/* Ingested Measurement Display */}
+                        <div className="my-2.5 p-3 bg-[#FAF8F5] rounded-xl border border-[#E8E3D7] flex items-baseline justify-between">
+                          <div>
+                            <span className="text-[10px] font-bold text-[#4A5D4A] uppercase tracking-wider block">
+                              Measured Observation ({metricCode})
+                            </span>
+                            <span className="text-xl font-serif font-bold text-[#1A381E]">
+                              {val} <span className="text-xs font-normal text-[#556755]">{unit}</span>
+                            </span>
+                          </div>
+                          <span className="text-[10px] font-semibold text-[#244E31] bg-[#EBF2EA] px-2 py-0.5 rounded-md">
+                            Direct Measurement
+                          </span>
+                        </div>
+
+                        <p className="text-xs text-[#556755] leading-relaxed font-normal">
+                          <strong className="text-[#1A381E] font-semibold">Provenance:</strong> {matchingObs.notes || matchingObs.methodology || 'Official administrative audit verified in cryptographic ledger.'}
+                        </p>
+                      </div>
+
+                      <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] text-[#6B7E6A] mt-3 pt-2.5 border-t border-[#EFEAE0]">
+                        <div className="flex items-center gap-2">
+                          <span>Period: <strong className="text-[#1A381E] font-medium">{periodStr}</strong></span>
+                          <span>•</span>
+                          <span className="truncate max-w-[140px]" title={sourceName}>Source: <strong className="text-[#1A381E] font-medium">{sourceName}</strong></span>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (onOpenObservationProvenance) {
+                              onOpenObservationProvenance(matchingObs.id);
+                            } else {
+                              onOpenEvidence('environment');
+                            }
+                          }}
+                          className="font-bold text-[#244E31] hover:underline flex items-center gap-1 cursor-pointer ml-auto"
+                        >
+                          <span>View Evidence</span>
+                          <ArrowRight className="w-3 h-3" />
+                        </button>
+                      </div>
                     </div>
-                    <p className="text-xs text-[#556755] leading-relaxed font-normal">
-                      <strong className="text-[#1A381E] font-semibold">Why it matters:</strong> {gap.whyItMatters}
-                    </p>
+                  );
+                }
+
+                return (
+                  <div key={gap.id} className="p-4 bg-[#FAF8F5] rounded-2xl border border-[#E8E3D7] text-xs flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-start justify-between gap-3 mb-1.5">
+                        <span className="font-bold text-[#1A381E] text-sm">{gap.title}</span>
+                        <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-white border border-[#E8E3D7] text-[#6B7E6A] shrink-0">
+                          {gap.category} · {gap.priority} Priority
+                        </span>
+                      </div>
+                      <p className="text-xs text-[#556755] leading-relaxed font-normal">
+                        <strong className="text-[#1A381E] font-semibold">Why it matters:</strong> {gap.whyItMatters}
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-3 text-[11px] text-[#6B7E6A] mt-3 pt-2.5 border-t border-[#EFEAE0]">
+                      <span>Missing: <strong className="text-[#1A381E] font-medium">{gap.missingDescription}</strong></span>
+                      <span>•</span>
+                      <span>Status: <strong className="text-[#B45309] font-medium">Data Gap (Uncomputed)</strong></span>
+                      <span>•</span>
+                      <span>Estimation: <strong className="text-[#244E31] font-medium">{gap.estimationMethodology || (gap.isEstimationPossible ? 'Feasible via satellite/proxy models' : 'Field survey required')}</strong></span>
+                    </div>
                   </div>
-                  <div className="flex flex-wrap items-center gap-3 text-[11px] text-[#6B7E6A] mt-3 pt-2.5 border-t border-[#EFEAE0]">
-                    <span>Missing: <strong className="text-[#1A381E] font-medium">{gap.missingDescription}</strong></span>
-                    <span>•</span>
-                    <span>Estimation: <strong className="text-[#244E31] font-medium">{gap.estimationMethodology || (gap.isEstimationPossible ? 'Feasible via satellite/proxy models' : 'Field survey required')}</strong></span>
-                  </div>
-                </div>
-              ))
+                );
+              })
             ) : (
               <p className="text-sm text-[#556755] italic py-4 col-span-2">No active critical data gaps identified for this corridor.</p>
             )}
@@ -768,6 +913,16 @@ export const DestinationReportCard: React.FC<DestinationReportCardProps> = ({
           destination={currentDestination}
           isOpen={scoreBreakdownOpen}
           onClose={() => setScoreBreakdownOpen(false)}
+        />
+
+        {/* Modal for Expanding Destination Pictures */}
+        <ImageModal
+          isOpen={!!expandedImage}
+          onClose={() => setExpandedImage(null)}
+          imageSrc={expandedImage?.src || ''}
+          imageAlt={expandedImage?.alt}
+          caption={expandedImage?.caption}
+          subtitle={expandedImage?.subtitle}
         />
 
       </div>
