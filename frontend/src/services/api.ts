@@ -8,7 +8,7 @@
 
 import { authService } from './authService';
 
-const API_BASE_URL = '/api/v1';
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api/v1';
 // ── Backend Contract Interfaces ──────────────────────────────────────────────
 
 export interface BackendDestination {
@@ -2760,7 +2760,7 @@ const HISTORICAL_OFFICIAL_ALERTS: Record<string, RecentOfficialWarning[]> = {
       status: 'Active',
       original_severity: 'HIGH',
       short_explanation: 'Active cyclonic circulation over Northwest Bay of Bengal brings widespread rainfall (70–110 mm) and coastal squall gusts up to 45–55 km/h along Puri Marine Drive.',
-      source_url: 'https://mausam.imd.gov.in/bhubaneswar/mcdata/District.pdf',
+      source_url: 'https://mausam.imd.gov.in/bhubaneswar/mcdata/special_bulletin_20260909_squall.pdf',
       retrieved_at: '2026-09-09T08:35:00+05:30',
       verification_status: 'VERIFIED_OFFICIAL_RECORD',
     },
@@ -2822,7 +2822,7 @@ const HISTORICAL_OFFICIAL_ALERTS: Record<string, RecentOfficialWarning[]> = {
       status: 'Active',
       original_severity: 'HIGH',
       short_explanation: 'Active cyclonic circulation over Bay of Bengal brings coastal squall gusts (45–55 km/h) and heavy rain across Chilika lagoon perimeter and adjoining Khordha/Puri districts.',
-      source_url: 'https://mausam.imd.gov.in/bhubaneswar/mcdata/District.pdf',
+      source_url: 'https://mausam.imd.gov.in/bhubaneswar/mcdata/special_bulletin_20260909_squall.pdf',
       retrieved_at: '2026-09-09T08:35:00+05:30',
       verification_status: 'VERIFIED_OFFICIAL_RECORD',
     },
@@ -2884,7 +2884,7 @@ const HISTORICAL_OFFICIAL_ALERTS: Record<string, RecentOfficialWarning[]> = {
       status: 'Active',
       original_severity: 'HIGH',
       short_explanation: 'Active cyclonic circulation over Bay of Bengal brings gusty winds and heavy rain across Konark Marine Drive and Chandrabhaga Beach corridor.',
-      source_url: 'https://mausam.imd.gov.in/bhubaneswar/mcdata/District.pdf',
+      source_url: 'https://mausam.imd.gov.in/bhubaneswar/mcdata/special_bulletin_20260909_squall.pdf',
       retrieved_at: '2026-09-09T08:35:00+05:30',
       verification_status: 'VERIFIED_OFFICIAL_RECORD',
     },
@@ -2946,7 +2946,7 @@ const HISTORICAL_OFFICIAL_ALERTS: Record<string, RecentOfficialWarning[]> = {
       status: 'Active',
       original_severity: 'HIGH',
       short_explanation: 'Monsoon squall band across Khordha district; light-to-moderate rain with localized waterlogged crossings in urban Bhubaneswar.',
-      source_url: 'https://mausam.imd.gov.in/bhubaneswar/mcdata/District.pdf',
+      source_url: 'https://mausam.imd.gov.in/bhubaneswar/mcdata/special_bulletin_20260909_squall.pdf',
       retrieved_at: '2026-09-09T08:35:00+05:30',
       verification_status: 'VERIFIED_OFFICIAL_RECORD',
     },
@@ -6138,7 +6138,7 @@ async function fetchDirectLiveTravelAdvisory(
     last_successful_refresh_at_ist: `${now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}, ${now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })} IST`,
     last_updated: `${now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}, ${timeStr} IST`,
     data_age_seconds: dataAgeSeconds,
-    official_alert_url: active_warnings.length > 0 && active_warnings[0].source_url ? active_warnings[0].source_url : 'https://mausam.imd.gov.in/bhubaneswar/mcdata/District.pdf',
+    official_alert_url: active_warnings.length > 0 && active_warnings[0].source_url ? active_warnings[0].source_url : undefined,
   };
 }
 
