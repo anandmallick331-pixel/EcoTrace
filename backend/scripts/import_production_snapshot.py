@@ -6,7 +6,8 @@ using the standard DATABASE_URL environment variable.
 
 Features:
 - Preserves exact IDs, timestamps, foreign keys, and enum values
-- Validates target state before inserting
+- Validates that required application tables exist before inserting
+- Safely treats alembic_version as optional metadata (never fails if missing)
 - Atomic transaction (rolls back on any error)
 - Resets all PostgreSQL sequence generators to max(id)
 - Displays table-by-table import summary and audit
@@ -15,14 +16,12 @@ import argparse
 import json
 import os
 import sys
-from typing import Any
 
 import psycopg2
 import psycopg2.extras
 
-# Topological table order to preserve foreign key constraints
-TABLE_ORDER = [
-    "alembic_version",
+# Required application tables in topological dependency order
+APPLICATION_TABLES = [
     "destinations",
     "sources",
     "locations",
@@ -35,6 +34,11 @@ TABLE_ORDER = [
     "source_conflicts",
     "observation_reconciliations",
     "observation_reconciliation_members",
+]
+
+# Optional metadata tables
+OPTIONAL_METADATA_TABLES = [
+    "alembic_version",
 ]
 
 
@@ -82,23 +86,31 @@ def get_target_database_url(explicit_url: str | None) -> str:
     )
 
 
+def check_table_exists(cur, table_name: str) -> bool:
+    cur.execute(
+        """
+        SELECT 1 FROM information_schema.tables 
+        WHERE table_schema = 'public' AND table_name = %s;
+        """,
+        (table_name,),
+    )
+    return cur.fetchone() is not None
+
+
 def check_table_counts(cur) -> dict[str, int]:
     counts = {}
-    for table_name in TABLE_ORDER:
+    for table_name in APPLICATION_TABLES:
         try:
             cur.execute(f'SELECT count(*) FROM "{table_name}";')
             counts[table_name] = cur.fetchone()[0]
         except Exception:
-            # Table might not exist yet if alembic hasn't run
             counts[table_name] = -1
     return counts
 
 
 def reset_sequences(cur) -> None:
     print("\n--- Resetting PostgreSQL Primary Key Sequences ---")
-    for table_name in TABLE_ORDER:
-        if table_name == "alembic_version":
-            continue
+    for table_name in APPLICATION_TABLES:
         try:
             # Check if table has an 'id' column
             cur.execute(f"""
@@ -151,16 +163,29 @@ def import_data(snapshot_file: str, db_url: str, clean: bool, force: bool, dry_r
 
     try:
         with conn.cursor() as cur:
-            # 1. Inspect target table states
+            # 1. Verify required application tables exist
+            missing_tables = []
+            for table_name in APPLICATION_TABLES:
+                if not check_table_exists(cur, table_name):
+                    missing_tables.append(table_name)
+
+            if missing_tables:
+                print("\n[ERROR] Missing required application table(s) in target database:")
+                for t in missing_tables:
+                    print(f"  - {t}")
+                print("\nPlease ensure the application has initialized the database schema before importing.")
+                conn.rollback()
+                conn.close()
+                sys.exit(1)
+
+            # 2. Inspect target table states
             current_counts = check_table_counts(cur)
-            has_existing_data = any(cnt > 0 for t, cnt in current_counts.items() if t != "alembic_version")
+            has_existing_data = any(cnt > 0 for cnt in current_counts.values())
 
             if has_existing_data:
                 if clean:
                     print("\n--- Cleaning/Truncating Existing Records (--clean flag specified) ---")
-                    for table_name in reversed(TABLE_ORDER):
-                        if table_name == "alembic_version":
-                            continue
+                    for table_name in reversed(APPLICATION_TABLES):
                         print(f"  Truncating table: {table_name}")
                         cur.execute(f'TRUNCATE TABLE "{table_name}" CASCADE;')
                 elif not force:
@@ -173,23 +198,28 @@ def import_data(snapshot_file: str, db_url: str, clean: bool, force: bool, dry_r
                     conn.close()
                     sys.exit(1)
 
-            # 2. Insert records table by table
-            print("\n--- Inserting Snapshot Records ---")
+            # 3. Handle optional alembic_version table
+            alembic_rows = data.get("alembic_version", [])
+            if alembic_rows and check_table_exists(cur, "alembic_version"):
+                try:
+                    cur.execute("DELETE FROM alembic_version;")
+                    version_num = alembic_rows[0].get("version_num")
+                    if version_num:
+                        cur.execute("INSERT INTO alembic_version (version_num) VALUES (%s);", (version_num,))
+                        print(f"  [OK] alembic_version                     : 1 row (version: {version_num})")
+                except Exception as e:
+                    print(f"  [INFO] alembic_version update skipped ({e})")
+            else:
+                print("  [INFO] alembic_version table not present or skipped (optional metadata)")
+
+            # 4. Insert application records table by table
+            print("\n--- Inserting Application Records ---")
             imported_counts = {}
-            for table_name in TABLE_ORDER:
+            for table_name in APPLICATION_TABLES:
                 rows = data.get(table_name, [])
                 if not rows:
                     imported_counts[table_name] = 0
                     print(f"  [OK] {table_name:35} : 0 rows (skipped)")
-                    continue
-
-                if table_name == "alembic_version":
-                    # Update or insert alembic version
-                    cur.execute("DELETE FROM alembic_version;")
-                    version_num = rows[0].get("version_num")
-                    cur.execute("INSERT INTO alembic_version (version_num) VALUES (%s);", (version_num,))
-                    imported_counts[table_name] = 1
-                    print(f"  [OK] {table_name:35} : 1 row (version: {version_num})")
                     continue
 
                 # Prepare parameterized batch insert
@@ -214,15 +244,20 @@ def import_data(snapshot_file: str, db_url: str, clean: bool, force: bool, dry_r
                 imported_counts[table_name] = len(rows)
                 print(f"  [OK] {table_name:35} : {len(rows):5} rows inserted")
 
-            # 3. Reset Sequences
+            # 5. Reset Sequences
             reset_sequences(cur)
 
-            # 4. Final Verification
+            # 6. Final Verification
             print("\n--- Target Database Verification Audit ---")
             final_counts = check_table_counts(cur)
-            for table_name in TABLE_ORDER:
+            for table_name in APPLICATION_TABLES:
                 cnt = final_counts.get(table_name, 0)
                 print(f"  {table_name:35} : {cnt:5} rows verified in DB")
+
+            if check_table_exists(cur, "alembic_version"):
+                cur.execute("SELECT count(*) FROM alembic_version;")
+                cnt = cur.fetchone()[0]
+                print(f"  {'alembic_version':35} : {cnt:5} rows verified in DB (optional)")
 
             if dry_run:
                 print("\n[DRY RUN] Rolling back transaction. No changes were committed.")
