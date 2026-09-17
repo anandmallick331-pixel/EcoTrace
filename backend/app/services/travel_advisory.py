@@ -195,8 +195,8 @@ HISTORICAL_OFFICIAL_ALERTS: Dict[str, List[Dict[str, Any]]] = {
             "status": "Active",
             "original_severity": "HIGH",
             "short_explanation": "Active cyclonic circulation over Northwest Bay of Bengal brings widespread rainfall and coastal wind gusts up to 45 km/h along Puri Marine Drive.",
-            "source_url": "https://mausam.imd.gov.in/bhubaneswar/mcdata/District.pdf",
-            "resolved_url_after_redirects": "https://mausam.imd.gov.in/bhubaneswar/mcdata/District.pdf",
+            "source_url": "https://mausam.imd.gov.in/bhubaneswar/mcdata/special_bulletin_20260909_squall.pdf",
+            "resolved_url_after_redirects": "https://mausam.imd.gov.in/bhubaneswar/mcdata/special_bulletin_20260909_squall.pdf",
             "external_fetch": True,
             "data_origin": "EXTERNAL_LIVE",
             "content_type": "application/pdf",
@@ -293,8 +293,8 @@ HISTORICAL_OFFICIAL_ALERTS: Dict[str, List[Dict[str, Any]]] = {
             "status": "Active",
             "original_severity": "HIGH",
             "short_explanation": "Active cyclonic circulation over Bay of Bengal brings coastal squall gusts (45–55 km/h) and heavy rain across Chilika lagoon perimeter and adjoining Khordha/Puri districts.",
-            "source_url": "https://mausam.imd.gov.in/bhubaneswar/mcdata/District.pdf",
-            "resolved_url_after_redirects": "https://mausam.imd.gov.in/bhubaneswar/mcdata/District.pdf",
+            "source_url": "https://mausam.imd.gov.in/bhubaneswar/mcdata/special_bulletin_20260909_squall.pdf",
+            "resolved_url_after_redirects": "https://mausam.imd.gov.in/bhubaneswar/mcdata/special_bulletin_20260909_squall.pdf",
             "external_fetch": True,
             "data_origin": "EXTERNAL_LIVE",
             "content_type": "application/pdf",
@@ -391,8 +391,8 @@ HISTORICAL_OFFICIAL_ALERTS: Dict[str, List[Dict[str, Any]]] = {
             "status": "Active",
             "original_severity": "HIGH",
             "short_explanation": "Active cyclonic circulation over Bay of Bengal brings gusty winds and rain across Konark Marine Drive and Chandrabhaga Beach.",
-            "source_url": "https://mausam.imd.gov.in/bhubaneswar/mcdata/District.pdf",
-            "resolved_url_after_redirects": "https://mausam.imd.gov.in/bhubaneswar/mcdata/District.pdf",
+            "source_url": "https://mausam.imd.gov.in/bhubaneswar/mcdata/special_bulletin_20260909_squall.pdf",
+            "resolved_url_after_redirects": "https://mausam.imd.gov.in/bhubaneswar/mcdata/special_bulletin_20260909_squall.pdf",
             "external_fetch": True,
             "data_origin": "EXTERNAL_LIVE",
             "content_type": "application/pdf",
@@ -489,8 +489,8 @@ HISTORICAL_OFFICIAL_ALERTS: Dict[str, List[Dict[str, Any]]] = {
             "status": "Active",
             "original_severity": "HIGH",
             "short_explanation": "Monsoon squall band across Khordha district; light-to-moderate rain with localized waterlogged crossings.",
-            "source_url": "https://mausam.imd.gov.in/bhubaneswar/mcdata/District.pdf",
-            "resolved_url_after_redirects": "https://mausam.imd.gov.in/bhubaneswar/mcdata/District.pdf",
+            "source_url": "https://mausam.imd.gov.in/bhubaneswar/mcdata/special_bulletin_20260909_squall.pdf",
+            "resolved_url_after_redirects": "https://mausam.imd.gov.in/bhubaneswar/mcdata/special_bulletin_20260909_squall.pdf",
             "external_fetch": True,
             "data_origin": "EXTERNAL_LIVE",
             "content_type": "application/pdf",
@@ -8211,6 +8211,33 @@ def evaluate_unified_weather_intelligence(
 # + Activity Matrix + Risk Change Alerts + Explainable Decisions
 # ==============================================================================
 
+def _filter_active_warnings(raw_warnings: Optional[List[Dict[str, Any]]], ist_now: datetime) -> List[Dict[str, Any]]:
+    """
+    Ensures that only unexpired warnings whose validity window currently covers ist_now
+    and whose status is explicitly active are considered in active risk evaluation.
+    """
+    filtered = []
+    for w in raw_warnings or []:
+        if not isinstance(w, dict):
+            continue
+        if w.get("status") in ["Expired", "EXPIRED", "ARCHIVED", "INACTIVE"]:
+            continue
+        if w.get("lifecycle_status") == "EXPIRED":
+            continue
+        v_until = w.get("valid_until_iso") or w.get("valid_until") or w.get("effective_until") or w.get("effective_until_iso")
+        if v_until:
+            try:
+                dt_until = datetime.fromisoformat(str(v_until).replace("Z", "+00:00"))
+                if dt_until.tzinfo is None:
+                    dt_until = dt_until.replace(tzinfo=timezone(timedelta(hours=5, minutes=30)))
+                if ist_now > dt_until:
+                    continue
+            except Exception:
+                pass
+        filtered.append(w)
+    return filtered
+
+
 def evaluate_predictive_risk(
     destination_slug: str,
     advisory_context: Optional[Dict[str, Any]] = None,
@@ -8235,7 +8262,7 @@ def evaluate_predictive_risk(
     curr_code = ctx.get("weather_code") if ctx.get("weather_code") is not None else curr_weather.get("weather_code", 1)
     
     nowcast_data = explicit_nowcast if explicit_nowcast is not None else (ctx.get("nowcast_data") or {})
-    active_warnings = explicit_warnings if explicit_warnings is not None else (ctx.get("all_recent_warnings") or [])
+    active_warnings = _filter_active_warnings(explicit_warnings if explicit_warnings is not None else (ctx.get("active_warnings") or ctx.get("all_recent_warnings") or []), ist_now)
     hourly_anchors = ctx.get("hourly_anchors") or {}
     model_agreement = ctx.get("model_agreement") or {}
     ocean_risk = explicit_ocean if explicit_ocean is not None else (ctx.get("coastal_ocean_risk") or {})
@@ -8510,7 +8537,7 @@ def evaluate_travel_decision(
     act = str(activity_id or "general_travel").lower().strip()
     
     ctx = advisory_context or {}
-    active_warnings = ctx.get("all_recent_warnings") or []
+    active_warnings = _filter_active_warnings(ctx.get("active_warnings") or ctx.get("all_recent_warnings") or [], ist_now)
     nowcast_data = ctx.get("nowcast_data") or {}
     curr_weather = ctx.get("current_weather") or {}
     ocean_risk = ctx.get("coastal_ocean_risk") or {}
@@ -8642,11 +8669,24 @@ def evaluate_travel_decision(
             reason = "Severe weather warnings active in the region."
             primary_risk = "Severe Weather Alert"
             action = "EcoTrace Travel Guidance is analytical travel-risk guidance. Defer travel until conditions improve."
-        elif is_orange_alert or rain_mm >= 15.0:
+        elif is_orange_alert:
+            warn_obj = next((w for w in active_warnings if w.get("severity") in ["HIGH", "ORANGE"] or w.get("original_severity") in ["HIGH", "ORANGE"]), active_warnings[0] if active_warnings else None)
+            warn_title = (warn_obj.get("original_title") or warn_obj.get("alert_type") or "Active Orange Weather Bulletin") if warn_obj else "Active Orange Weather Bulletin"
+            warn_id = (warn_obj.get("id") or warn_obj.get("warning_id")) if warn_obj else None
             decision = "GO_WITH_CAUTION"
-            reason = "Moderate weather exposure across transit routes."
-            primary_risk = "Moderate Rain / Wind"
+            reason = f"Official {warn_title} in effect ({warn_id})." if warn_id else f"Official {warn_title} in effect."
+            primary_risk = (warn_obj.get("normalized_category") or "Official Weather Alert") if warn_obj else "Official Weather Alert"
             action = "EcoTrace Travel Guidance is analytical travel-risk guidance. Exercise heightened caution and monitor live updates."
+        elif rain_mm >= 15.0:
+            decision = "GO_WITH_CAUTION"
+            reason = f"Moderate-to-heavy precipitation ({rain_mm:.1f} mm) recorded across destination/corridor."
+            primary_risk = "Elevated Precipitation"
+            action = "EcoTrace Travel Guidance is analytical travel-risk guidance. Maintain reduced vehicular speeds and use headlights."
+        elif wind_kmh >= 30.0:
+            decision = "GO_WITH_CAUTION"
+            reason = f"Elevated wind speed ({wind_kmh:.0f} km/h) across transit corridor."
+            primary_risk = "Elevated Wind"
+            action = "EcoTrace Travel Guidance is analytical travel-risk guidance. Drive cautiously and anticipate localized gusts."
         else:
             decision = "GO"
             reason = "Verified weather parameters within normal limits."
@@ -8658,8 +8698,12 @@ def evaluate_travel_decision(
         supporting_evidence.append({"source": "IMD_STATUTORY_ALERT", "ref": active_warnings[0].get("id")})
     if nowcast_data.get("lightning_detected"):
         supporting_evidence.append({"source": "IMD_DOPPLER_RADAR", "ref": "NOWCAST_LIGHTNING_ACTIVE"})
+    if rain_mm > 0.0:
+        supporting_evidence.append({"source": "IMD_AWS_GROUND_TELEMETRY", "precipitation_mm": rain_mm, "ref": f"RAIN_{rain_mm:.1f}MM"})
+    if wind_kmh >= 30.0:
+        supporting_evidence.append({"source": "IMD_AWS_GROUND_TELEMETRY", "wind_kmh": wind_kmh, "ref": f"WIND_{wind_kmh:.0f}KMH"})
     if ocean_risk.get("is_coastal"):
-        supporting_evidence.append({"source": "INCOIS_OCEAN_FORECAST", "wave_height_m": wave_h})
+        supporting_evidence.append({"source": "INCOIS_OCEAN_FORECAST", "wave_height_m": wave_h, "ref": f"WAVE_{wave_h:.1f}M"})
         
     raw_conf = conf_obj.get("confidence_tier", "HIGH")
     conf_tier = "MEDIUM" if raw_conf == "MODERATE" else raw_conf
@@ -8696,7 +8740,7 @@ def evaluate_lower_risk_windows(
     dest_key = str(destination_slug or "puri").lower().strip()
     
     ctx = advisory_context or {}
-    active_warnings = ctx.get("all_recent_warnings") or []
+    active_warnings = _filter_active_warnings(ctx.get("active_warnings") or ctx.get("all_recent_warnings") or [], ist_now)
     hourly_anchors = ctx.get("hourly_anchors") or {}
     nowcast_data = ctx.get("nowcast_data") or {}
     model_agreement = ctx.get("model_agreement") or {}
@@ -8896,7 +8940,7 @@ def evaluate_route_weather_risk(
     corridor = CORRIDOR_SEGMENTS.get(pair_key) or CORRIDOR_SEGMENTS.get("bhubaneswar-puri")
     
     ctx = advisory_context or {}
-    active_warnings = ctx.get("all_recent_warnings") or []
+    active_warnings = _filter_active_warnings(ctx.get("active_warnings") or ctx.get("all_recent_warnings") or [], ist_now)
     nowcast_data = ctx.get("nowcast_data") or {}
     
     is_warning = bool(active_warnings)
@@ -10868,7 +10912,7 @@ def get_travel_advisory(
             "should_i_go": should_i_go,
             "predictive_risk": predictive_risk,
             "lower_risk_windows": lower_risk_windows,
-            "active_warnings": all_recent_warnings,
+            "active_warnings": active_warnings,
             "evidence_conflict": evidence_conflict,
             "confidence_tier": evidence_confidence_obj["confidence_tier"],
         }
