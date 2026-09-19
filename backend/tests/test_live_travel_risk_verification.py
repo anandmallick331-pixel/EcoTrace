@@ -8914,20 +8914,453 @@ def test_imd_unavailable_source_classification():
         assert res["station_provenance"]["verification_status"] != "VERIFIED_STATION_OBSERVATION"
 
 
+def test_weather_ai_food_query_refused():
+    """TEST BUG-01A: Weather Intelligence strictly refuses food and dining questions."""
+    from app.services.weather_intelligence import generate_weather_intelligence_answer, _SCOPE_REFUSAL_MESSAGE
+
+    for food_query in [
+        "what to eat in bhubaneswar?",
+        "where to eat in bhubaneswar?",
+        "best seafood restaurants in puri",
+        "recipe for dalma in odisha",
+        "famous street food in cuttack",
+    ]:
+        ans = generate_weather_intelligence_answer(question=food_query, destination_slug="bhubaneswar")
+        assert ans["is_weather_scope"] is False
+        assert ans["answer_type"] == "OUT_OF_SCOPE"
+        assert ans["answer"] == _SCOPE_REFUSAL_MESSAGE
+        assert "weather" in ans["why"].lower()
 
 
+def test_weather_ai_hotel_query_refused():
+    """TEST BUG-01B: Weather Intelligence strictly refuses hotel and accommodation questions."""
+    from app.services.weather_intelligence import generate_weather_intelligence_answer, _SCOPE_REFUSAL_MESSAGE
+
+    for hotel_query in [
+        "hotels in puri near beach",
+        "where to stay in bhubaneswar",
+        "resort booking in chilika lake",
+        "cheap hostel near konark temple",
+    ]:
+        ans = generate_weather_intelligence_answer(question=hotel_query, destination_slug="puri")
+        assert ans["is_weather_scope"] is False
+        assert ans["answer_type"] == "OUT_OF_SCOPE"
+        assert ans["answer"] == _SCOPE_REFUSAL_MESSAGE
 
 
+def test_weather_ai_sports_query_refused():
+    """TEST BUG-01C: Weather Intelligence strictly refuses sports and entertainment questions."""
+    from app.services.weather_intelligence import generate_weather_intelligence_answer, _SCOPE_REFUSAL_MESSAGE
+
+    for sports_query in [
+        "cricket score in bhubaneswar",
+        "football match stadium tickets",
+        "who won the ipl match yesterday",
+        "latest movie in cinema hall",
+    ]:
+        ans = generate_weather_intelligence_answer(question=sports_query, destination_slug="bhubaneswar")
+        assert ans["is_weather_scope"] is False
+        assert ans["answer_type"] == "OUT_OF_SCOPE"
+        assert ans["answer"] == _SCOPE_REFUSAL_MESSAGE
 
 
+def test_weather_ai_non_weather_cannot_fall_through_to_weather_summary():
+    """TEST BUG-01D: Non-weather and ambiguous inputs never fall through to WEATHER_SUMMARY."""
+    from app.services.weather_intelligence import generate_weather_intelligence_answer, _SCOPE_REFUSAL_MESSAGE
+
+    for general_query in [
+        "tell me about puri",
+        "what is bhubaneswar",
+        "who built konark sun temple",
+        "hi",
+        "hello",
+        "how are you doing",
+        "tell me a joke",
+        "write python code for me",
+        "who is the prime minister of india",
+    ]:
+        ans = generate_weather_intelligence_answer(question=general_query, destination_slug="puri")
+        assert ans["is_weather_scope"] is False
+        assert ans["answer_type"] == "OUT_OF_SCOPE"
+        assert ans["answer"] == _SCOPE_REFUSAL_MESSAGE
+
+    # Valid weather queries MUST continue to work
+    valid_queries = [
+        "what is the current weather in bhubaneswar?",
+        "will it rain in puri today?",
+        "should i go to chilika right now?",
+        "what time should i travel to konark?",
+        "what should i carry for puri?",
+        "is sea bathing advisable in puri today?",
+    ]
+    for vq in valid_queries:
+        ans = generate_weather_intelligence_answer(question=vq, destination_slug="puri")
+        assert ans["is_weather_scope"] is True
+        assert ans["answer_type"] != "OUT_OF_SCOPE"
+        assert len(ans["answer"]) > 0
 
 
+def test_go_with_caution_has_supporting_factor():
+    """TEST BUG-02: Decision is GO under clear weather; GO_WITH_CAUTION requires concrete grounded factor."""
+    from app.services.travel_advisory import evaluate_travel_decision, _get_ist_time
+
+    ist_now = _get_ist_time()
+
+    # Case A: Clear weather, 0mm rain, 6 km/h wind, no active warnings -> Decision MUST be GO
+    clear_ctx = {
+        "is_live": True,
+        "current_weather": {
+            "temperature_c": 27.0,
+            "precipitation_mm": 0.0,
+            "wind_speed_kmh": 6.0,
+            "weather_condition": "Clear Sky",
+        },
+        "temp_c": 27.0,
+        "precip_mm": 0.0,
+        "wind_kmh": 6.0,
+        "active_warnings": [],
+        "nowcast_data": {"lightning_detected": False},
+        "coastal_ocean_risk": {"is_coastal": False, "significant_wave_height_m": 0.5},
+        "evidence_confidence_obj": {"confidence_tier": "HIGH"},
+    }
+    res_clear = evaluate_travel_decision(
+        destination_slug="bhubaneswar",
+        activity_id="general_travel",
+        time_window="NOW",
+        advisory_context=clear_ctx,
+    )
+    assert res_clear["decision"] == "GO"
+    assert "within normal limits" in res_clear["decision_reason"].lower()
+    assert "moderate weather exposure across transit routes" not in res_clear["decision_reason"].lower()
+
+    # Case B: Supported GO_WITH_CAUTION (e.g. Orange Alert or Heavy Rain) -> must cite specific factor
+    orange_warning = {
+        "id": "IMD-ODISHA-2026-0909",
+        "original_title": "Special Weather Bulletin: Heavy Rain & Squall Alert for Coastal Odisha",
+        "severity": "HIGH",
+        "original_severity": "HIGH",
+        "status": "Active",
+        "effective_from": (ist_now - timedelta(hours=1)).isoformat(),
+        "effective_until": (ist_now + timedelta(hours=5)).isoformat(),
+    }
+    orange_ctx = dict(clear_ctx)
+    orange_ctx["active_warnings"] = [orange_warning]
+    res_orange = evaluate_travel_decision(
+        destination_slug="puri",
+        activity_id="general_travel",
+        time_window="NOW",
+        advisory_context=orange_ctx,
+    )
+    assert res_orange["decision"] == "GO_WITH_CAUTION"
+    assert "IMD-ODISHA-2026-0909" in res_orange["decision_reason"] or "Special Weather Bulletin" in res_orange["decision_reason"]
+    assert any(ev.get("ref") == "IMD-ODISHA-2026-0909" for ev in res_orange["supporting_evidence"])
+    assert "moderate weather exposure across transit routes" not in res_orange["decision_reason"].lower()
 
 
+def test_warning_history_uses_warning_source_not_latest_forecast_document():
+    """TEST BUG-03: Warning history records link to warning documents, never daily forecast District.pdf."""
+    from app.services.travel_advisory import HISTORICAL_OFFICIAL_ALERTS
+
+    for dest_key, warnings in HISTORICAL_OFFICIAL_ALERTS.items():
+        for w in warnings:
+            src_url = w.get("source_url")
+            resolved_url = w.get("resolved_url_after_redirects")
+            # Must NOT use daily forecast District.pdf for warning records
+            assert src_url is not None, f"Warning {w.get('id')} has missing source_url"
+            assert "District.pdf" not in src_url, f"Warning {w.get('id')} incorrectly points to daily forecast District.pdf"
+            if resolved_url:
+                assert "District.pdf" not in resolved_url, f"Warning {w.get('id')} resolved_url incorrectly points to District.pdf"
+            # Provenance must be a warning or nowcast document
+            assert any(ext in src_url for ext in ["special_bulletin", "warning", "seoc_alert", "nowcast", "bulletin", "html", "pdf"])
 
 
+# ==============================================================================
+# MODEL WEATHER CACHING & HTTP 429 RESILIENCE TESTS
+# ==============================================================================
+
+def test_model_weather_caching_and_deduplication():
+    """TEST MW-01: Repeated calls for the same coordinates within fresh TTL reuse cache without network calls."""
+    import urllib.request
+    from unittest.mock import MagicMock
+    from app.services.travel_advisory import (
+        fetch_live_destination_weather,
+        reset_model_weather_cache,
+        MODEL_WEATHER_CACHE,
+    )
+
+    reset_model_weather_cache()
+
+    sample_response = {
+        "current": {
+            "time": "2026-09-20T12:00",
+            "temperature_2m": 29.5,
+            "relative_humidity_2m": 75,
+            "precipitation": 0.0,
+            "rain": 0.0,
+            "weather_code": 1,
+            "wind_speed_10m": 12.0,
+            "wind_gusts_10m": 16.0,
+        },
+        "hourly": {
+            "time": ["2026-09-20T12:00", "2026-09-20T13:00"],
+            "temperature_2m": [29.5, 29.0],
+            "precipitation_probability": [10, 15],
+            "precipitation": [0.0, 0.0],
+            "weather_code": [1, 1],
+            "wind_gusts_10m": [16.0, 18.0],
+        },
+    }
+
+    mock_resp = MagicMock()
+    mock_resp.status = 200
+    mock_resp.read.return_value = json.dumps(sample_response).encode("utf-8")
+    mock_resp.__enter__.return_value = mock_resp
+    mock_resp.__exit__.return_value = None
+
+    with patch("urllib.request.urlopen", return_value=mock_resp) as mock_urlopen:
+        # 1st call: Should hit network
+        res1 = fetch_live_destination_weather(19.8000, 85.8200)
+        assert res1 is not None
+        assert res1["current"]["temperature_2m"] == 29.5
+        assert mock_urlopen.call_count == 1
+
+        # 2nd call: Identical coordinates, within fresh TTL -> MUST reuse cache
+        res2 = fetch_live_destination_weather(19.8000, 85.8200)
+        assert res2 is not None
+        assert res2["current"]["temperature_2m"] == 29.5
+        assert mock_urlopen.call_count == 1  # No additional network call
+
+        # 3rd call: Slightly different float precision that rounds to same key (19.8, 85.82)
+        res3 = fetch_live_destination_weather(19.80001, 85.82002)
+        assert res3 is not None
+        assert mock_urlopen.call_count == 1
+
+    reset_model_weather_cache()
 
 
+def test_model_weather_concurrent_burst_prevention():
+    """TEST MW-02: Concurrent threads requesting same coordinates execute exactly 1 network request."""
+    import threading
+    from unittest.mock import MagicMock
+    from app.services.travel_advisory import (
+        fetch_live_destination_weather,
+        reset_model_weather_cache,
+    )
+
+    reset_model_weather_cache()
+
+    sample_response = {
+        "current": {
+            "time": "2026-09-20T12:00",
+            "temperature_2m": 31.0,
+            "relative_humidity_2m": 70,
+            "precipitation": 0.0,
+            "rain": 0.0,
+            "weather_code": 0,
+            "wind_speed_10m": 10.0,
+            "wind_gusts_10m": 14.0,
+        },
+        "hourly": {
+            "time": ["2026-09-20T12:00"],
+            "temperature_2m": [31.0],
+            "precipitation_probability": [5],
+            "precipitation": [0.0],
+            "weather_code": [0],
+            "wind_gusts_10m": [14.0],
+        },
+    }
+
+    mock_resp = MagicMock()
+    mock_resp.status = 200
+    mock_resp.read.return_value = json.dumps(sample_response).encode("utf-8")
+    mock_resp.__enter__.return_value = mock_resp
+    mock_resp.__exit__.return_value = None
+
+    results = []
+
+    def worker():
+        res = fetch_live_destination_weather(20.2444, 85.8178)
+        results.append(res)
+
+    threads = [threading.Thread(target=worker) for _ in range(10)]
+
+    with patch("urllib.request.urlopen", return_value=mock_resp) as mock_urlopen:
+        for t in threads:
+            t.start()
+        for t in threads:
+            t.join()
+
+        assert len(results) == 10
+        for r in results:
+            assert r is not None
+            assert r["current"]["temperature_2m"] == 31.0
+        # Concurrency locking ensures only 1 outbound network call occurred
+        assert mock_urlopen.call_count == 1
+
+    reset_model_weather_cache()
 
 
+def test_model_weather_http_429_graceful_cached_fallback():
+    """TEST MW-03: When provider returns HTTP 429, valid recent cached model data is reused without falling back to INSUFFICIENT_EVIDENCE."""
+    import time
+    import urllib.error
+    from unittest.mock import MagicMock
+    from app.services.travel_advisory import (
+        get_travel_advisory,
+        reset_model_weather_cache,
+        MODEL_WEATHER_CACHE,
+    )
 
+    reset_model_weather_cache()
+
+    now_ist = datetime.now(timezone(timedelta(hours=5, minutes=30)))
+    base_time_str = now_ist.strftime("%Y-%m-%dT%H:00")
+
+    sample_response = {
+        "current": {
+            "time": base_time_str,
+            "temperature_2m": 28.0,
+            "relative_humidity_2m": 78,
+            "precipitation": 0.0,
+            "rain": 0.0,
+            "weather_code": 1,
+            "wind_speed_10m": 14.0,
+            "wind_gusts_10m": 18.0,
+        },
+        "hourly": {
+            "time": [(now_ist + timedelta(hours=i)).strftime("%Y-%m-%dT%H:00") for i in range(24)],
+            "temperature_2m": [28.0] * 24,
+            "precipitation_probability": [10] * 24,
+            "precipitation": [0.0] * 24,
+            "weather_code": [1] * 24,
+            "wind_gusts_10m": [18.0] * 24,
+        },
+    }
+
+    # Seed cache with a successful fetch
+    cache_key = "19.8_85.82"
+    now_ts = time.time()
+    MODEL_WEATHER_CACHE[cache_key] = {
+        "data": sample_response,
+        "retrieved_at": now_ts - 400,  # 400 seconds ago (> 300s fresh TTL, but well within 10800s stale TTL)
+        "fresh_until": now_ts - 100,  # fresh TTL expired, so a network call will be attempted
+        "stale_until": now_ts + 10400,
+    }
+
+    # Mock urlopen to raise HTTP 429 Too Many Requests
+    http_429_err = urllib.error.HTTPError(
+        url="https://api.open-meteo.com/v1/forecast",
+        code=429,
+        msg="Too Many Requests",
+        hdrs={},
+        fp=io.BytesIO(b'{"reason": "Daily API request limit exceeded"}'),
+    )
+
+    with patch("urllib.request.urlopen", side_effect=http_429_err):
+        advisory = get_travel_advisory("puri")
+
+        assert advisory is not None
+        # Telemetry should be populated from recent cache, NOT None
+        assert advisory.get("temperature_c") == 28.0
+        assert advisory.get("precipitation_mm") == 0.0
+        assert advisory.get("wind_speed_kmh") == 14.0
+
+        # Provenance should be MODEL_CURRENT or MODEL_STALE
+        prov = advisory.get("station_provenance", {})
+        assert prov.get("verification_status") in ("MODEL_CURRENT", "MODEL_STALE")
+        assert prov.get("data_origin") in ("EXTERNAL_LIVE", "EXTERNAL_CACHED")
+        assert prov.get("provenance_category") == "NUMERICAL_WEATHER_MODEL"
+
+        # Should NOT be INSUFFICIENT_EVIDENCE
+        decision_obj = advisory.get("should_i_go", {})
+        overall_dec = decision_obj.get("overall_decision") or advisory.get("decision")
+        assert overall_dec in ("GO", "GO_WITH_CAUTION", "DELAY", "AVOID")
+        assert overall_dec != "INSUFFICIENT_EVIDENCE"
+
+    reset_model_weather_cache()
+
+
+def test_model_weather_http_429_cold_cache_safe_fallback():
+    """TEST MW-04: HTTP 429 on cold cache safely returns UNAVAILABLE without unhandled exceptions."""
+    import urllib.error
+    from app.services.travel_advisory import (
+        get_travel_advisory,
+        fetch_live_destination_weather,
+        reset_model_weather_cache,
+    )
+
+    reset_model_weather_cache()
+
+    http_429_err = urllib.error.HTTPError(
+        url="https://api.open-meteo.com/v1/forecast",
+        code=429,
+        msg="Too Many Requests",
+        hdrs={},
+        fp=io.BytesIO(b'{"reason": "Too Many Requests"}'),
+    )
+
+    with patch("urllib.request.urlopen", side_effect=http_429_err):
+        # fetch_live_destination_weather returns None on cold 429
+        raw = fetch_live_destination_weather(19.8, 85.82)
+        assert raw is None
+
+        # get_travel_advisory safely produces UNAVAILABLE advisory
+        advisory = get_travel_advisory("puri")
+        assert advisory is not None
+        assert advisory.get("temperature_c") is None
+        prov = advisory.get("station_provenance", {})
+        assert prov.get("verification_status") == "UNAVAILABLE"
+        assert prov.get("freshness_status") == "UNAVAILABLE"
+
+    reset_model_weather_cache()
+
+
+def test_cached_model_weather_preserves_provenance_and_never_claims_imd():
+    """TEST MW-05: Cached model weather strictly maintains model provenance and is never misattributed as IMD."""
+    from app.services.travel_advisory import (
+        get_travel_advisory,
+        reset_model_weather_cache,
+    )
+
+    reset_model_weather_cache()
+
+    now_ist = datetime.now(timezone(timedelta(hours=5, minutes=30)))
+    base_time_str = now_ist.strftime("%Y-%m-%dT%H:00")
+
+    mock_weather = {
+        "current": {
+            "time": base_time_str,
+            "temperature_2m": 26.5,
+            "relative_humidity_2m": 82,
+            "precipitation": 1.2,
+            "rain": 1.2,
+            "weather_code": 61,
+            "wind_speed_10m": 18.0,
+            "wind_gusts_10m": 24.0,
+        },
+        "hourly": {
+            "time": [(now_ist + timedelta(hours=i)).strftime("%Y-%m-%dT%H:00") for i in range(24)],
+            "temperature_2m": [26.5] * 24,
+            "precipitation_probability": [60] * 24,
+            "precipitation": [1.2] * 24,
+            "weather_code": [61] * 24,
+            "wind_gusts_10m": [24.0] * 24,
+        },
+    }
+
+    with patch("app.services.travel_advisory.fetch_live_destination_weather", return_value=mock_weather):
+        adv = get_travel_advisory("puri")
+
+        prov = adv.get("station_provenance", {})
+        assert prov["verification_status"] in ("MODEL_CURRENT", "MODEL_STALE")
+        assert prov["verification_status"] != "VERIFIED_IMD_DIRECT_OBSERVATION"
+        assert prov["verification_status"] != "VERIFIED_STATION_OBSERVATION"
+        assert prov["source_type"] == "OPEN-METEO MODEL CURRENT"
+        assert prov["source_type"] != "IMD STATION OBSERVATION"
+        assert prov["provenance_category"] == "NUMERICAL_WEATHER_MODEL"
+        assert prov["source_provider"] == "Open-Meteo Gateway"
+        assert prov["source_organization"] == "Open-Meteo / ECMWF / DWD"
+        assert prov["product_type"] == "NUMERICAL_WEATHER_MODEL_ESTIMATE"
+        assert prov["provenance_class"] == "FORECAST"
+
+    reset_model_weather_cache()
