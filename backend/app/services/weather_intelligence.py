@@ -83,19 +83,61 @@ def get_source_availability_summary(advisory: Dict[str, Any]) -> Dict[str, Any]:
 def classify_question_intent(question: str) -> Dict[str, Any]:
     """
     Deterministically classify traveler's natural language question into structured intent.
+    Enforces WEATHER-ONLY domain constraints: non-weather queries must NEVER fall through to WEATHER_SUMMARY.
     Returns: intent_type, detected_destination, detected_activity, detected_temporal_scope, is_weather_scope.
     """
     q_clean = question.strip().lower()
 
-    # 1. Non-weather scope check (refusal filter)
+    # 1. Non-weather scope patterns (food, hotel, movies, sports, general knowledge, chit-chat)
     unrelated_patterns = [
-        r"\b(hotel|resort|room|booking|restaurant|food|seafood|dish|recipe|cook|curry|movie|film|actor|cricket|football|match|flight|train|ticket|politics|president|minister|stock|crypto)\b",
-        r"\b(who won|how to cook|best pizza|tell me a joke|write a poem|write code|translate)\b",
+        # Food & dining
+        r"\b(eat|eating|eats|food|foods|dine|dining|restaurant|restaurants|cafe|cafes|dish|dishes|cuisine|recipe|recipes|cook|cooking|curry|curries|seafood|fish|prawn|crab|breakfast|lunch|dinner|snack|snacks|street food|sweet|sweets|dalma|pakhala|rasagola|chhenapoda|biryani|pizza|burger)\b",
+        # Hotel & lodging
+        r"\b(hotel|hotels|resort|resorts|room|rooms|stay|stays|staying|lodge|lodges|lodging|hostel|hostels|airbnb|homestay|booking|reservation)\b",
+        # Movies, entertainment, culture
+        r"\b(movie|movies|film|films|cinema|theatre|theater|actor|actress|director|song|songs|music|concert|show|dance|drama)\b",
+        # Sports & games
+        r"\b(sport|sports|cricket|football|soccer|hockey|match|matches|score|scores|ipl|world cup|stadium|player|players|tournament)\b",
+        # Politics, news, finances
+        r"\b(politics|political|election|elections|minister|president|government policy|stock|stocks|share|shares|crypto|bitcoin|market)\b",
+        # Tech, coding, translation, jokes, general knowledge
+        r"\b(code|coding|python|javascript|program|programming|translate|translation|poem|poetry|story|joke|jokes|riddle|who is|who won|who built|history of|history|historical monument|mythology|tell me a joke)\b",
+        # General chat
+        r"^(hi|hello|hey|greetings|howdy|good morning|good evening|good afternoon|how are you|who are you|what is your name|what can you do|help me|test)(\s+.*)?$",
+        # Transport booking / non-weather transit
+        r"\b(flight ticket|train ticket|bus ticket|fare|fares|irctc|ola|uber|cab booking|taxi booking)\b",
     ]
+
+    # Explicit meteorological terms (excluding monument names like 'sun temple')
+    meteorological_terms = (
+        r"\b(weather|forecast|forecasts|outlook|condition|conditions|climate|"
+        r"rain|raining|rainfall|rainy|precip|precipitation|drizzle|shower|showers|storm|"
+        r"thunderstorm|thunder|lightning|temp|temperature|heat|hot|cold|warm|wind|windy|breeze|gust|gusts|"
+        r"squall|cyclone|monsoon|cloud|clouds|cloudy|overcast|sunny|sunshine|uv|humidity|humid|"
+        r"fog|foggy|mist|visibility|air quality|aqi|radar|satellite|nowcast|incois|wave|waves|swell|sea state|tide|coastal wave)\b"
+    )
+
+    # Travel-weather specific inquiry terms
+    travel_weather_terms = (
+        r"\b(should i go|can i go|can i travel|safe to travel|safe to go|travel decision|travel risk|"
+        r"should i continue|can i continue|should i proceed|can i proceed|continue travel|"
+        r"delay travel|when to go|when should i|what time|departure time|departure|best time|timing|"
+        r"lower risk|lower-risk|lower-risk window|route|highway|road weather|highway weather|on the way|nh16|nh316|corridor|"
+        r"pack|packing|carry|bring|wear|jacket|umbrella|raincoat|shoes|gear|"
+        r"precaution|precautions|caution|danger|safety tip|safety tips|"
+        r"warning|warnings|bulletin|bulletins|alert|alerts|nowcast|cyclone alert|"
+        r"can i do|advisable|suitable|advisability|good for|activity|activities|boating|boat|sea bath|sea bathing|swimming|beach|sightseeing|outdoor|darshan|why this decision)\b"
+    )
+
+    # Sanitize out monument names from meteorological detection (e.g. "sun temple")
+    q_meteorological_check = re.sub(r"\b(sun temple|lingaraj temple|jagannath temple|temple)\b", "", q_clean)
+    has_meteorological = bool(re.search(meteorological_terms, q_meteorological_check))
+    has_travel_weather = bool(re.search(travel_weather_terms, q_clean))
+
     for pat in unrelated_patterns:
         if re.search(pat, q_clean):
-            # If there is no explicit meteorological inquiry, treat as OUT_OF_SCOPE
-            if not re.search(r"\b(weather|rain|raining|temp|temperature|wind|storm|cyclone|forecast|warning|warnings|cloud|clouds|sun|heat)\b", q_clean):
+            # If unrelated pattern matched and no explicit meteorological inquiry, refuse immediately
+            if not has_meteorological:
                 return {
                     "intent": "OUT_OF_SCOPE",
                     "is_weather_scope": False,
@@ -103,6 +145,17 @@ def classify_question_intent(question: str) -> Dict[str, Any]:
                     "target_activity": None,
                     "temporal_scope": "CURRENT",
                 }
+
+    # If the question contains NEITHER meteorological nor travel-weather terms,
+    # refuse rather than falling through to WEATHER_SUMMARY.
+    if not has_meteorological and not has_travel_weather:
+        return {
+            "intent": "OUT_OF_SCOPE",
+            "is_weather_scope": False,
+            "target_destination": None,
+            "target_activity": None,
+            "temporal_scope": "CURRENT",
+        }
 
     # 2. Extract destination if explicitly mentioned
     detected_destination = None
@@ -134,7 +187,6 @@ def classify_question_intent(question: str) -> Dict[str, Any]:
         temporal_scope = "FORECAST"
 
     # 5. Determine intent (Priority order)
-    intent = "WEATHER_SUMMARY"
     if re.search(r"\b(carry|pack|packing|bring|wear|jacket|umbrella|shoes|gear|bag|pouch)\b", q_clean):
         intent = "PREPARATION"
     elif re.search(r"\b(precaution|precautions|caution|careful|danger|safety tip|safety tips)\b", q_clean):
@@ -155,6 +207,8 @@ def classify_question_intent(question: str) -> Dict[str, Any]:
         intent = "RAIN_OUTLOOK"
     elif re.search(r"\b(temp|temperature|heat|hot|cold|warm|sky|sun)\b", q_clean):
         intent = "TEMPERATURE_OUTLOOK"
+    else:
+        intent = "WEATHER_SUMMARY"
 
     return {
         "intent": intent,
@@ -705,3 +759,8 @@ def evaluate_weather_intelligence_question(
         "generated_at": now_iso,
         "valid_until": valid_until,
     }
+
+
+# Convenient alias for tests and external callers
+generate_weather_intelligence_answer = evaluate_weather_intelligence_question
+

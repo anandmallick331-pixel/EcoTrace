@@ -4842,7 +4842,7 @@ export const LiveTravelRiskAdvisoryCard: React.FC<LiveTravelRiskAdvisoryCardProp
                               <ExternalLink className="w-2.5 h-2.5" />
                             </a>
                           ) : (
-                            <span className="text-[#6B7E6A] italic">Official source reference unavailable</span>
+                            <span className="text-[#6B7E6A] italic">Official warning document unavailable.</span>
                           )}
                         </div>
                       </div>
@@ -4897,7 +4897,7 @@ export const LiveTravelRiskAdvisoryCard: React.FC<LiveTravelRiskAdvisoryCardProp
                           </div>
                           <div className="flex items-center gap-2">
                             <span className="text-[#244E31] font-bold group-hover:underline">Inspect Record &rarr;</span>
-                            {warning.source_url && (
+                            {warning.source_url ? (
                               <a
                                 href={warning.source_url}
                                 target="_blank"
@@ -4908,6 +4908,8 @@ export const LiveTravelRiskAdvisoryCard: React.FC<LiveTravelRiskAdvisoryCardProp
                                 <span>Source Document</span>
                                 <ExternalLink className="w-2 h-2" />
                               </a>
+                            ) : (
+                              <span className="text-[#8E8779] italic">Official warning document unavailable.</span>
                             )}
                           </div>
                         </div>
@@ -6228,7 +6230,7 @@ export const LiveTravelRiskAdvisoryCard: React.FC<LiveTravelRiskAdvisoryCardProp
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
                     ) : (
-                      <span className="text-xs text-[#6B7E6A] italic">Official source reference unavailable</span>
+                      <span className="text-xs text-[#6B7E6A] italic">Official warning document unavailable.</span>
                     )}
                   </div>
                 </div>
@@ -11495,7 +11497,7 @@ export const LiveTravelRiskAdvisoryCard: React.FC<LiveTravelRiskAdvisoryCardProp
                             <Clock className="w-3.5 h-3.5 text-[#244E31]" />
                             <span>Validity: {w.validity_period || (w.valid_from && w.valid_until ? `${w.valid_from} – ${w.valid_until}` : 'Fixed Period')}</span>
                           </div>
-                          {w.source_url && (
+                          {w.source_url ? (
                             <a
                               href={w.source_url}
                               target="_blank"
@@ -11505,6 +11507,8 @@ export const LiveTravelRiskAdvisoryCard: React.FC<LiveTravelRiskAdvisoryCardProp
                               <span>Official Bulletin</span>
                               <ExternalLink className="w-3 h-3" />
                             </a>
+                          ) : (
+                            <span className="text-[#8E8779] italic">Official warning document unavailable.</span>
                           )}
                         </div>
                       </div>
