@@ -743,6 +743,7 @@ _MODEL_WEATHER_LOCK = threading.Lock()
 
 MODEL_WEATHER_CACHE_TTL_SECONDS = int(os.environ.get("MODEL_WEATHER_CACHE_TTL_SECONDS", "300"))
 MODEL_WEATHER_STALE_TTL_SECONDS = int(os.environ.get("MODEL_WEATHER_STALE_TTL_SECONDS", "10800"))
+MODEL_WEATHER_RETRY_BACKOFF_SECONDS = int(os.environ.get("MODEL_WEATHER_RETRY_BACKOFF_SECONDS", "60"))
 
 
 def reset_model_weather_cache() -> None:
@@ -755,16 +756,22 @@ def reset_model_weather_cache() -> None:
 def fetch_live_destination_weather(lat: float, lon: float) -> Optional[Dict[str, Any]]:
     """
     Fetches real-time meteorological observations and nowcast projections
-    from the numerical/station weather gateway with thread-safe caching and
-    resilient HTTP 429 fallback to recent valid model data.
+    from the numerical/station weather gateway with thread-safe caching,
+    resilient HTTP 429 fallback to recent valid model data, and a provider
+    cooldown on failure to prevent rate-limit loops on cold cache.
     """
     cache_key = f"{round(lat, 4)}_{round(lon, 4)}"
     now = time.time()
 
-    # Fast-path lock-free check for fresh cache
+    # Fast-path lock-free check for fresh cache or active failure cooldown
     cached_entry = MODEL_WEATHER_CACHE.get(cache_key)
-    if cached_entry and now < cached_entry.get("fresh_until", 0):
-        return cached_entry["data"]
+    if cached_entry:
+        if now < cached_entry.get("fresh_until", 0):
+            return cached_entry["data"]
+        if now < cached_entry.get("retry_after", 0):
+            if now < cached_entry.get("stale_until", 0):
+                return cached_entry["data"]
+            return None
 
     url = (
         f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}"
@@ -781,8 +788,13 @@ def fetch_live_destination_weather(lat: float, lon: float) -> Optional[Dict[str,
         # Double-check if another thread populated the cache while waiting for lock
         now = time.time()
         cached_entry = MODEL_WEATHER_CACHE.get(cache_key)
-        if cached_entry and now < cached_entry.get("fresh_until", 0):
-            return cached_entry["data"]
+        if cached_entry:
+            if now < cached_entry.get("fresh_until", 0):
+                return cached_entry["data"]
+            if now < cached_entry.get("retry_after", 0):
+                if now < cached_entry.get("stale_until", 0):
+                    return cached_entry["data"]
+                return None
 
         try:
             with urllib.request.urlopen(req, timeout=4.5) as response:
@@ -793,6 +805,7 @@ def fetch_live_destination_weather(lat: float, lon: float) -> Optional[Dict[str,
                         "retrieved_at": now,
                         "fresh_until": now + MODEL_WEATHER_CACHE_TTL_SECONDS,
                         "stale_until": now + MODEL_WEATHER_STALE_TTL_SECONDS,
+                        "retry_after": 0,
                     }
                     return data
         except urllib.error.HTTPError as http_err:
@@ -804,23 +817,43 @@ def fetch_live_destination_weather(lat: float, lon: float) -> Optional[Dict[str,
                 )
             else:
                 logger.warning("HTTP Error %s fetching live meteorological telemetry: %s", http_err.code, http_err)
+
             if cached_entry and now < cached_entry.get("stale_until", 0):
+                cached_entry["retry_after"] = now + MODEL_WEATHER_RETRY_BACKOFF_SECONDS
                 logger.info(
-                    "Reusing recent cached meteorological model data for (%s, %s) following HTTP %s",
+                    "Reusing recent cached meteorological model data for (%s, %s) following HTTP %s (cooldown until %s)",
                     lat,
                     lon,
                     http_err.code,
+                    now + MODEL_WEATHER_RETRY_BACKOFF_SECONDS,
                 )
                 return cached_entry["data"]
+            else:
+                MODEL_WEATHER_CACHE[cache_key] = {
+                    "data": None,
+                    "retrieved_at": now,
+                    "fresh_until": 0,
+                    "stale_until": 0,
+                    "retry_after": now + MODEL_WEATHER_RETRY_BACKOFF_SECONDS,
+                }
         except Exception as exc:
             logger.warning("Failed to fetch live meteorological telemetry: %s", exc)
             if cached_entry and now < cached_entry.get("stale_until", 0):
+                cached_entry["retry_after"] = now + MODEL_WEATHER_RETRY_BACKOFF_SECONDS
                 logger.info(
                     "Reusing recent cached meteorological model data for (%s, %s) following exception",
                     lat,
                     lon,
                 )
                 return cached_entry["data"]
+            else:
+                MODEL_WEATHER_CACHE[cache_key] = {
+                    "data": None,
+                    "retrieved_at": now,
+                    "fresh_until": 0,
+                    "stale_until": 0,
+                    "retry_after": now + MODEL_WEATHER_RETRY_BACKOFF_SECONDS,
+                }
 
     return None
 

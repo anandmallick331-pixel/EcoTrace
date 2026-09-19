@@ -9315,6 +9315,138 @@ def test_model_weather_http_429_cold_cache_safe_fallback():
     reset_model_weather_cache()
 
 
+def test_model_weather_cold_cache_429_cooldown_suppresses_repeated_calls():
+    """TEST MW-06: Cold-cache 429 sets cooldown and suppresses repeated outbound provider calls."""
+    import urllib.error
+    from app.services.travel_advisory import (
+        fetch_live_destination_weather,
+        reset_model_weather_cache,
+        MODEL_WEATHER_CACHE,
+    )
+
+    reset_model_weather_cache()
+
+    http_429_err = urllib.error.HTTPError(
+        url="https://api.open-meteo.com/v1/forecast",
+        code=429,
+        msg="Too Many Requests",
+        hdrs={},
+        fp=io.BytesIO(b'{"reason": "Daily rate limit exceeded"}'),
+    )
+
+    with patch("urllib.request.urlopen", side_effect=http_429_err) as mock_urlopen:
+        # 1st call: Cold cache, hits provider -> gets 429 -> sets cooldown tombstone
+        res1 = fetch_live_destination_weather(19.8, 85.82)
+        assert res1 is None
+        assert mock_urlopen.call_count == 1
+
+        # 2nd, 3rd, 4th calls: within 60s cooldown -> MUST return None without any new network calls
+        res2 = fetch_live_destination_weather(19.8, 85.82)
+        res3 = fetch_live_destination_weather(19.8, 85.82)
+        res4 = fetch_live_destination_weather(19.80001, 85.82001)  # same rounded key
+        assert res2 is None
+        assert res3 is None
+        assert res4 is None
+        assert mock_urlopen.call_count == 1  # STILL 1, no duplicate calls made!
+
+    reset_model_weather_cache()
+
+
+def test_model_weather_cold_cache_timeout_cooldown_suppresses_repeated_calls():
+    """TEST MW-07: Cold-cache timeout/SSL error sets cooldown and suppresses repeated outbound calls."""
+    import urllib.error
+    from app.services.travel_advisory import (
+        fetch_live_destination_weather,
+        reset_model_weather_cache,
+    )
+
+    reset_model_weather_cache()
+
+    ssl_timeout_err = urllib.error.URLError("SSL handshake timed out")
+
+    with patch("urllib.request.urlopen", side_effect=ssl_timeout_err) as mock_urlopen:
+        # 1st call: Cold cache, hits provider -> timeout -> sets cooldown tombstone
+        res1 = fetch_live_destination_weather(20.2444, 85.8178)
+        assert res1 is None
+        assert mock_urlopen.call_count == 1
+
+        # 2nd & 3rd calls: within cooldown -> return None with zero new network requests
+        res2 = fetch_live_destination_weather(20.2444, 85.8178)
+        res3 = fetch_live_destination_weather(20.2444, 85.8178)
+        assert res2 is None
+        assert res3 is None
+        assert mock_urlopen.call_count == 1
+
+    reset_model_weather_cache()
+
+
+def test_model_weather_cooldown_expiry_allows_new_attempt():
+    """TEST MW-08: After cooldown window expires, a new outbound provider attempt is permitted."""
+    import time
+    import urllib.error
+    from unittest.mock import MagicMock
+    from app.services.travel_advisory import (
+        fetch_live_destination_weather,
+        reset_model_weather_cache,
+        MODEL_WEATHER_CACHE,
+    )
+
+    reset_model_weather_cache()
+
+    cache_key = "19.8_85.82"
+    now_ts = time.time()
+
+    # Seed an expired cooldown tombstone (cooldown was set 70 seconds ago, retry_after expired 10 seconds ago)
+    MODEL_WEATHER_CACHE[cache_key] = {
+        "data": None,
+        "retrieved_at": now_ts - 70,
+        "fresh_until": 0,
+        "stale_until": 0,
+        "retry_after": now_ts - 10,
+    }
+
+    sample_success = {
+        "current": {
+            "time": "2026-09-20T12:00",
+            "temperature_2m": 30.0,
+            "relative_humidity_2m": 72,
+            "precipitation": 0.0,
+            "rain": 0.0,
+            "weather_code": 1,
+            "wind_speed_10m": 10.0,
+            "wind_gusts_10m": 15.0,
+        },
+        "hourly": {
+            "time": ["2026-09-20T12:00"],
+            "temperature_2m": [30.0],
+            "precipitation_probability": [0],
+            "precipitation": [0.0],
+            "weather_code": [1],
+            "wind_gusts_10m": [15.0],
+        },
+    }
+
+    mock_resp = MagicMock()
+    mock_resp.status = 200
+    mock_resp.read.return_value = json.dumps(sample_success).encode("utf-8")
+    mock_resp.__enter__.return_value = mock_resp
+    mock_resp.__exit__.return_value = None
+
+    with patch("urllib.request.urlopen", return_value=mock_resp) as mock_urlopen:
+        # Since cooldown expired, this call MUST attempt the provider
+        res = fetch_live_destination_weather(19.8, 85.82)
+        assert res is not None
+        assert res["current"]["temperature_2m"] == 30.0
+        assert mock_urlopen.call_count == 1
+
+        # Cache is now populated with fresh data
+        cached = MODEL_WEATHER_CACHE[cache_key]
+        assert cached["data"] is not None
+        assert cached["retry_after"] == 0
+
+    reset_model_weather_cache()
+
+
 def test_cached_model_weather_preserves_provenance_and_never_claims_imd():
     """TEST MW-05: Cached model weather strictly maintains model provenance and is never misattributed as IMD."""
     from app.services.travel_advisory import (
