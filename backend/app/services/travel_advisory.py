@@ -9,6 +9,7 @@ Authoritative Multi-Source Provenance Engine integrating:
 - Department of Water Resources (DoWR) basin flood telemetry
 """
 
+import email.utils
 import hashlib
 import json
 import logging
@@ -18,6 +19,7 @@ import ssl
 import threading
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 import uuid
 from datetime import datetime, timezone, timedelta
@@ -753,6 +755,60 @@ def reset_model_weather_cache() -> None:
         MODEL_WEATHER_CACHE.clear()
 
 
+def _parse_retry_after(header_val: Optional[str], default_backoff: int) -> int:
+    """Parses Retry-After HTTP header (seconds integer or HTTP-date) with fallback."""
+    if not header_val:
+        return default_backoff
+    header_str = str(header_val).strip()
+    try:
+        val = int(header_str)
+        if val >= 0:
+            return val
+    except ValueError:
+        pass
+    try:
+        parsed_tuple = email.utils.parsedate_tz(header_str)
+        if parsed_tuple:
+            timestamp = email.utils.mktime_tz(parsed_tuple)
+            delay = int(timestamp - time.time())
+            if delay >= 0:
+                return delay
+    except Exception:
+        pass
+    return default_backoff
+
+
+def _build_open_meteo_url(lat: float, lon: float, include_api_key: bool = True) -> str:
+    """
+    Builds the Open-Meteo forecast URL with environment-driven endpoint selection:
+    - OPEN_METEO_BASE_URL (if provided) overrides the endpoint base.
+    - OPEN_METEO_API_KEY (if provided without base URL) targets customer-api.open-meteo.com.
+    - Default fallback (no key / no base URL) targets api.open-meteo.com.
+    - URL encodes the API key and omits it when include_api_key=False (e.g. for safe provenance metadata).
+    """
+    api_key = os.environ.get("OPEN_METEO_API_KEY", "").strip()
+    custom_base = os.environ.get("OPEN_METEO_BASE_URL", "").strip()
+
+    if custom_base:
+        endpoint = custom_base
+    elif api_key:
+        endpoint = "https://customer-api.open-meteo.com/v1/forecast"
+    else:
+        endpoint = "https://api.open-meteo.com/v1/forecast"
+
+    query_params = (
+        f"latitude={lat}&longitude={lon}"
+        f"&current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,wind_speed_10m,wind_gusts_10m"
+        f"&hourly=temperature_2m,precipitation_probability,precipitation,weather_code,wind_gusts_10m"
+        f"&timezone=Asia%2FKolkata"
+    )
+    if include_api_key and api_key:
+        query_params += f"&apikey={urllib.parse.quote(api_key)}"
+
+    separator = "&" if "?" in endpoint else "?"
+    return f"{endpoint}{separator}{query_params}"
+
+
 def fetch_live_destination_weather(lat: float, lon: float) -> Optional[Dict[str, Any]]:
     """
     Fetches real-time meteorological observations and nowcast projections
@@ -773,12 +829,7 @@ def fetch_live_destination_weather(lat: float, lon: float) -> Optional[Dict[str,
                 return cached_entry["data"]
             return None
 
-    url = (
-        f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}"
-        f"&current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,wind_speed_10m,wind_gusts_10m"
-        f"&hourly=temperature_2m,precipitation_probability,precipitation,weather_code,wind_gusts_10m"
-        f"&timezone=Asia%2FKolkata"
-    )
+    url = _build_open_meteo_url(lat, lon, include_api_key=True)
     req = urllib.request.Request(
         url,
         headers={"User-Agent": "EcoTrace-Live-Advisory/1.0 (Odisha Tourism Intelligence; IMD Provenance Engine)"},
@@ -810,22 +861,28 @@ def fetch_live_destination_weather(lat: float, lon: float) -> Optional[Dict[str,
                     return data
         except urllib.error.HTTPError as http_err:
             if http_err.code == 429:
+                retry_after_header = None
+                if hasattr(http_err, "headers") and http_err.headers:
+                    retry_after_header = http_err.headers.get("Retry-After")
+                backoff_seconds = _parse_retry_after(retry_after_header, MODEL_WEATHER_RETRY_BACKOFF_SECONDS)
                 logger.warning(
-                    "Received HTTP 429 Too Many Requests from meteorological provider for (%s, %s)",
+                    "Received HTTP 429 Too Many Requests from meteorological provider for (%s, %s) [backoff %ss]",
                     lat,
                     lon,
+                    backoff_seconds,
                 )
             else:
-                logger.warning("HTTP Error %s fetching live meteorological telemetry: %s", http_err.code, http_err)
+                backoff_seconds = MODEL_WEATHER_RETRY_BACKOFF_SECONDS
+                logger.warning("HTTP Error %s fetching live meteorological telemetry", http_err.code)
 
             if cached_entry and now < cached_entry.get("stale_until", 0):
-                cached_entry["retry_after"] = now + MODEL_WEATHER_RETRY_BACKOFF_SECONDS
+                cached_entry["retry_after"] = now + backoff_seconds
                 logger.info(
                     "Reusing recent cached meteorological model data for (%s, %s) following HTTP %s (cooldown until %s)",
                     lat,
                     lon,
                     http_err.code,
-                    now + MODEL_WEATHER_RETRY_BACKOFF_SECONDS,
+                    now + backoff_seconds,
                 )
                 return cached_entry["data"]
             else:
@@ -834,10 +891,10 @@ def fetch_live_destination_weather(lat: float, lon: float) -> Optional[Dict[str,
                     "retrieved_at": now,
                     "fresh_until": 0,
                     "stale_until": 0,
-                    "retry_after": now + MODEL_WEATHER_RETRY_BACKOFF_SECONDS,
+                    "retry_after": now + backoff_seconds,
                 }
         except Exception as exc:
-            logger.warning("Failed to fetch live meteorological telemetry: %s", exc)
+            logger.warning("Failed to fetch live meteorological telemetry for (%s, %s): %s", lat, lon, type(exc).__name__)
             if cached_entry and now < cached_entry.get("stale_until", 0):
                 cached_entry["retry_after"] = now + MODEL_WEATHER_RETRY_BACKOFF_SECONDS
                 logger.info(
@@ -9543,12 +9600,7 @@ def get_travel_advisory(
 
     # Separate station observation endpoint from numerical forecast gateway
     station_endpoint = station_info.get("evidence_url") or f"https://mausam.imd.gov.in/bhubaneswar/mcdata/station_{station_info['station_id']}.html"
-    forecast_endpoint = (
-        f"https://api.open-meteo.com/v1/forecast?latitude={station_info['latitude']}&longitude={station_info['longitude']}"
-        f"&current=temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,wind_speed_10m,wind_gusts_10m"
-        f"&hourly=temperature_2m,precipitation_probability,precipitation,weather_code,wind_gusts_10m"
-        f"&timezone=Asia%2FKolkata"
-    )
+    forecast_endpoint = _build_open_meteo_url(station_info["latitude"], station_info["longitude"], include_api_key=False)
     live_raw = fetch_live_destination_weather(station_info["latitude"], station_info["longitude"])
     is_live = live_raw is not None
 

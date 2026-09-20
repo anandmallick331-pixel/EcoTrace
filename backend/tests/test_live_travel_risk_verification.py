@@ -28,9 +28,11 @@ Validates requirements A through Y:
 - TEST Y: A stale source changes status from LIVE to STALE.
 """
 
+import email.utils
 import hashlib
 import io
 import json
+import os
 import sys
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -9494,5 +9496,302 @@ def test_cached_model_weather_preserves_provenance_and_never_claims_imd():
         assert prov["source_organization"] == "Open-Meteo / ECMWF / DWD"
         assert prov["product_type"] == "NUMERICAL_WEATHER_MODEL_ESTIMATE"
         assert prov["provenance_class"] == "FORECAST"
+
+    reset_model_weather_cache()
+
+
+def test_open_meteo_endpoint_selection_no_key():
+    """TEST MW-09: When no API key and no base URL are set, default free api.open-meteo.com is targeted without apikey."""
+    from unittest.mock import MagicMock
+    from app.services.travel_advisory import (
+        fetch_live_destination_weather,
+        reset_model_weather_cache,
+    )
+
+    reset_model_weather_cache()
+
+    sample_resp = {
+        "current": {"time": "2026-09-20T12:00", "temperature_2m": 29.0, "relative_humidity_2m": 75, "precipitation": 0.0, "rain": 0.0, "weather_code": 1, "wind_speed_10m": 12.0, "wind_gusts_10m": 16.0},
+        "hourly": {"time": ["2026-09-20T12:00"], "temperature_2m": [29.0], "precipitation_probability": [0], "precipitation": [0.0], "weather_code": [1], "wind_gusts_10m": [16.0]},
+    }
+    mock_resp = MagicMock()
+    mock_resp.status = 200
+    mock_resp.read.return_value = json.dumps(sample_resp).encode("utf-8")
+    mock_resp.__enter__.return_value = mock_resp
+    mock_resp.__exit__.return_value = None
+
+    with patch.dict(os.environ, {"OPEN_METEO_API_KEY": "", "OPEN_METEO_BASE_URL": ""}, clear=False):
+        with patch("urllib.request.urlopen", return_value=mock_resp) as mock_urlopen:
+            res = fetch_live_destination_weather(19.8135, 85.8312)
+            assert res is not None
+            assert mock_urlopen.call_count == 1
+            req_arg = mock_urlopen.call_args[0][0]
+            req_url = req_arg.full_url if hasattr(req_arg, "full_url") else str(req_arg)
+            assert req_url.startswith("https://api.open-meteo.com/v1/forecast?")
+            assert "apikey=" not in req_url
+            assert "latitude=19.8135" in req_url
+            assert "longitude=85.8312" in req_url
+
+    reset_model_weather_cache()
+
+
+def test_open_meteo_endpoint_selection_with_api_key():
+    """TEST MW-10: When API key is provided without base URL, customer-api.open-meteo.com is targeted with apikey."""
+    from unittest.mock import MagicMock
+    from app.services.travel_advisory import (
+        fetch_live_destination_weather,
+        reset_model_weather_cache,
+    )
+
+    reset_model_weather_cache()
+
+    sample_resp = {
+        "current": {"time": "2026-09-20T12:00", "temperature_2m": 30.5, "relative_humidity_2m": 70, "precipitation": 0.0, "rain": 0.0, "weather_code": 1, "wind_speed_10m": 11.0, "wind_gusts_10m": 15.0},
+        "hourly": {"time": ["2026-09-20T12:00"], "temperature_2m": [30.5], "precipitation_probability": [0], "precipitation": [0.0], "weather_code": [1], "wind_gusts_10m": [15.0]},
+    }
+    mock_resp = MagicMock()
+    mock_resp.status = 200
+    mock_resp.read.return_value = json.dumps(sample_resp).encode("utf-8")
+    mock_resp.__enter__.return_value = mock_resp
+    mock_resp.__exit__.return_value = None
+
+    with patch.dict(os.environ, {"OPEN_METEO_API_KEY": "test_customer_secret_123", "OPEN_METEO_BASE_URL": ""}, clear=False):
+        with patch("urllib.request.urlopen", return_value=mock_resp) as mock_urlopen:
+            res = fetch_live_destination_weather(20.2444, 85.8178)
+            assert res is not None
+            assert mock_urlopen.call_count == 1
+            req_arg = mock_urlopen.call_args[0][0]
+            req_url = req_arg.full_url if hasattr(req_arg, "full_url") else str(req_arg)
+            assert req_url.startswith("https://customer-api.open-meteo.com/v1/forecast?")
+            assert "apikey=test_customer_secret_123" in req_url
+            assert "latitude=20.2444" in req_url
+            assert "longitude=85.8178" in req_url
+
+    reset_model_weather_cache()
+
+
+def test_open_meteo_endpoint_selection_with_custom_base_url():
+    """TEST MW-11: Custom OPEN_METEO_BASE_URL overrides the default endpoint hostname and path."""
+    from unittest.mock import MagicMock
+    from app.services.travel_advisory import (
+        fetch_live_destination_weather,
+        reset_model_weather_cache,
+    )
+
+    reset_model_weather_cache()
+
+    sample_resp = {
+        "current": {"time": "2026-09-20T12:00", "temperature_2m": 27.5, "relative_humidity_2m": 80, "precipitation": 0.0, "rain": 0.0, "weather_code": 1, "wind_speed_10m": 15.0, "wind_gusts_10m": 20.0},
+        "hourly": {"time": ["2026-09-20T12:00"], "temperature_2m": [27.5], "precipitation_probability": [0], "precipitation": [0.0], "weather_code": [1], "wind_gusts_10m": [20.0]},
+    }
+    mock_resp = MagicMock()
+    mock_resp.status = 200
+    mock_resp.read.return_value = json.dumps(sample_resp).encode("utf-8")
+    mock_resp.__enter__.return_value = mock_resp
+    mock_resp.__exit__.return_value = None
+
+    custom_url = "https://weather-proxy.internal.ecotrace.gov.in/v1/forecast"
+    with patch.dict(os.environ, {"OPEN_METEO_BASE_URL": custom_url, "OPEN_METEO_API_KEY": "proxy_key_999"}, clear=False):
+        with patch("urllib.request.urlopen", return_value=mock_resp) as mock_urlopen:
+            res = fetch_live_destination_weather(19.7165, 85.3215)
+            assert res is not None
+            assert mock_urlopen.call_count == 1
+            req_arg = mock_urlopen.call_args[0][0]
+            req_url = req_arg.full_url if hasattr(req_arg, "full_url") else str(req_arg)
+            assert req_url.startswith(custom_url)
+            assert "apikey=proxy_key_999" in req_url
+            assert "latitude=19.7165" in req_url
+            assert "longitude=85.3215" in req_url
+
+    reset_model_weather_cache()
+
+
+def test_open_meteo_api_key_url_encoding():
+    """TEST MW-12: API key containing special characters is properly URL-encoded."""
+    from unittest.mock import MagicMock
+    from app.services.travel_advisory import (
+        fetch_live_destination_weather,
+        reset_model_weather_cache,
+    )
+
+    reset_model_weather_cache()
+
+    sample_resp = {
+        "current": {"time": "2026-09-20T12:00", "temperature_2m": 28.0, "relative_humidity_2m": 75, "precipitation": 0.0, "rain": 0.0, "weather_code": 1, "wind_speed_10m": 10.0, "wind_gusts_10m": 12.0},
+        "hourly": {"time": ["2026-09-20T12:00"], "temperature_2m": [28.0], "precipitation_probability": [0], "precipitation": [0.0], "weather_code": [1], "wind_gusts_10m": [12.0]},
+    }
+    mock_resp = MagicMock()
+    mock_resp.status = 200
+    mock_resp.read.return_value = json.dumps(sample_resp).encode("utf-8")
+    mock_resp.__enter__.return_value = mock_resp
+    mock_resp.__exit__.return_value = None
+
+    raw_key = "key with spaces & special+chars=123"
+    with patch.dict(os.environ, {"OPEN_METEO_API_KEY": raw_key, "OPEN_METEO_BASE_URL": ""}, clear=False):
+        with patch("urllib.request.urlopen", return_value=mock_resp) as mock_urlopen:
+            fetch_live_destination_weather(19.8876, 86.0945)
+            req_arg = mock_urlopen.call_args[0][0]
+            req_url = req_arg.full_url if hasattr(req_arg, "full_url") else str(req_arg)
+            assert "apikey=key%20with%20spaces%20%26%20special%2Bchars%3D123" in req_url
+
+    reset_model_weather_cache()
+
+
+def test_open_meteo_api_key_never_emitted_in_logs_or_provenance(caplog):
+    """TEST MW-13: API keys are never leaked to application logs or client provenance responses."""
+    import logging
+    from unittest.mock import MagicMock
+    from app.services.travel_advisory import (
+        get_travel_advisory,
+        reset_model_weather_cache,
+    )
+
+    reset_model_weather_cache()
+
+    secret_key = "CONFIDENTIAL_OM_SECRET_KEY_998877"
+    now_ist = datetime.now(timezone(timedelta(hours=5, minutes=30)))
+    base_time_str = now_ist.strftime("%Y-%m-%dT%H:00")
+
+    sample_resp = {
+        "current": {
+            "time": base_time_str,
+            "temperature_2m": 31.0,
+            "relative_humidity_2m": 65,
+            "precipitation": 0.0,
+            "rain": 0.0,
+            "weather_code": 1,
+            "wind_speed_10m": 12.0,
+            "wind_gusts_10m": 16.0,
+        },
+        "hourly": {
+            "time": [(now_ist + timedelta(hours=i)).strftime("%Y-%m-%dT%H:00") for i in range(24)],
+            "temperature_2m": [31.0] * 24,
+            "precipitation_probability": [5] * 24,
+            "precipitation": [0.0] * 24,
+            "weather_code": [1] * 24,
+            "wind_gusts_10m": [16.0] * 24,
+        },
+    }
+
+    mock_resp = MagicMock()
+    mock_resp.status = 200
+    mock_resp.read.return_value = json.dumps(sample_resp).encode("utf-8")
+    mock_resp.__enter__.return_value = mock_resp
+    mock_resp.__exit__.return_value = None
+
+    with patch.dict(os.environ, {"OPEN_METEO_API_KEY": secret_key, "OPEN_METEO_BASE_URL": ""}, clear=False):
+        with caplog.at_level(logging.DEBUG):
+            with patch("urllib.request.urlopen", return_value=mock_resp):
+                adv = get_travel_advisory("puri")
+
+                # Verify advisory returned successfully
+                assert adv is not None
+                assert adv.get("temperature_c") == 31.0
+
+                # Check all logs for the secret
+                for record in caplog.records:
+                    assert secret_key not in record.message
+                    assert secret_key not in str(record.args)
+
+                # Check station provenance payload for the secret
+                prov = adv.get("station_provenance", {})
+                prov_str = json.dumps(prov)
+                assert secret_key not in prov_str
+                # Confirm provenance uses customer-api URL without apikey param
+                assert "customer-api.open-meteo.com" in prov.get("source_endpoint", "")
+                assert "apikey=" not in prov.get("source_endpoint", "")
+
+    reset_model_weather_cache()
+
+
+def test_open_meteo_retry_after_header_handling():
+    """TEST MW-14: HTTP 429 Retry-After header (seconds and HTTP-date) is dynamically respected."""
+    import time
+    import urllib.error
+    from app.services.travel_advisory import (
+        fetch_live_destination_weather,
+        reset_model_weather_cache,
+        MODEL_WEATHER_CACHE,
+    )
+
+    reset_model_weather_cache()
+
+    # Case A: Integer Retry-After header (e.g. 120 seconds)
+    http_429_int = urllib.error.HTTPError(
+        url="https://customer-api.open-meteo.com/v1/forecast",
+        code=429,
+        msg="Too Many Requests",
+        hdrs={"Retry-After": "120"},
+        fp=io.BytesIO(b'{"reason": "Rate limited"}'),
+    )
+
+    now_before = time.time()
+    with patch("urllib.request.urlopen", side_effect=http_429_int):
+        res = fetch_live_destination_weather(19.8, 85.82)
+        assert res is None
+        cached = MODEL_WEATHER_CACHE["19.8_85.82"]
+        # retry_after should be approximately now + 120 (within 2s)
+        assert cached["retry_after"] >= now_before + 119
+        assert cached["retry_after"] <= now_before + 122
+
+    reset_model_weather_cache()
+
+    # Case B: HTTP-date format Retry-After header
+    future_http_date = email.utils.formatdate(time.time() + 90, usegmt=True)
+    http_429_date = urllib.error.HTTPError(
+        url="https://customer-api.open-meteo.com/v1/forecast",
+        code=429,
+        msg="Too Many Requests",
+        hdrs={"Retry-After": future_http_date},
+        fp=io.BytesIO(b'{"reason": "Rate limited"}'),
+    )
+
+    now_before = time.time()
+    with patch("urllib.request.urlopen", side_effect=http_429_date):
+        res = fetch_live_destination_weather(19.8, 85.82)
+        assert res is None
+        cached = MODEL_WEATHER_CACHE["19.8_85.82"]
+        # retry_after should be approximately now + 90
+        assert cached["retry_after"] >= now_before + 88
+        assert cached["retry_after"] <= now_before + 92
+
+    reset_model_weather_cache()
+
+
+def test_open_meteo_arbitrary_coordinates_generic_path():
+    """TEST MW-15: Arbitrary coordinates across all destinations and custom points work uniformly through the model pipeline."""
+    from unittest.mock import MagicMock
+    from app.services.travel_advisory import (
+        fetch_live_destination_weather,
+        reset_model_weather_cache,
+    )
+
+    reset_model_weather_cache()
+
+    sample_resp = {
+        "current": {"time": "2026-09-20T12:00", "temperature_2m": 30.0, "relative_humidity_2m": 70, "precipitation": 0.0, "rain": 0.0, "weather_code": 1, "wind_speed_10m": 10.0, "wind_gusts_10m": 15.0},
+        "hourly": {"time": ["2026-09-20T12:00"], "temperature_2m": [30.0], "precipitation_probability": [0], "precipitation": [0.0], "weather_code": [1], "wind_gusts_10m": [15.0]},
+    }
+    mock_resp = MagicMock()
+    mock_resp.status = 200
+    mock_resp.read.return_value = json.dumps(sample_resp).encode("utf-8")
+    mock_resp.__enter__.return_value = mock_resp
+    mock_resp.__exit__.return_value = None
+
+    test_coords = [
+        (20.2444, 85.8178),  # Bhubaneswar
+        (19.8135, 85.8312),  # Puri
+        (19.8876, 86.0945),  # Konark
+        (19.7165, 85.3215),  # Chilika
+        (21.5000, 86.9000),  # Custom GPS Point
+    ]
+
+    with patch("urllib.request.urlopen", return_value=mock_resp) as mock_urlopen:
+        for lat, lon in test_coords:
+            res = fetch_live_destination_weather(lat, lon)
+            assert res is not None
+            assert res["current"]["temperature_2m"] == 30.0
+
+        assert mock_urlopen.call_count == 5
 
     reset_model_weather_cache()
